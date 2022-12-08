@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <SFML/Graphics.hpp>
+#include "Controls.h"
 
 using namespace sf;
 using namespace std;
@@ -10,24 +11,34 @@ using namespace std;
 class Animation
 {
 private:
-    Sprite sprite;
+    Texture texture; // the texture
+    Sprite sprite; // the sprite
     Vector2f frameSize; // size of a frame
+    int direction; // the direction of the character
     float time,timeReset; // handling time between animations
+    // time -> the the time that has accumulated so far
+    // timeReset -> when the variable "time" value exceeds this value, we change the animation
 
     struct Pair
     {
         int x,y;
-    }currentFrame;
+    }currentFrame; // this helps us knowing which frame we are using at the current time
 
 public:
-    Sprite getSprite();
-    Vector2f getFrameSize();
+    //getters
+    Sprite getSprite() const; // getting the sprite
 
-    void increaseTimer(float);
-    void setFrame(int, int);
-    void handleAnimation(float);
+    //setters
+    void setFrame(int, int); // changing the frame, parameters: column-row
+    void setDirection(int); // changing the direction of the character
 
-    Animation(Texture,int,int);
+    void handleAnimation(float); // increase time and change frame to create an animation
+    void moveCharacter(Controls, int, int);
+
+    //constructors
+    Animation(string,int,int); // constructor, receiving as arguments the name of the texture and the number of frames horizontally, respectively vertically
+
+    //destructors
     ~Animation();
 };
 

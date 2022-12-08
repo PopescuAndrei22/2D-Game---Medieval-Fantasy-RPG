@@ -14,18 +14,16 @@
 				<Compiler>
 					<Add option="-std=c++14" />
 					<Add option="-g" />
-					<Add directory="C:/Program Files (x86)/SFML-2.4.2/include" />
+					<Add directory="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/include" />
 					<Add directory="include" />
-					<Add directory="../../../../../Program Files (x86)/Dev-Cpp/MinGW64/include" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics-d" />
-					<Add library="sfml-audio-d" />
-					<Add library="sfml-network-d" />
-					<Add library="sfml-window-d" />
-					<Add library="sfml-system-d" />
-					<Add library="../../../../../../Program Files (x86)/Dev-Cpp/MinGW64/lib/libmysql.a" />
-					<Add directory="C:/Program Files (x86)/SFML-2.4.2/lib" />
+					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-graphics-d.a" />
+					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-audio-d.a" />
+					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-network-d.a" />
+					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-window-d.a" />
+					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-system-d.a" />
+					<Add directory="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -49,37 +47,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=gnu++14" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Animation.h" />
-		<Unit filename="include/Button.h" />
 		<Unit filename="include/Character.h" />
-		<Unit filename="include/Content.h" />
-		<Unit filename="include/Input.h" />
-		<Unit filename="include/ManageText.h" />
-		<Unit filename="include/NavigationBar.h" />
-		<Unit filename="include/Panel.h" />
-		<Unit filename="include/Text.h" />
-		<Unit filename="include/TextBoxPageHandler.h" />
-		<Unit filename="include/Textbox.h" />
-		<Unit filename="include/test.h" />
+		<Unit filename="include/Controls.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
-		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Character.cpp" />
-		<Unit filename="src/Content.cpp" />
-		<Unit filename="src/Input.cpp" />
-		<Unit filename="src/ManageText.cpp" />
-		<Unit filename="src/NavigationBar.cpp" />
-		<Unit filename="src/Panel.cpp" />
-		<Unit filename="src/Text.cpp" />
-		<Unit filename="src/TextBoxPageHandler.cpp" />
-		<Unit filename="src/Textbox.cpp" />
-		<Unit filename="src/test.cpp" />
-		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
-		</Extensions>
+		<Unit filename="src/Controls.cpp" />
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
