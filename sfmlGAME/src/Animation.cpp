@@ -35,11 +35,11 @@ void Animation::handleAnimation(float time)
         }
 
     if(this->direction!=0)
-        this->time+=time;
+        this->timeFrame+=time;
 
-    if(this->time >= this->timeReset)
+    if(this->timeFrame >= this->timeResetFrame)
         {
-            this->time = 0.0;
+            this->timeFrame = 0.0;
 
             this->currentFrame.x++;
             if(this->currentFrame.x > 9)
@@ -50,7 +50,7 @@ void Animation::handleAnimation(float time)
 }
 
 // moving the character
-void Animation::moveCharacter(Controls controls, int keyCode, int speed)
+void Animation::moveCharacter(Controls controls, Keyboard::Key keyCode, int speed, float timer)
 {
     float distance = (float)min(this->frameSize.x,this->frameSize.y) * ((float)speed/100); // how much the character has moved, value calculated as minimum between horizontally and vertically size of the frame
 
@@ -68,26 +68,45 @@ void Animation::moveCharacter(Controls controls, int keyCode, int speed)
     RIGHT -> 4
     */
 
+    float newX=x,newY=y; // the new position of the sprite
+
     if(keyCode == controls.getMoveLeft())
         {
-            this->sprite.setPosition(x-distance,y);
+            newX-=distance;
             this->direction = 2;
         }
 
     if(keyCode == controls.getMoveRight())
         {
-            this->sprite.setPosition(x+distance,y);
+            newX+=distance;
             this->direction = 4;
         }
     if(keyCode == controls.getMoveUp())
         {
-            this->sprite.setPosition(x,y-distance);
+
+            newY-=distance;
             this->direction = 1;
         }
     if(keyCode == controls.getMoveDown())
         {
-            this->sprite.setPosition(x,y+distance);
+            newY+=distance;
             this->direction = 3;
+        }
+
+    if(this->direction == 0)
+        {
+            this->timeMove=0.0f;
+        }
+    else
+        {
+            this->timeMove+=timer;
+
+            if(this->timeMove >= this->timeMoveReset)
+                {
+                    this->timeMove = 0.0f;
+
+                    this->sprite.setPosition(newX,newY);
+                }
         }
 }
 
@@ -105,10 +124,10 @@ Animation::Animation(string fileName, int x, int y)
     this->frameSize.y = textureSize.y / y;
 
     // initializing the time
-    this->time = 0.0f;
+    this->timeFrame = 0.0f;
 
     // the time after which the animation changes
-    this->timeReset = 0.15f;
+    this->timeResetFrame = 0.06f;
 
     // initializing the current frame, by default is on walking mode facing downwards
     this->currentFrame.x = 1;
@@ -116,6 +135,9 @@ Animation::Animation(string fileName, int x, int y)
     this->setFrame(this->currentFrame.x,this->currentFrame.y);
 
     this->direction = 0;
+
+    this->timeMove = 0.0f;
+    this->timeMoveReset = 0.01f;
 }
 
 //destructors

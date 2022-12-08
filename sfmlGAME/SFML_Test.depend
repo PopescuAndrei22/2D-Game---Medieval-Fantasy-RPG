@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\panel.cpp
 	"Panel.h"
+	"Panel.h"
 
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\panel.h
 	<SFML/Graphics.hpp>
@@ -8,8 +9,39 @@
 	"Button.h"
 	<vector>
 	<map>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Button.h"
+	<vector>
+	<map>
 
 1641134256 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/View.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -51,8 +83,39 @@
 	<SFML/Window/Window.hpp>
 	<SFML/Window/WindowHandle.hpp>
 	<SFML/Window/WindowStyle.hpp>
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
 
 1641134256 c:\program files (x86)\sfml-2.4.2\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
+	<SFML/System/FileInputStream.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/MemoryInputStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -74,18 +137,25 @@
 
 1641134256 c:\program files (x86)\sfml-2.4.2\include\sfml\config.hpp
 	"TargetConditionals.h"
+	"TargetConditionals.h"
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\clock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
+	<SFML/System/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\err.hpp
+	<SFML/System/Export.hpp>
+	<ostream>
 	<SFML/System/Export.hpp>
 	<ostream>
 
@@ -96,15 +166,26 @@
 	<SFML/System/NonCopyable.hpp>
 	<cstdio>
 	<string>
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdio>
+	<string>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\inputstream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
+	<SFML/System/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\lock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
@@ -113,12 +194,20 @@
 	<SFML/System/InputStream.hpp>
 	<SFML/System/Export.hpp>
 	<cstdlib>
+	<SFML/Config.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Export.hpp>
+	<cstdlib>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\sleep.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
@@ -129,8 +218,20 @@
 	<locale>
 	<string>
 	<SFML/System/String.inl>
+	<SFML/System/Export.hpp>
+	<SFML/System/Utf.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<SFML/System/String.inl>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<cstdlib>
+	<SFML/System/Utf.inl>
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -147,6 +248,10 @@
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+	<SFML/System/Thread.inl>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\thread.inl
 
@@ -154,8 +259,13 @@
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\threadlocalptr.hpp
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.inl>
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
@@ -163,10 +273,12 @@
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
+	<SFML/System/Vector2.inl>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\vector2.inl
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
 	<SFML/System/Vector3.inl>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\system\vector3.inl
@@ -176,11 +288,18 @@
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/System/NonCopyable.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\glresource.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
@@ -192,15 +311,25 @@
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 	<SFML/Window/Sensor.hpp>
+	<SFML/Config.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\joystick.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
+	<SFML/Window/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\mouse.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
@@ -208,12 +337,19 @@
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/System/Time.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/System/Time.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\touch.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\window\videomode.hpp
+	<SFML/Window/Export.hpp>
+	<vector>
 	<SFML/Window/Export.hpp>
 	<vector>
 
@@ -228,19 +364,34 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/String.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/String.hpp>
 
 1641134258 c:\program files (x86)\sfml-2.4.2\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
 	<SFML/Config.hpp>
 
 1641134258 c:\program files (x86)\sfml-2.4.2\include\sfml\window\windowstyle.hpp
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\blendmode.hpp
 	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\circleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
@@ -250,12 +401,22 @@
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/Vector2.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderStates.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\renderstates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
@@ -264,8 +425,14 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
@@ -275,8 +442,16 @@
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\vertexarray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<vector>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -288,13 +463,20 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\color.hpp
+	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Export.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\primitivetype.hpp
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\convexshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<vector>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
@@ -309,12 +491,26 @@
 	<map>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<map>
+	<string>
+	<vector>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/GlResource.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -325,12 +521,29 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -347,13 +560,25 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Vector2.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
@@ -369,8 +594,21 @@
 	<SFML/System/Vector3.hpp>
 	<map>
 	<string>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glsl.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\glsl.hpp
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Graphics/Glsl.inl>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
@@ -380,6 +618,11 @@
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\glsl.inl
 
 1641134257 c:\program files (x86)\sfml-2.4.2\include\sfml\graphics\sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -396,8 +639,20 @@
 	<SFML/System/String.hpp>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<string>
+	<vector>
 
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\button.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"ManageText.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ManageText.h"
@@ -405,8 +660,11 @@
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\managetext.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	<SFML/Graphics.hpp>
+	<iostream>
 
 1641135896 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\test.cpp
+	"test.h"
 	"test.h"
 
 1641135896 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\test.h
@@ -423,8 +681,21 @@
 	"TextBoxPageHandler.h"
 	<sstream>
 	<cstring>
+	<windows.h>
+	<mysql.h>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Panel.h"
+	"Button.h"
+	"ManageText.h"
+	"Textbox.h"
+	"TextBoxPageHandler.h"
+	<sstream>
+	<cstring>
 
 1641317916 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\textbox.h
+	<SFML/Graphics.hpp>
+	<iostream>
 	<SFML/Graphics.hpp>
 	<iostream>
 
@@ -438,11 +709,22 @@
 	<windows.h>
 	<mysql.h>
 	<cstring>
+	"Textbox.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	"Button.h"
+	<sstream>
+	<windows.h>
+	<mysql.h>
+	<cstring>
 
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\button.cpp
 	"Button.h"
+	"Button.h"
 
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\content.cpp
+	"Content.h"
 	"Content.h"
 
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\content.h
@@ -451,27 +733,45 @@
 	"Panel.h"
 	"Button.h"
 	"ManageText.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Panel.h"
+	"Button.h"
+	"ManageText.h"
 
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\managetext.cpp
+	"ManageText.h"
 	"ManageText.h"
 
 1641840168 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\textbox.cpp
 	"Textbox.h"
+	"Textbox.h"
 
 1641841907 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\textboxpagehandler.cpp
 	"TextBoxPageHandler.h"
+	"TextBoxPageHandler.h"
 
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\navigationbar.cpp
+	"NavigationBar.h"
 	"NavigationBar.h"
 
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\navigationbar.h
 
 1641038520 source:c:\users\andrei\desktop\codeblocksprojects\sfml_test\src\text.cpp
 	"Text.h"
+	"Text.h"
 
 1641038520 c:\users\andrei\desktop\codeblocksprojects\sfml_test\include\text.h
 
 1641127426 c:\program files (x86)\dev-cpp\mingw64\include\mysql.h
+	<sys/types.h>
+	<winsock.h>
+	"mysql_com.h"
+	"mysql_time.h"
+	"mysql_version.h"
+	"typelib.h"
+	"my_list.h"
+	"my_alloc.h"
 	<sys/types.h>
 	<winsock.h>
 	"mysql_com.h"
@@ -487,6 +787,7 @@
 
 1641127426 c:\program files (x86)\dev-cpp\mingw64\include\mysql_version.h
 	<custom_conf.h>
+	<custom_conf.h>
 
 1641127426 c:\program files (x86)\dev-cpp\mingw64\include\typelib.h
 
@@ -496,8 +797,12 @@
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\button.cpp
 	"Button.h"
+	"Button.h"
 
 1641038520 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\button.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"ManageText.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ManageText.h"
@@ -505,11 +810,19 @@
 1641038520 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\managetext.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	<SFML/Graphics.hpp>
+	<iostream>
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\content.cpp
 	"Content.h"
+	"Content.h"
 
 1641038520 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\content.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Panel.h"
+	"Button.h"
+	"ManageText.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Panel.h"
@@ -522,39 +835,62 @@
 	"Button.h"
 	<vector>
 	<map>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Button.h"
+	<vector>
+	<map>
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\managetext.cpp
 	"ManageText.h"
+	"ManageText.h"
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\navigationbar.cpp
+	"NavigationBar.h"
 	"NavigationBar.h"
 
 1641038520 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\navigationbar.h
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\panel.cpp
 	"Panel.h"
+	"Panel.h"
 
 1641135896 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\test.cpp
+	"test.h"
 	"test.h"
 
 1641135896 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\test.h
 
 1641038520 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\text.cpp
 	"Text.h"
+	"Text.h"
 
 1641038520 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\text.h
 
 1641840168 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\textbox.cpp
 	"Textbox.h"
+	"Textbox.h"
 
 1641317916 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\textbox.h
+	<SFML/Graphics.hpp>
+	<iostream>
 	<SFML/Graphics.hpp>
 	<iostream>
 
 1641841907 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\textboxpagehandler.cpp
 	"TextBoxPageHandler.h"
+	"TextBoxPageHandler.h"
 
 1641217308 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\textboxpagehandler.h
+	"Textbox.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	"Button.h"
+	<sstream>
+	<windows.h>
+	<mysql.h>
+	<cstring>
 	"Textbox.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -572,37 +908,59 @@
 	"Animation.h"
 	"Input.h"
 	"Character.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<typeinfo>
+	"Animation.h"
+	"Input.h"
+	"Character.h"
 
 1670008109 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\animation.h
+	<iostream>
+	<algorithm>
+	<SFML/Graphics.hpp>
 	<iostream>
 	<algorithm>
 	<SFML/Graphics.hpp>
 
 1670024672 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\animation.cpp
 	"Animation.h"
+	"Animation.h"
 
 1670024760 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\input.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Animation.h"
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Animation.h"
 
 1670013442 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\input.cpp
 	"Input.h"
+	"Input.h"
 
 1670024679 c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\include\character.h
 
 1670024672 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\codeblocksprojects\sfmlgame\src\character.cpp
 	"Character.h"
+	"Character.h"
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\navigationbar.cpp
+	"NavigationBar.h"
 	"NavigationBar.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\navigationbar.h
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\panel.cpp
 	"Panel.h"
+	"Panel.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\panel.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Button.h"
+	<vector>
+	<map>
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Button.h"
@@ -613,29 +971,40 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ManageText.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"ManageText.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\managetext.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	<SFML/Graphics.hpp>
+	<iostream>
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\test.cpp
+	"test.h"
 	"test.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\test.h
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\text.cpp
 	"Text.h"
+	"Text.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\text.h
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\textbox.cpp
 	"Textbox.h"
+	"Textbox.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\textbox.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	<SFML/Graphics.hpp>
+	<iostream>
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\textboxpagehandler.cpp
+	"TextBoxPageHandler.h"
 	"TextBoxPageHandler.h"
 
 1670167261 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\textboxpagehandler.h
@@ -648,14 +1017,24 @@
 	<windows.h>
 	<mysql.h>
 	<cstring>
+	"Textbox.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	"Button.h"
+	<sstream>
+	<windows.h>
+	<mysql.h>
+	<cstring>
 
-1670457275 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\animation.cpp
+1670517915 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\animation.cpp
 	"Animation.h"
 
 1670167262 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\input.cpp
 	"Input.h"
+	"Input.h"
 
-1670456396 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\main.cpp
+1670517964 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Character.h"
@@ -663,6 +1042,33 @@
 	"Controls.h"
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/VertexBuffer.hpp>
+	<SFML/Graphics/View.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -707,8 +1113,41 @@
 	<SFML/Window/Window.hpp>
 	<SFML/Window/WindowHandle.hpp>
 	<SFML/Window/WindowStyle.hpp>
+	<SFML/System.hpp>
+	<SFML/Window/Clipboard.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
+	<SFML/System/FileInputStream.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/MemoryInputStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -730,18 +1169,25 @@
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\config.hpp
 	"TargetConditionals.h"
+	"TargetConditionals.h"
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\clock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
+	<SFML/System/Export.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\err.hpp
+	<SFML/System/Export.hpp>
+	<ostream>
 	<SFML/System/Export.hpp>
 	<ostream>
 
@@ -752,15 +1198,26 @@
 	<SFML/System/NonCopyable.hpp>
 	<cstdio>
 	<string>
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdio>
+	<string>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\inputstream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
+	<SFML/System/Export.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\lock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
@@ -769,12 +1226,20 @@
 	<SFML/System/InputStream.hpp>
 	<SFML/System/Export.hpp>
 	<cstdlib>
+	<SFML/Config.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Export.hpp>
+	<cstdlib>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\sleep.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
@@ -785,8 +1250,20 @@
 	<locale>
 	<string>
 	<SFML/System/String.inl>
+	<SFML/System/Export.hpp>
+	<SFML/System/Utf.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<SFML/System/String.inl>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<cstdlib>
+	<SFML/System/Utf.inl>
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -803,6 +1280,10 @@
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+	<SFML/System/Thread.inl>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\thread.inl
 
@@ -810,8 +1291,13 @@
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\threadlocalptr.hpp
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.inl>
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
@@ -819,10 +1305,12 @@
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
+	<SFML/System/Vector2.inl>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\vector2.inl
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
 	<SFML/System/Vector3.inl>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\system\vector3.inl
@@ -830,11 +1318,18 @@
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\clipboard.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\context.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -843,11 +1338,17 @@
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\glresource.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\contextsettings.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\cursor.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Vector2.hpp>
@@ -858,15 +1359,25 @@
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 	<SFML/Window/Sensor.hpp>
+	<SFML/Config.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\joystick.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
+	<SFML/Window/Export.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\mouse.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
@@ -874,12 +1385,19 @@
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/System/Time.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/System/Time.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\touch.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\videomode.hpp
+	<SFML/Window/Export.hpp>
+	<vector>
 	<SFML/Window/Export.hpp>
 	<vector>
 
@@ -895,19 +1413,35 @@
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/String.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
 	<SFML/Config.hpp>
 
 1670419015 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\window\windowstyle.hpp
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\blendmode.hpp
 	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Export.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
+	<SFML/Config.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\circleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
@@ -917,12 +1451,22 @@
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderStates.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\renderstates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
@@ -931,8 +1475,14 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
@@ -942,8 +1492,16 @@
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\vertexarray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<vector>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -955,13 +1513,20 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\color.hpp
+	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Export.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\primitivetype.hpp
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\convexshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<vector>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
@@ -976,12 +1541,26 @@
 	<map>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<map>
+	<string>
+	<vector>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/GlResource.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -992,12 +1571,29 @@
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/System/NonCopyable.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -1014,14 +1610,27 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Vector2.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/ContextSettings.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/ContextSettings.hpp>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
@@ -1037,8 +1646,21 @@
 	<SFML/System/Vector3.hpp>
 	<map>
 	<string>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glsl.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\glsl.hpp
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Graphics/Glsl.inl>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
@@ -1048,6 +1670,11 @@
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\glsl.inl
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -1064,30 +1691,46 @@
 	<SFML/System/String.hpp>
 	<string>
 	<vector>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<string>
+	<vector>
 
 1670419014 c:\users\andrei\desktop\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics\vertexbuffer.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Window/GlResource.hpp>
 
-1670454317 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\character.cpp
+1670517893 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\character.cpp
 	"Character.h"
 
-1670454027 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\character.h
+1670517949 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\character.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1670456396 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\animation.h
+1670517347 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\animation.h
 	<iostream>
 	<algorithm>
 	<SFML/Graphics.hpp>
 	"Controls.h"
 
-1670452088 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\controls.cpp
+1670516204 source:c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\src\controls.cpp
 	"Controls.h"
 
-1670452159 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\controls.h
+1670516067 c:\users\andrei\desktop\documents\codeblocks\code\sfmlgame\include\controls.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Controls.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Controls.h"

@@ -1,43 +1,59 @@
 #include "Controls.h"
 
+//
+Keyboard::Key Controls::checkIfKeyIsPressed()
+{
+    // perhaps modify this code later?
+    if(Keyboard::isKeyPressed(this->moveUp))
+        return this->moveUp;
+    if(Keyboard::isKeyPressed(this->moveDown))
+        return this->moveDown;
+    if(Keyboard::isKeyPressed(this->moveLeft))
+        return this->moveLeft;
+    if(Keyboard::isKeyPressed(this->moveRight))
+        return this->moveRight;
+
+    return Keyboard::P; // must modify here to set something else as default
+}
+
 // getters
-int Controls::getMoveLeft() const
+Keyboard::Key Controls::getMoveLeft() const
 {
     return this->moveLeft;
 }
 
-int Controls::getMoveRight() const
+Keyboard::Key Controls::getMoveRight() const
 {
     return this->moveRight;
 }
 
-int Controls::getMoveUp() const
+Keyboard::Key Controls::getMoveUp() const
 {
     return this->moveUp;
 }
 
-int Controls::getMoveDown() const
+Keyboard::Key Controls::getMoveDown() const
 {
     return this->moveDown;
 }
 
 // setters
-void Controls::setMoveLeft(int newBind)
+void Controls::setMoveLeft(Keyboard::Key newBind)
 {
     this->moveLeft = newBind;
 }
 
-void Controls::setMoveRight(int newBind)
+void Controls::setMoveRight(Keyboard::Key newBind)
 {
     this->moveRight = newBind;
 }
 
-void Controls::setMoveUp(int newBind)
+void Controls::setMoveUp(Keyboard::Key newBind)
 {
     this->moveUp = newBind;
 }
 
-void Controls::setMoveDown(int newBind)
+void Controls::setMoveDown(Keyboard::Key newBind)
 {
     this->moveDown = newBind;
 }
@@ -46,10 +62,10 @@ void Controls::setMoveDown(int newBind)
 Controls::Controls()
 {
     // initial binds, can be modified later from options -> key bindings
-    this->moveLeft=71;
-    this->moveRight=72;
-    this->moveUp=73;
-    this->moveDown=74;
+    this->moveLeft=Keyboard::Left;
+    this->moveRight=Keyboard::Right;
+    this->moveUp=Keyboard::Up;
+    this->moveDown=Keyboard::Down;
 }
 
 // destructors

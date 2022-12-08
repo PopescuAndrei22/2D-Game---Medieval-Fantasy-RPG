@@ -18,6 +18,8 @@ int main()
 
     while (window.isOpen())
         {
+            float timer = clock.restart().asSeconds();
+
             sf::Event event;
             while (window.pollEvent(event))
                 {
@@ -25,16 +27,15 @@ int main()
                         window.close();
                     if(event.type == Event::EventType::KeyPressed)
                     {
-                        animation.moveCharacter(controls,event.key.code,character.getSpeed());
+                        // to do
                     }
-                    else
-                        animation.setDirection(0); // i will modify this later, after i will improve the design for a better code
                 }
+
+            animation.moveCharacter(controls,controls.checkIfKeyIsPressed(),character.getSpeed(),timer);
 
             window.clear(Color(Color::Black));
 
-            // must be placed after animation.moveCharacter because of the direction issue (would be 0), but i can change the code for that later
-            animation.handleAnimation(clock.restart().asSeconds());
+            animation.handleAnimation(timer);
 
             window.draw(animation.getSprite());
 

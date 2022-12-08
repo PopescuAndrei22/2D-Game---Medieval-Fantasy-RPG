@@ -10,17 +10,20 @@ using namespace std;
 class Controls
 {
 public:
+    // checking if a key used for controls was pressed
+    Keyboard::Key checkIfKeyIsPressed();
+
     //getters
-    int getMoveLeft() const;
-    int getMoveRight() const;;
-    int getMoveUp() const;;
-    int getMoveDown() const;;
+    Keyboard::Key getMoveLeft() const;
+    Keyboard::Key getMoveRight() const;
+    Keyboard::Key getMoveUp() const;
+    Keyboard::Key getMoveDown() const;
 
     //setters
-    void setMoveLeft(int);
-    void setMoveRight(int);
-    void setMoveUp(int);
-    void setMoveDown(int);
+    void setMoveLeft(Keyboard::Key);
+    void setMoveRight(Keyboard::Key);
+    void setMoveUp(Keyboard::Key);
+    void setMoveDown(Keyboard::Key);
 
     //constructors
     Controls();
@@ -29,7 +32,7 @@ public:
     ~Controls();
 
 private:
-    int moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
+    Keyboard::Key moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
 };
 
 #endif // CONTROLS_H
