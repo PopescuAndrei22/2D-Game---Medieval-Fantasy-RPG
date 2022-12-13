@@ -1,47 +1,61 @@
-#ifndef ANIMATION_H
-#define ANIMATION_H
-#include <iostream>
-#include <algorithm>
+#ifndef ANIMATION1_H
+#define ANIMATION1_H
 #include <SFML/Graphics.hpp>
-#include "Controls.h"
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <nlohmann/json.hpp>
 
 using namespace sf;
 using namespace std;
 
 class Animation
 {
-private:
-    Texture texture; // the texture
-    Sprite sprite; // the sprite
-    Vector2f frameSize; // size of a frame
-    int direction; // the direction of the character
-    float timeFrame,timeResetFrame; // handling time between animations
-    // time -> the the time that has accumulated so far
-    // timeReset -> when the variable "time" value exceeds this value, we change the animation
+public:
+    //getters
+    Sprite getSprite() const;
 
-    float timeMove,timeMoveReset; // handling the move of the character
+    //setters
+    /*
+    this function has 2 optional parameters, multipliers of the actual size of the frame
+    to make animations for attack possible
+    is customized just for the types of textures i have for my characters
+    */
+    void setFrame(int,int,int=1,int=1);
+
+    // constructors
+
+    /* constructor, receiving as arguments the path to the texture and
+    a path to a file that says how many frames each line has
+    and the number of frames horizontally, respectively vertically */
+    Animation(string,int,int);
+
+    // destructors
+    ~Animation();
+
+protected:
+
+    Vector2f getSpriteLocation() const;
+    void setSpriteLocation(float, float);
+
+    Vector2f getFrameSize() const;
 
     struct Pair
     {
         int x,y;
-    }currentFrame; // this helps us knowing which frame we are using at the current time
+    } currentFrame; // this helps us knowing which frame we are using at the current time
 
-public:
-    //getters
-    Sprite getSprite() const; // getting the sprite
+    vector <int> numberOfFrames; // to see how many frames are on each line
 
-    //setters
-    void setFrame(int, int); // changing the frame, parameters: column-row
-    void setDirection(int); // changing the direction of the character
+    float timeFrame,timeResetFrame; // handling time between animations
+    // time -> the the time that has accumulated so far
+    // timeReset -> when the variable "time" value exceeds this value, we change the animation and reset "time" value
 
-    void handleAnimation(float); // increase time and change frame to create an animation
-    void moveCharacter(Controls, Keyboard::Key, int, float);
+private:
+    Texture texture;
+    Sprite sprite;
 
-    //constructors
-    Animation(string,int,int); // constructor, receiving as arguments the name of the texture and the number of frames horizontally, respectively vertically
-
-    //destructors
-    ~Animation();
+    Vector2f frameSize; // size of a frame
 };
 
-#endif // ANIMATION_H
+#endif // ANIMATION1_H

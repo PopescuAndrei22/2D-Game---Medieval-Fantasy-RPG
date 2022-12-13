@@ -14,16 +14,16 @@
 				<Compiler>
 					<Add option="-std=c++14" />
 					<Add option="-g" />
-					<Add directory="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/include" />
-					<Add directory="include" />
+					<Add directory="../../Resources/SFML-2.5.1/include" />
+					<Add directory="resources/json-develop/include" />
 				</Compiler>
 				<Linker>
-					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-graphics-d.a" />
-					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-audio-d.a" />
-					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-network-d.a" />
-					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-window-d.a" />
-					<Add library="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib/libsfml-system-d.a" />
-					<Add directory="C:/Users/Andrei/Desktop/Documents/CodeBlocks/Resources/SFML-2.5.1/lib" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-audio-d" />
+					<Add library="sfml-network-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+					<Add directory="../../Resources/SFML-2.5.1/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -51,10 +51,12 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Animation.h" />
+		<Unit filename="include/AnimationCharacter.h" />
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/Controls.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
+		<Unit filename="src/AnimationCharacter.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/Controls.cpp" />
 		<Extensions />

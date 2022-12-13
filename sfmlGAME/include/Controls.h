@@ -19,11 +19,15 @@ public:
     Keyboard::Key getMoveUp() const;
     Keyboard::Key getMoveDown() const;
 
+    Keyboard::Key getAttack() const;
+
     //setters
     void setMoveLeft(Keyboard::Key);
     void setMoveRight(Keyboard::Key);
     void setMoveUp(Keyboard::Key);
     void setMoveDown(Keyboard::Key);
+
+    void setAttack(Keyboard::Key);
 
     //constructors
     Controls();
@@ -33,6 +37,7 @@ public:
 
 private:
     Keyboard::Key moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
+    Keyboard::Key attack; // control for basic attack
 };
 
 #endif // CONTROLS_H

@@ -28,7 +28,7 @@ class Character
         ~Character();
 
     private:
-        int speed; // speed, measured in procents, initially it is 5%
+        int speed; // speed, measured in procents, initially it is 100%
         int health; // health, initially it is 300
         int mana; // mana, initially it is 200
 };

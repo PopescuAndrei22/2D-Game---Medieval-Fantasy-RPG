@@ -1,20 +1,30 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Character.h"
-#include "Animation.h"
 #include "Controls.h"
+#include "Animation.h"
+#include "AnimationCharacter.h"
 
 using namespace sf;
 using namespace std;
 
+// timer universally
+// to make this->setFrame universally, just modifying this->currentFrame in functions
+// be careful at currentFrame values
+
 int main()
 {
+    // ("sprites/characters/hero1.png",18,33) will be in the main animation class
+
     RenderWindow window(sf::VideoMode(900, 900), "2D RPG");
 
-    Character character;
-    Animation animation("sprites/characters/hero1.png",18,33);
+    Character hero;
     Controls controls;
     Clock clock;
+
+    // sa am grija la extensii gen .png sau .jpg
+    AnimationCharacter heroAnimation("hero",18,33);
+    heroAnimation.setWindowSize(window.getSize());
 
     while (window.isOpen())
         {
@@ -25,19 +35,13 @@ int main()
                 {
                     if (event.type == sf::Event::Closed)
                         window.close();
-                    if(event.type == Event::EventType::KeyPressed)
-                    {
-                        // to do
-                    }
                 }
 
-            animation.moveCharacter(controls,controls.checkIfKeyIsPressed(),character.getSpeed(),timer);
+            heroAnimation.handleAnimation(controls,controls.checkIfKeyIsPressed(),timer);
 
             window.clear(Color(Color::Black));
 
-            animation.handleAnimation(timer);
-
-            window.draw(animation.getSprite());
+            window.draw(heroAnimation.getSprite());
 
             window.display();
         }

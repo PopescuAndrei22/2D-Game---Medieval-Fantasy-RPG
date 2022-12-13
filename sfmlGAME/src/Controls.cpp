@@ -1,9 +1,8 @@
 #include "Controls.h"
 
-//
+// checking if any of the set controls was used
 Keyboard::Key Controls::checkIfKeyIsPressed()
 {
-    // perhaps modify this code later?
     if(Keyboard::isKeyPressed(this->moveUp))
         return this->moveUp;
     if(Keyboard::isKeyPressed(this->moveDown))
@@ -12,8 +11,10 @@ Keyboard::Key Controls::checkIfKeyIsPressed()
         return this->moveLeft;
     if(Keyboard::isKeyPressed(this->moveRight))
         return this->moveRight;
+    if(Keyboard::isKeyPressed(this->attack))
+        return this->attack;
 
-    return Keyboard::P; // must modify here to set something else as default
+    return Keyboard::Unknown;
 }
 
 // getters
@@ -37,6 +38,11 @@ Keyboard::Key Controls::getMoveDown() const
     return this->moveDown;
 }
 
+Keyboard::Key Controls::getAttack() const
+{
+    return this->attack;
+}
+
 // setters
 void Controls::setMoveLeft(Keyboard::Key newBind)
 {
@@ -58,6 +64,11 @@ void Controls::setMoveDown(Keyboard::Key newBind)
     this->moveDown = newBind;
 }
 
+void Controls::setAttack(Keyboard::Key newBind)
+{
+    this->attack = newBind;
+}
+
 // constructors
 Controls::Controls()
 {
@@ -66,6 +77,8 @@ Controls::Controls()
     this->moveRight=Keyboard::Right;
     this->moveUp=Keyboard::Up;
     this->moveDown=Keyboard::Down;
+
+    this->attack = Keyboard::Space;
 }
 
 // destructors

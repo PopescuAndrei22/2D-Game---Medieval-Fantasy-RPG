@@ -35,7 +35,7 @@ void Character::setMana(int mana)
 //constructors
 Character::Character()
 {
-    this->speed = 5;
+    this->speed = 100;
     this->health = 300;
     this->mana = 200;
 }

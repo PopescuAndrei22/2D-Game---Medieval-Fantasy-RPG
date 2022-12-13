@@ -1,119 +1,45 @@
 #include "Animation.h"
 
-using namespace sf;
-using namespace std;
-
-// getters
+//getters
 Sprite Animation::getSprite() const
 {
     return this->sprite;
 }
 
+Vector2f Animation::getSpriteLocation() const
+{
+    return this->sprite.getPosition();
+}
+
+Vector2f Animation::getFrameSize() const
+{
+    return this->frameSize;
+}
+
 // setters
-void Animation::setFrame(int column, int row)
+void Animation::setFrame(int column, int row, int customX, int customY)
 {
-    this->sprite.setTextureRect(IntRect(frameSize.x*(column-1),this->frameSize.y*(row-1),this->frameSize.x,this->frameSize.y));
-}
+    // for easier notation
+    int x = this->frameSize.x;
+    int y = this->frameSize.y;
 
-void Animation::setDirection(int direction)
-{
-    this->direction = direction;
-}
-
-// manipulating the frames
-void Animation::handleAnimation(float time)
-{
-    // i have to modify this code
-
-    if(this->direction == 0)
-        this->currentFrame.x = 1;
-
-    if(this->currentFrame.y != this->direction+8 && this->direction!=0)
-        {
-            this->currentFrame.y = this->direction+8;
-            this->currentFrame.x = 1;
-        }
-
-    if(this->direction!=0)
-        this->timeFrame+=time;
-
-    if(this->timeFrame >= this->timeResetFrame)
-        {
-            this->timeFrame = 0.0;
-
-            this->currentFrame.x++;
-            if(this->currentFrame.x > 9)
-                this->currentFrame.x = 2;
-        }
-
-    this->setFrame(this->currentFrame.x,this->currentFrame.y);
-}
-
-// moving the character
-void Animation::moveCharacter(Controls controls, Keyboard::Key keyCode, int speed, float timer)
-{
-    float distance = (float)min(this->frameSize.x,this->frameSize.y) * ((float)speed/100); // how much the character has moved, value calculated as minimum between horizontally and vertically size of the frame
-
-    Vector2f spriteLocation = this->sprite.getPosition(); // getting the current position of the sprite
-
-    // declaring x and y for an easier notation to get coordinates of current sprite's position
-    int x = spriteLocation.x;
-    int y = spriteLocation.y;
-
-    this-> direction = 0; // the direction where the character goes
-    /*
-    UP -> 1
-    LEFT -> 2
-    DOWN -> 3
-    RIGHT -> 4
-    */
-
-    float newX=x,newY=y; // the new position of the sprite
-
-    if(keyCode == controls.getMoveLeft())
-        {
-            newX-=distance;
-            this->direction = 2;
-        }
-
-    if(keyCode == controls.getMoveRight())
-        {
-            newX+=distance;
-            this->direction = 4;
-        }
-    if(keyCode == controls.getMoveUp())
-        {
-
-            newY-=distance;
-            this->direction = 1;
-        }
-    if(keyCode == controls.getMoveDown())
-        {
-            newY+=distance;
-            this->direction = 3;
-        }
-
-    if(this->direction == 0)
-        {
-            this->timeMove=0.0f;
-        }
+    if(customX==1)
+        this->sprite.setTextureRect(IntRect(x*(column-1),y*(row-1),x,y));
     else
-        {
-            this->timeMove+=timer;
-
-            if(this->timeMove >= this->timeMoveReset)
-                {
-                    this->timeMove = 0.0f;
-
-                    this->sprite.setPosition(newX,newY);
-                }
-        }
+        this->sprite.setTextureRect(IntRect(customX*x*(column-1),y*(row-1),x*customX,y*customY)); // customized attack for a specific texture
 }
 
-// constructors
+void Animation::setSpriteLocation(float x, float y)
+{
+    this->sprite.setPosition(x,y);
+}
+
+//constructors
 Animation::Animation(string fileName, int x, int y)
 {
-    this->texture.loadFromFile(fileName); // getting the texture
+    string pathTexture = "sprites/characters/" + fileName + ".png";
+
+    this->texture.loadFromFile(pathTexture); // getting the texture
 
     Vector2u textureSize = this->texture.getSize(); // getting texture's sizes
 
@@ -127,21 +53,44 @@ Animation::Animation(string fileName, int x, int y)
     this->timeFrame = 0.0f;
 
     // the time after which the animation changes
-    this->timeResetFrame = 0.06f;
+    this->timeResetFrame = 0.1f;
 
-    // initializing the current frame, by default is on walking mode facing downwards
+    // specifying the starting column and row for an animation, by default it is 1-1
     this->currentFrame.x = 1;
-    this->currentFrame.y = 11;
-    this->setFrame(this->currentFrame.x,this->currentFrame.y);
+    this->currentFrame.y = 1;
 
-    this->direction = 0;
+    string pathValues = "values/characters/" + fileName + ".json";
 
-    this->timeMove = 0.0f;
-    this->timeMoveReset = 0.01f;
+    // getting the number of frames for each line from a file
+    ifstream file(pathValues);
+
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    if(!data["numberOfFrames"].is_null())
+        {
+            for(unsigned i=0; i<data["numberOfFrames"].size(); i++)
+                this->numberOfFrames.push_back(data["numberOfFrames"][i]);
+        }
+
+    if(this->numberOfFrames.size()!=y)
+        cout<<"The number of lines read from the file "<<pathValues<<" is wrong."<<'\n';
+
+    file.close();
+
+    /*
+    ifstream file("values/numberOfFrames/hero.txt");
+
+    int nr;
+
+    while(file >> nr)
+    {
+        this->numberOfFrames.push_back(nr);
+    }
+    */
 }
 
 //destructors
 Animation::~Animation()
 {
-
+    this->numberOfFrames.clear();
 }
