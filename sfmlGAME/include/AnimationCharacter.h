@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Animation.h"
 #include "Controls.h"
+#include "Character.h"
 #include <fstream>
 #include <nlohmann/json.hpp>
 
@@ -13,14 +14,11 @@ using namespace std;
 class AnimationCharacter: public Animation
 {
 public:
-    // setting window size
-    void setWindowSize(Vector2u);
-
     // animation for IDLE
     void idleMode();
 
     // animation for walking
-    void walkMode(float);
+    void walkMode();
 
     /*
     animation for attack
@@ -28,25 +26,19 @@ public:
     its dimension is higher and has to be customized for this texture
     however, i will design another class "attackMode" for other textures
     */
-    void attackMode(float);
+    void attackMode();
 
     // handling animation
-    void handleAnimation(Controls, Keyboard::Key,float);
-
-    // moving the character
-    void moveCharacter(Vector2f,float);
+    void handleAnimation(Character,Controls,float);
 
     // animation for spellcasting
-    void spellCastMode(float);
+    void spellCastMode();
 
     //
     void changeAnimation(int);
 
-    // check if the character exceeds the borders
-    bool isInRange(Vector2f);
-
     //constructors
-    AnimationCharacter(string, int,int);
+    AnimationCharacter(string);
 
     //destructors
     ~AnimationCharacter();
@@ -67,19 +59,7 @@ private:
     */
     int direction;
 
-    /*
-    the time after which the characters moves
-    timeMove -> accumulates the time
-    timeResetMove -> when "timeMove" exceeds this value, reset "timeMove" then the character is moving
-    */
-    float timeMove, timeResetMove;
-
     int custom; // custom animation because of the texture i am using
-
-    Vector2f playerPosition;
-
-    // variable to get windowSize so we can check if the character exceeds the borders while moving
-    Vector2u windowSize;
 };
 
 #endif // ANIMATIONCHARACTER_H

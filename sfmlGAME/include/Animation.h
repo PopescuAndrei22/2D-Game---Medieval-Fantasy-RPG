@@ -15,6 +15,8 @@ public:
     //getters
     Sprite getSprite() const;
 
+    Vector2f getFrameSize() const;
+
     //setters
     /*
     this function has 2 optional parameters, multipliers of the actual size of the frame
@@ -28,7 +30,7 @@ public:
     /* constructor, receiving as arguments the path to the texture and
     a path to a file that says how many frames each line has
     and the number of frames horizontally, respectively vertically */
-    Animation(string,int,int);
+    Animation(string);
 
     // destructors
     ~Animation();
@@ -38,7 +40,11 @@ protected:
     Vector2f getSpriteLocation() const;
     void setSpriteLocation(float, float);
 
-    Vector2f getFrameSize() const;
+    void increaseTime(float);
+
+    void resetTime();
+
+    void renderAnimation(bool);
 
     struct Pair
     {
@@ -47,15 +53,15 @@ protected:
 
     vector <int> numberOfFrames; // to see how many frames are on each line
 
-    float timeFrame,timeResetFrame; // handling time between animations
-    // time -> the the time that has accumulated so far
-    // timeReset -> when the variable "time" value exceeds this value, we change the animation and reset "time" value
-
 private:
     Texture texture;
     Sprite sprite;
 
     Vector2f frameSize; // size of a frame
+
+    float timeFrame,timeResetFrame; // handling time between animations
+    // time -> the the time that has accumulated so far
+    // timeReset -> when the variable "time" value exceeds this value, we change the animation and reset "time" value
 };
 
 #endif // ANIMATION1_H

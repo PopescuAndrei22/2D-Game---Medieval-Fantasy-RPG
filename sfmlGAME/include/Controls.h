@@ -20,6 +20,7 @@ public:
     Keyboard::Key getMoveDown() const;
 
     Keyboard::Key getAttack() const;
+    Keyboard::Key getSpellCast() const;
 
     //setters
     void setMoveLeft(Keyboard::Key);
@@ -28,6 +29,7 @@ public:
     void setMoveDown(Keyboard::Key);
 
     void setAttack(Keyboard::Key);
+    void setSpellCast(Keyboard::Key);
 
     //constructors
     Controls();
@@ -38,6 +40,7 @@ public:
 private:
     Keyboard::Key moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
     Keyboard::Key attack; // control for basic attack
+    Keyboard::Key spellCast; // control for spell cast
 };
 
 #endif // CONTROLS_H

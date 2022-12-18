@@ -34,9 +34,53 @@ void Animation::setSpriteLocation(float x, float y)
     this->sprite.setPosition(x,y);
 }
 
-//constructors
-Animation::Animation(string fileName, int x, int y)
+void Animation::increaseTime(float timer)
 {
+    this->timeFrame += timer;
+}
+
+void Animation::resetTime()
+{
+    this->timeFrame = 0.0f;
+}
+
+void Animation::renderAnimation(bool ok)
+{
+    /*
+    for "ok" values:
+    false -> reset animation
+    true -> continue animation
+    */
+
+    if(ok == false)
+        {
+            this->resetTime();
+            this->currentFrame.x=1;
+        }
+    else
+        {
+            if(this->timeFrame > this->timeResetFrame)
+                {
+                    this->resetTime();
+                    this->currentFrame.x++;
+
+                    if(this->currentFrame.x > this->numberOfFrames[this->currentFrame.y-1])
+                        this->currentFrame.x=1;
+                }
+        }
+}
+
+
+//constructors
+Animation::Animation(string fileName)
+{
+    string pathValues = "values/characters/" + fileName + ".json";
+    ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    int x = (data["numberOfFramesX"].is_null()?0:(int)data["numberOfFramesX"]);
+    int y = (data["numberOfFramesY"].is_null()?0:(int)data["numberOfFramesY"]);
+
     string pathTexture = "sprites/characters/" + fileName + ".png";
 
     this->texture.loadFromFile(pathTexture); // getting the texture
@@ -59,34 +103,16 @@ Animation::Animation(string fileName, int x, int y)
     this->currentFrame.x = 1;
     this->currentFrame.y = 1;
 
-    string pathValues = "values/characters/" + fileName + ".json";
-
-    // getting the number of frames for each line from a file
-    ifstream file(pathValues);
-
-    nlohmann::json data = nlohmann::json::parse(file);
-
-    if(!data["numberOfFrames"].is_null())
+    if(!data["numberOfFramesArray"].is_null())
         {
-            for(unsigned i=0; i<data["numberOfFrames"].size(); i++)
-                this->numberOfFrames.push_back(data["numberOfFrames"][i]);
+            for(unsigned i=0; i<data["numberOfFramesArray"].size(); i++)
+                this->numberOfFrames.push_back(data["numberOfFramesArray"][i]);
         }
 
     if(this->numberOfFrames.size()!=y)
         cout<<"The number of lines read from the file "<<pathValues<<" is wrong."<<'\n';
 
     file.close();
-
-    /*
-    ifstream file("values/numberOfFrames/hero.txt");
-
-    int nr;
-
-    while(file >> nr)
-    {
-        this->numberOfFrames.push_back(nr);
-    }
-    */
 }
 
 //destructors

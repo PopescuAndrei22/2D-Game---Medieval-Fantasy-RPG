@@ -1,5 +1,8 @@
 {
-  "numberOfFrames": [
+  "numberOfFramesX": 18,
+  "numberOfFramesY": 33,
+  
+  "numberOfFramesArray": [
     7,
     7,
     7,
@@ -34,12 +37,21 @@
     6,
     6
   ],
+
+  "custom": 1,
+
   "walkLeft": 10,
   "walkRight": 12,
   "walkUp": 9,
   "walkDown": 11,
+  
   "attackLeft": 25,
   "attackRight": 31,
   "attackUp": 22,
-  "attackDown": 28
+  "attackDown": 28,
+
+  "spellCastLeft": 2,
+  "spellCastRight": 4,
+  "spellCastUp": 1,
+  "spellCastDown": 3
 }
