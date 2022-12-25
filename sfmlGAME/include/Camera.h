@@ -9,19 +9,20 @@
 using namespace sf;
 using namespace std;
 
-class Camera: public View
+class Camera
 {
     public:
-
-        void handleView(Character);
-
-        void zoomEvent(int);
+        //getters
+        View getView() const;
 
         // setters
         void setMapSize(Vector2f);
 
-        //getters
-        View getView() const;
+        // centering the camera on the character
+        void handleView(Character);
+
+        // zoom in and out
+        void zoomEvent(int);
 
         // constructors
         Camera();
@@ -31,10 +32,6 @@ class Camera: public View
 
     private:
         View view;
-
-        float zoomValue;
-
-        float zoomScaleValue,zoomMax,zoomMin;
 
         Vector2f windowSize;
         Vector2f mapSize;

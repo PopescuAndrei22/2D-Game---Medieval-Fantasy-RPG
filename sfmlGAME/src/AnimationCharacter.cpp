@@ -147,7 +147,6 @@ void AnimationCharacter::attackMode()
     this->renderAnimation(ok);
 }
 
-// getting the direction the character is facing
 void AnimationCharacter::handleAnimation(Character character, Controls controls, float timer)
 {
     /*
@@ -210,24 +209,18 @@ void AnimationCharacter::handleAnimation(Character character, Controls controls,
     int x=this->currentFrame.x;
     int y=this->currentFrame.y;
 
-    if(custom==1)
+    Vector2f characterPosition = character.getCharacterPosition();
+
+    this->setSpriteLocation(characterPosition.x,characterPosition.y);
+    this->setFrame(x,y);
+
+    if(custom==1 && isAttacking)
         {
-            Vector2f a = character.getCharacterPosition();
             Vector2f b = this->getFrameSize();
 
-            if(isAttacking)
-                {
-                    this->setSpriteLocation(a.x-b.x,a.y-b.y);
-                    this->setFrame(x,y,3,3);
-                }
-            else
-                {
-                    this->setSpriteLocation(a.x,a.y);
-                    this->setFrame(x,y);
-                }
+            this->setSpriteLocation(characterPosition.x-b.x,characterPosition.y-b.y);
+            this->setFrame(x,y,3,3);
         }
-    else
-        this->setFrame(x,y);
 }
 
 // constructors

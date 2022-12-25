@@ -14,30 +14,29 @@ class Animation
 public:
     //getters
     Sprite getSprite() const;
-
     Vector2f getFrameSize() const;
 
     //setters
     /*
     this function has 2 optional parameters, multipliers of the actual size of the frame
     to make animations for attack possible
-    is customized just for the types of textures i have for my characters
+    is customized just for the types of textures that i am using for my characters
     */
     void setFrame(int,int,int=1,int=1);
 
     // constructors
 
-    /* constructor, receiving as arguments the path to the texture and
-    a path to a file that says how many frames each line has
-    and the number of frames horizontally, respectively vertically */
+    /* constructor, receiving the name of the file that we are going to animate */
     Animation(string);
 
     // destructors
     ~Animation();
 
 protected:
-
+    // getters
     Vector2f getSpriteLocation() const;
+
+    // setters
     void setSpriteLocation(float, float);
 
     void increaseTime(float);

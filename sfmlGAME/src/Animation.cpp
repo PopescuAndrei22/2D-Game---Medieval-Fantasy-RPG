@@ -23,10 +23,13 @@ void Animation::setFrame(int column, int row, int customX, int customY)
     int x = this->frameSize.x;
     int y = this->frameSize.y;
 
-    if(customX==1)
-        this->sprite.setTextureRect(IntRect(x*(column-1),y*(row-1),x,y));
-    else
-        this->sprite.setTextureRect(IntRect(customX*x*(column-1),y*(row-1),x*customX,y*customY)); // customized attack for a specific texture
+    this->sprite.setTextureRect(IntRect(x*(column-1),y*(row-1),x,y));
+
+    if(customX==1 && customY==1)
+        return;
+
+    // custom function
+    this->sprite.setTextureRect(IntRect(customX*x*(column-1),y*(row-1),x*customX,y*customY)); // customized attack for a specific texture
 }
 
 void Animation::setSpriteLocation(float x, float y)
@@ -71,9 +74,11 @@ void Animation::renderAnimation(bool ok)
 }
 
 
-//constructors
+// constructors
 Animation::Animation(string fileName)
 {
+    // it could contain paths to make animated background as well, not only characters, i will modify it
+
     string pathValues = "values/characters/" + fileName + ".json";
     ifstream file(pathValues);
     nlohmann::json data = nlohmann::json::parse(file);
@@ -115,7 +120,7 @@ Animation::Animation(string fileName)
     file.close();
 }
 
-//destructors
+// destructors
 Animation::~Animation()
 {
     this->numberOfFrames.clear();

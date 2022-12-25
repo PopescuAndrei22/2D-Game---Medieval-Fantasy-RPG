@@ -44,15 +44,7 @@ bool CharacterMove::isCollision(Vector2f position, Vector2f characterSize)
     int yUp = position.y / this->gridSize;
     int yDown = (position.y + characterSize.y) / this->gridSize;
 
-    // data validation, have to improve it and add more like ydown 0 if below 0
-    if(yUp < 0)
-        yUp = 0;
-    if(yDown >= this->dimensions.l)
-        yDown = this->dimensions.l - 1;
-    if(xLeft < 0)
-        xLeft = 0;
-    if(xRight >= this->dimensions.c)
-        xRight = this->dimensions.c - 1;
+    // data validation for xLeft, xRight, yUp, yDown, what if gridSize is 0 or the values exceeds the map, or values are below 0
 
     /*
     this works well now but is going to be bad for very high textures ( ex huge bosses )
@@ -69,18 +61,18 @@ bool CharacterMove::isCollision(Vector2f position, Vector2f characterSize)
     return false;
 }
 
-bool CharacterMove::isInRange(Vector2f position, Vector2f characterSize)
+bool CharacterMove::isInRange(Vector2f newPosition, Vector2f characterSize)
 {
-    if(!(position.x >=0 && position.y >=0))
+    if(!(newPosition.x >=0 && newPosition.y >=0))
         return false;
 
-    if(!(position.x + characterSize.x <= this->mapSize.x))
+    if(!(newPosition.x + characterSize.x <= this->mapSize.x))
         return false;
 
-    if(!(position.y + characterSize.y <= this->mapSize.y))
+    if(!(newPosition.y + characterSize.y <= this->mapSize.y))
         return false;
 
-    if(this->isCollision(position,characterSize))
+    if(this->isCollision(newPosition,characterSize))
         return false;
 
     return true;
@@ -101,20 +93,26 @@ void CharacterMove::moveCharacter(Vector2f newPosition, Character *character)
 
 void CharacterMove::updateLevelDetails(Map map)
 {
+    this->deleteArray();
+
     this->mapSize = map.getMapSize();
     this->gridSize = map.getGridSize();
 
-    dimensions.c = this->mapSize.x / this->gridSize; // number of grids horizontally
-    dimensions.l = this->mapSize.y / this->gridSize; // number of grids vertically
+    if(this->gridSize != 0)
+        {
+            dimensions.c = this->mapSize.x / this->gridSize; // number of grids horizontally
+            dimensions.l = this->mapSize.y / this->gridSize; // number of grids vertically
+        }
 
-    // IMPORTANT!!!!, must delete after updating this function again
-    this->collisionArray = new int*[dimensions.l];
+    if(dimensions.l > 0)
+        this->collisionArray = new int*[dimensions.l];
 
     vector <int> arr = map.getCollisionArray();
 
     for(int i=0; i<dimensions.l; i++)
         {
-            this->collisionArray[i] = new int[dimensions.c];
+            if(dimensions.c > 0)
+                this->collisionArray[i] = new int[dimensions.c];
 
             for(int j=0; j<dimensions.c; j++)
                 {
@@ -136,17 +134,25 @@ void CharacterMove::resetTime()
 void CharacterMove::deleteArray()
 {
     for(int i = 0; i < dimensions.l; ++i)
-        delete[] this->collisionArray[i];
+        {
+            if(dimensions.c > 0)
+                delete[] this->collisionArray[i];
+        }
 
-    delete[] this->collisionArray;
+    if(dimensions.l > 0)
+        delete[] this->collisionArray;
 }
 
+// constructors
 CharacterMove::CharacterMove()
 {
     this->timeMove = 0.0f;
     this->timeMoveReset = 0.005f;
+
+    this->dimensions.l = this->dimensions.c = 0;
 }
 
+// destructors
 CharacterMove::~CharacterMove()
 {
     this->deleteArray();

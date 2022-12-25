@@ -1,11 +1,6 @@
 #include "Character.h"
 
 //getters
-int Character::getSpeed() const
-{
-    return this->speed;
-}
-
 int Character::getHealth() const
 {
     return this->health;
@@ -14,6 +9,21 @@ int Character::getHealth() const
 int Character::getMana() const
 {
     return this->mana;
+}
+
+int Character::getSpeedMovement() const
+{
+    return this->speedMovement;
+}
+
+int Character::getSpeedAttack() const
+{
+    return this->speedAttack;
+}
+
+bool Character::getKnockback() const
+{
+    return this->knockback;
 }
 
 Vector2f Character::getCharacterPosition() const
@@ -27,10 +37,6 @@ Vector2f Character::getCharacterSize() const
 }
 
 //setters
-void Character::setSpeed(int speed)
-{
-    this->speed = speed;
-}
 
 void Character::setHealth(int health)
 {
@@ -40,6 +46,21 @@ void Character::setHealth(int health)
 void Character::setMana(int mana)
 {
     this->mana = mana;
+}
+
+void Character::setSpeedMovement(int speedMovement)
+{
+    this->speedMovement = speedMovement;
+}
+
+void Character::setSpeedAttack(int speedAttack)
+{
+    this->speedAttack = speedAttack;
+}
+
+void Character::setKnockback(bool knockback)
+{
+    this->knockback = knockback;
 }
 
 void Character::setCharacterPosition(Vector2f newPosition)
@@ -58,12 +79,17 @@ Character::Character()
 {
     // i can get these values from json file
 
-    this->speed = 100;
-    this->health = 300;
-    this->mana = 200;
+    this->setHealth(300);
+    this->setMana(200);
+    this->setSpeedMovement(100);
+    this->setSpeedAttack(100);
+    this->setKnockback(true);
+
+    this->isAttacking=false;
+    this->isSpellCasting=false;
 
     // starting positions
-    Vector2f startPosition(Vector2f(0,0));
+    Vector2f startPosition(Vector2f(0,800));
     this->setCharacterPosition(startPosition);
 }
 

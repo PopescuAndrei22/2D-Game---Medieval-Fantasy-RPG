@@ -18,7 +18,6 @@ public:
     Keyboard::Key getMoveRight() const;
     Keyboard::Key getMoveUp() const;
     Keyboard::Key getMoveDown() const;
-
     Keyboard::Key getAttack() const;
     Keyboard::Key getSpellCast() const;
 
@@ -27,7 +26,6 @@ public:
     void setMoveRight(Keyboard::Key);
     void setMoveUp(Keyboard::Key);
     void setMoveDown(Keyboard::Key);
-
     void setAttack(Keyboard::Key);
     void setSpellCast(Keyboard::Key);
 

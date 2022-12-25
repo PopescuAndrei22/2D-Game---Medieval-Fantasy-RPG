@@ -13,25 +13,41 @@ using namespace sf;
 class CharacterMove
 {
 public:
-    // 1 more function like this, but giving direct direction to it so i can use polymorphism and use the function for npcs or combat system
+    // handling movement for the main character
     void handleMovement(Controls,Character*,float);
+    /* need another function like this that has as parameter the direction, needed for moving enemies, and probably for cutscenes*/
 
-    // to modify
+    // function that moves character to the new position if it is possible
     void moveCharacter(Vector2f,Character*);
 
+    /* check if the new position the character is moving to is a collision
+    first argument is the new position
+    the second argument is the character size for calculating an accurate collision
+    */
     bool isCollision(Vector2f, Vector2f);
 
+    /* check if the character can be moved to the new position
+    first argument is the new position
+    the second argument is the character size for calculating an accurate collision
+    */
     bool isInRange(Vector2f,Vector2f);
 
     void increaseTime(float);
 
     void resetTime();
 
+    /*
+    getting details about the current level such as the array of collisions and grid size
+    */
     void updateLevelDetails(Map);
 
+    // deleting the array of collisions
     void deleteArray();
 
+    // constructors
     CharacterMove();
+
+    // destructors
     ~CharacterMove();
 
 private:

@@ -1,10 +1,18 @@
 #include "Camera.h"
 
+// getters
+View Camera::getView() const
+{
+    return this->view;
+}
+
+// setters
 void Camera::setMapSize(Vector2f mapSize)
 {
     this->mapSize = mapSize;
 }
 
+// zoom in-out
 void Camera::zoomEvent(int value)
 {
     // to add code using view.zoom() function
@@ -41,18 +49,11 @@ void Camera::handleView(Character character)
         }
     else
         {
-            // to modify code because is going to be centered on top corner left
             this->view.setCenter(Vector2f(playerPosition.x,playerPosition.y));
         }
 }
 
-// getters
-View Camera::getView() const
-{
-    return this->view;
-}
-
-// constructor
+// constructors
 Camera::Camera()
 {
     string pathValues = "values/options/options.json";
@@ -63,15 +64,9 @@ Camera::Camera()
     this->windowSize.y = (data["windowSizeY"].is_null()?0:(float)data["windowSizeY"]);
 
     this->view.setSize(Vector2f(this->windowSize.x,this->windowSize.y));
-
-    this->zoomValue = 1.0f;
-
-    this->zoomScaleValue = 0.05f;
-    this->zoomMin = 0.5f;
-    this->zoomMax = 1.5f;
 }
 
-// destructor
+// destructors
 Camera::~Camera()
 {
 

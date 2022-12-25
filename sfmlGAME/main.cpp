@@ -11,11 +11,6 @@
 using namespace sf;
 using namespace std;
 
-// timer universally
-// to make this->setFrame universally, just modifying this->currentFrame in functions
-// be careful at currentFrame values
-// IMPORTANT: must delete collision array after using update function in character move
-
 int main()
 {
     RenderWindow window(sf::VideoMode(900, 900), "2D RPG");
@@ -24,10 +19,10 @@ int main()
     Controls controls;
     Clock clock;
     Camera camera;
-    // sa am grija la extensii gen .png sau .jpg -> voi modifica in constructor
+    // to be careful to png and jpg extensions
     AnimationCharacter heroAnimation("hero");
     CharacterMove characterMove;
-    Map map("map1","level1");
+    Map map("map1","level3");
     characterMove.updateLevelDetails(map);
     hero.setCharacterSize(heroAnimation.getFrameSize());
     camera.setMapSize(map.getMapSize());
