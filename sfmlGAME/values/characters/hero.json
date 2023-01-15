@@ -38,6 +38,8 @@
     6
   ],
 
+  "startPositionX": 0,
+  "startPositionY": 800,
   "custom": 1,
 
   "walkLeft": 10,

@@ -1,36 +1,52 @@
 #include "AnimationCharacter.h"
 
 // animation for spellcasting
-void AnimationCharacter::spellCastMode()
+void AnimationCharacter::spellCastMode(Character *character)
 {
-    bool ok = true;
+    bool ok = character->getDidChangeDirection();
 
-    if(this->direction==1)
+    if(character->getDirection()==1)
         {
-            ok = this->currentFrame.y == spellCastUp;
             this->currentFrame.y = spellCastUp;
         }
-    else if(this->direction==2)
+    else if(character->getDirection()==2)
         {
-            ok = this->currentFrame.y == spellCastLeft;
             this->currentFrame.y = spellCastLeft;
         }
-    else if(this->direction==3)
+    else if(character->getDirection()==3)
         {
-            ok = this->currentFrame.y == spellCastDown;
             this->currentFrame.y = spellCastDown;
         }
-    else if(this->direction==4)
+    else if(character->getDirection()==4)
         {
-            ok = this->currentFrame.y == spellCastRight;
             this->currentFrame.y = spellCastRight;
         }
 
-    this->renderAnimation(ok);
+    // render animation for spellcast mode
+    if(ok == true)
+        {
+            this->resetTime();
+            this->currentFrame.x=1;
+        }
+    else
+        {
+            if(this->getTimeFrame() > this->getTimeResetFrame())
+                {
+                    this->resetTime();
+                    this->currentFrame.x++;
+
+                    if(this->currentFrame.x > this->numberOfFrames[this->currentFrame.y-1])
+                        {
+                            this->currentFrame.x=1;
+                            character->setActionInProgress(false);
+                            character->setIsSpellCasting(false);
+                        }
+                }
+        }
 }
 
 // animation for IDLE mode
-void AnimationCharacter::idleMode()
+void AnimationCharacter::idleMode(Character *character)
 {
     /*
     This texture actually doesn't have an animation for idle, so
@@ -45,19 +61,19 @@ void AnimationCharacter::idleMode()
             this->currentFrame.x = 1;
             this->currentFrame.y = 1;
 
-            if(this->direction==1)
+            if(character->getDirection()==1)
                 {
                     this->currentFrame.y = walkUp;
                 }
-            else if(this->direction==2)
+            else if(character->getDirection()==2)
                 {
                     this->currentFrame.y = walkLeft;
                 }
-            else if(this->direction==3)
+            else if(character->getDirection()==3)
                 {
                     this->currentFrame.y = walkDown;
                 }
-            else if(this->direction==4)
+            else if(character->getDirection()==4)
                 {
                     this->currentFrame.y = walkRight;
                 }
@@ -65,89 +81,97 @@ void AnimationCharacter::idleMode()
             return;
         }
 
-    bool ok = true;
+    bool ok = character->getDidChangeDirection();
 
-    if(this->direction==1)
+    if(character->getDirection()==1)
         {
-            ok = this->currentFrame.y == idleUp;
             this->currentFrame.y = idleUp;
         }
-    else if(this->direction==2)
+    else if(character->getDirection()==2)
         {
-            ok = this->currentFrame.y == idleLeft;
             this->currentFrame.y = idleLeft;
         }
-    else if(this->direction==3)
+    else if(character->getDirection()==3)
         {
-            ok = this->currentFrame.y == idleDown;
             this->currentFrame.y = idleDown;
         }
-    else if(this->direction==4)
+    else if(character->getDirection()==4)
         {
-            ok = this->currentFrame.y == idleRight;
             this->currentFrame.y = idleRight;
         }
 
     this->renderAnimation(ok);
 }
 
-void AnimationCharacter::walkMode()
+void AnimationCharacter::walkMode(Character *character)
 {
-    bool ok = true;
+    bool ok = character->getDidChangeDirection();
 
-    if(this->direction==1)
+    if(character->getDirection()==1)
         {
-            ok = this->currentFrame.y == walkUp;
             this->currentFrame.y = walkUp;
         }
-    else if(this->direction==2)
+    else if(character->getDirection()==2)
         {
-            ok = this->currentFrame.y == walkLeft;
             this->currentFrame.y = walkLeft;
         }
-    else if(this->direction==3)
+    else if(character->getDirection()==3)
         {
-            ok = this->currentFrame.y == walkDown;
             this->currentFrame.y = walkDown;
         }
-    else if(this->direction==4)
+    else if(character->getDirection()==4)
         {
-            ok = this->currentFrame.y == walkRight;
             this->currentFrame.y = walkRight;
         }
 
     this->renderAnimation(ok);
 }
 
-void AnimationCharacter::attackMode()
+void AnimationCharacter::attackMode(Character *character)
 {
-    bool ok = true;
+    bool ok = character->getDidChangeDirection();
 
-    if(this->direction==1)
+    if(character->getDirection()==1)
         {
-            ok = this->currentFrame.y == attackUp;
             this->currentFrame.y = attackUp;
         }
-    else if(this->direction==2)
+    else if(character->getDirection()==2)
         {
-            ok = this->currentFrame.y == attackLeft;
             this->currentFrame.y = attackLeft;
         }
-    else if(this->direction==3)
+    else if(character->getDirection()==3)
         {
-            ok = this->currentFrame.y == attackDown;
             this->currentFrame.y = attackDown;
         }
-    else if(this->direction==4)
+    else if(character->getDirection()==4)
         {
-            ok = this->currentFrame.y == attackRight;
             this->currentFrame.y = attackRight;
         }
 
-    this->renderAnimation(ok);
+    // render animation for attack
+    if(ok == true)
+        {
+            this->resetTime();
+            this->currentFrame.x=1;
+        }
+    else
+        {
+            if(this->getTimeFrame() > this->getTimeResetFrame())
+                {
+                    this->resetTime();
+                    this->currentFrame.x++;
+
+                    if(this->currentFrame.x > this->numberOfFrames[this->currentFrame.y-1])
+                        {
+                            this->currentFrame.x=1;
+                            character->setActionInProgress(false);
+                            character->setIsAttacking(false);
+                        }
+                }
+        }
 }
 
-void AnimationCharacter::handleAnimation(Character character, Controls controls, float timer)
+void AnimationCharacter::handleAnimation(Character *character, float timer)
 {
     /*
     possible values for variable "direction"
@@ -157,64 +181,41 @@ void AnimationCharacter::handleAnimation(Character character, Controls controls,
     RIGHT -> 4
     */
 
-    Keyboard::Key keyCode = controls.checkIfKeyIsPressed();
-
     this->increaseTime(timer);
 
-    bool isWalking = false, isAttacking=false;
-
-    if(keyCode == controls.getMoveLeft())
+    if(character->getIsMoving() == true)
         {
-            isWalking=true;
-            this->direction = 2;
-        }
-    else if(keyCode == controls.getMoveRight())
-        {
-            isWalking=true;
-            this->direction = 4;
-        }
-    else if(keyCode == controls.getMoveUp())
-        {
-            isWalking=true;
-            this->direction = 1;
-        }
-    else if(keyCode == controls.getMoveDown())
-        {
-            isWalking=true;
-            this->direction = 3;
+            if(character->getWalkIntoObstacle()==false)
+                this->walkMode(character);
+            else
+                this->idleMode(character);
         }
 
-    if(keyCode == controls.getAttack()) // character is using its basic attack
+    if(character->getIsAttacking() == true)
         {
-            isAttacking=true;
-            this->attackMode();
+            this->attackMode(character);
         }
 
-    if(keyCode == controls.getSpellCast())
+    if(character->getIsSpellCasting() == true)
         {
-            this->spellCastMode();
+            this->spellCastMode(character);
         }
 
-    if(keyCode == Keyboard::Unknown) // IDLE mode, character isn't doing anything
+    if(character->getIsIdle())
         {
-            this->idleMode();
-        }
-
-    if(isWalking) // character is in walking mode
-        {
-            this->walkMode();
+            this->idleMode(character);
         }
 
     // for easier notation
     int x=this->currentFrame.x;
     int y=this->currentFrame.y;
 
-    Vector2f characterPosition = character.getCharacterPosition();
+    Vector2f characterPosition = character->getCharacterPosition();
 
     this->setSpriteLocation(characterPosition.x,characterPosition.y);
     this->setFrame(x,y);
 
-    if(custom==1 && isAttacking)
+    if(custom==1 && character->getIsAttacking()==true)
         {
             Vector2f b = this->getFrameSize();
 
@@ -226,8 +227,6 @@ void AnimationCharacter::handleAnimation(Character character, Controls controls,
 // constructors
 AnimationCharacter::AnimationCharacter(string fileName): Animation(fileName)
 {
-    this->direction = 3; // by default the character is facing downwards
-
     string pathValues = "values/characters/" + fileName + ".json";
     ifstream file(pathValues);
     nlohmann::json data = nlohmann::json::parse(file);

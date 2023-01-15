@@ -1,6 +1,11 @@
 #include "Character.h"
 
 //getters
+int Character::getDirection() const
+{
+    return this->direction;
+}
+
 int Character::getHealth() const
 {
     return this->health;
@@ -21,9 +26,44 @@ int Character::getSpeedAttack() const
     return this->speedAttack;
 }
 
+bool Character::getDidChangeDirection() const
+{
+    return this->didChangeDirection;
+}
+
+bool Character::getActionInProgress() const
+{
+    return this->actionInProgress;
+}
+
+bool Character::getIsIdle() const
+{
+    return this->isIdle;
+}
+
 bool Character::getKnockback() const
 {
     return this->knockback;
+}
+
+bool Character::getIsMoving() const
+{
+    return this->isMoving;
+}
+
+bool Character::getWalkIntoObstacle() const
+{
+    return this->walkIntoObstacle;
+}
+
+bool Character::getIsAttacking() const
+{
+    return this->isAttacking;
+}
+
+bool Character::getIsSpellCasting() const
+{
+    return this->isSpellCasting;
 }
 
 Vector2f Character::getCharacterPosition() const
@@ -37,6 +77,10 @@ Vector2f Character::getCharacterSize() const
 }
 
 //setters
+void Character::setDirection(int direction)
+{
+    this->direction = direction;
+}
 
 void Character::setHealth(int health)
 {
@@ -58,9 +102,44 @@ void Character::setSpeedAttack(int speedAttack)
     this->speedAttack = speedAttack;
 }
 
+void Character::setWalkIntoObstacle(bool walkIntoObstacle)
+{
+    this->walkIntoObstacle = walkIntoObstacle;
+}
+
 void Character::setKnockback(bool knockback)
 {
     this->knockback = knockback;
+}
+
+void Character::setIsAttacking(bool isAttacking)
+{
+    this->isAttacking = isAttacking;
+}
+
+void Character::setDidChangeDirection(bool didChangeDirection)
+{
+    this->didChangeDirection = didChangeDirection;
+}
+
+void Character::setIsIdle(bool isIdle)
+{
+    this->isIdle = isIdle;
+}
+
+void Character::setIsMoving(bool isMoving)
+{
+    this->isMoving = isMoving;
+}
+
+void Character::setIsSpellCasting(bool isSpellCasting)
+{
+    this->isSpellCasting = isSpellCasting;
+}
+
+void Character::setActionInProgress(bool actionInProgress)
+{
+    this->actionInProgress = actionInProgress;
 }
 
 void Character::setCharacterPosition(Vector2f newPosition)
@@ -75,9 +154,20 @@ void Character::setCharacterSize(Vector2f characterSize)
 }
 
 //constructors
-Character::Character()
+Character::Character(string fileName)
 {
     // i can get these values from json file
+
+    string pathValues = "values/characters/" + fileName + ".json";
+    ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    float x = ((data["startPositionX"].is_null()==true)?0:(int)data["startPositionX"]);
+    float y = ((data["startPositionY"].is_null()==true)?0:(int)data["startPositionY"]);
+    this->setCharacterPosition(Vector2f(x,y));
+
+    this->direction = 3; // by default the character is facing downwards
+    this->setActionInProgress(false);
 
     this->setHealth(300);
     this->setMana(200);
@@ -85,12 +175,12 @@ Character::Character()
     this->setSpeedAttack(100);
     this->setKnockback(true);
 
-    this->isAttacking=false;
-    this->isSpellCasting=false;
-
-    // starting positions
-    Vector2f startPosition(Vector2f(0,800));
-    this->setCharacterPosition(startPosition);
+    this->setIsSpellCasting(false);
+    this->setIsMoving(false);
+    this->setIsAttacking(false);
+    this->setIsIdle(false);
+    this->setDidChangeDirection(false);
+    this->setWalkIntoObstacle(false);
 }
 
 //destructors

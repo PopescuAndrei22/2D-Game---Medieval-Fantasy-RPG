@@ -15,19 +15,19 @@ class AnimationCharacter: public Animation
 {
     public:
         // animation for IDLE
-        void idleMode();
+        void idleMode(Character*);
 
         // animation for walking
-        void walkMode();
+        void walkMode(Character*);
 
         // animation for attack
-        void attackMode();
+        void attackMode(Character*);
 
         // animation for spellcasting
-        void spellCastMode();
+        void spellCastMode(Character*);
 
         // handling animation of the character
-        void handleAnimation(Character,Controls,float);
+        void handleAnimation(Character*,float);
 
         //constructors
         AnimationCharacter(string);
@@ -41,15 +41,6 @@ class AnimationCharacter: public Animation
         int attackLeft,attackRight,attackUp,attackDown;
         int idleLeft,idleRight,idleUp,idleDown;
         int spellCastLeft,spellCastRight,spellCastUp,spellCastDown;
-
-        // the direction the character is facing
-        /*
-        UP -> 1
-        LEFT -> 2
-        DOWN -> 3
-        RIGHT -> 4
-        */
-        int direction;
 
         int custom; // custom animation in case the frame is higher than the default size of frame
 };

@@ -16,9 +16,22 @@ class Map
         Sprite getMap() const;
         Vector2f getMapSize() const;
         int getGridSize() const;
-        vector <int> getCollisionArray() const;
+        pair<int,int> getArraySizes() const;
+        vector <int> getTileArray() const;
 
-        void getMapDetails(string,string); // loads the map/level and obtain information about it
+        void getMapDetails(string,string); // loads the map and obtain information about it
+
+        void updateCollisionArray(); // updating the collision array
+
+        void deleteCollisionArray();
+
+        // i will implement partial sums
+        int sum(int,int,int,int);
+
+        // checking if the given position is collision for a character
+        bool isCollision(Vector2f,Vector2f);
+
+        vector < vector<pair<int,int>> > returnGraph(Vector2f); // return the collision array as a graph, receiving the size of the character as parameter
 
         // constructors
         Map(string,string);
@@ -33,7 +46,11 @@ class Map
         Vector2f mapSize;
         int gridSize; // size of a grid (helps us for array collision)
 
-        vector <int> collisionArray; // tells us which grids are occupied
+        vector <int> tileArray; // tells us which tiles are occupied
+
+        int** collisionArray;
+
+        int columns,lines; // sizes of the matrix
 };
 
 #endif // MAP_H

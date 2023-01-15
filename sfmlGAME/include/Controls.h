@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Controls.h"
+#include "Character.h"
 
 using namespace sf;
 using namespace std;
@@ -12,6 +13,8 @@ class Controls
 public:
     // checking if a key used for controls was pressed
     Keyboard::Key checkIfKeyIsPressed();
+    // function for handling controls of main character
+    void handleControls(Character*);
 
     //getters
     Keyboard::Key getMoveLeft() const;

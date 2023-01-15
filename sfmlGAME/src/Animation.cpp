@@ -6,6 +6,16 @@ Sprite Animation::getSprite() const
     return this->sprite;
 }
 
+float Animation::getTimeFrame() const
+{
+    return this->timeFrame;
+}
+
+float Animation::getTimeResetFrame() const
+{
+    return this->timeResetFrame;
+}
+
 Vector2f Animation::getSpriteLocation() const
 {
     return this->sprite.getPosition();
@@ -51,11 +61,11 @@ void Animation::renderAnimation(bool ok)
 {
     /*
     for "ok" values:
-    false -> reset animation
-    true -> continue animation
+    false -> continue animation
+    true -> reset animation
     */
 
-    if(ok == false)
+    if(ok == true)
         {
             this->resetTime();
             this->currentFrame.x=1;
@@ -102,7 +112,7 @@ Animation::Animation(string fileName)
     this->timeFrame = 0.0f;
 
     // the time after which the animation changes
-    this->timeResetFrame = 0.1f;
+    this->timeResetFrame = 0.06f;
 
     // specifying the starting column and row for an animation, by default it is 1-1
     this->currentFrame.x = 1;

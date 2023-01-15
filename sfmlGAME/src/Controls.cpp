@@ -19,6 +19,66 @@ Keyboard::Key Controls::checkIfKeyIsPressed()
     return Keyboard::Unknown;
 }
 
+// main function for handling controls of character
+void Controls::handleControls(Character *character)
+{
+    Keyboard::Key keyCode = this->checkIfKeyIsPressed();
+
+    int previousDirection = character->getDirection();
+
+    // reinitializing
+    character->setIsMoving(false);
+    character->setIsIdle(false);
+    character->setDidChangeDirection(false);
+
+    if(character->getActionInProgress() == false)
+        {
+
+            if(keyCode == this->getMoveLeft())
+                {
+                    character->setIsMoving(true);
+                    character->setDirection(2);
+                }
+            else if(keyCode == this->getMoveRight())
+                {
+                    character->setIsMoving(true);
+                    character->setDirection(4);
+                }
+            else if(keyCode == this->getMoveUp())
+                {
+                    character->setIsMoving(true);
+                    character->setDirection(1);
+                }
+            else if(keyCode == this->getMoveDown())
+                {
+                    character->setIsMoving(true);
+                    character->setDirection(3);
+                }
+
+            if(character->getIsMoving() == true && character->getDirection() != previousDirection)
+                character->setDidChangeDirection(true);
+
+
+            if(keyCode == this->getAttack())
+                {
+                    character->setActionInProgress(true);
+                    character->setIsAttacking(true);
+                }
+
+            if(keyCode == this->getSpellCast())
+                {
+                    character->setActionInProgress(true);
+                    character->setIsSpellCasting(true);
+                }
+
+            if(keyCode == Keyboard::Unknown)
+                {
+                    character->setIsIdle(true);
+                }
+
+        }
+}
+
 // getters
 Keyboard::Key Controls::getMoveLeft() const
 {

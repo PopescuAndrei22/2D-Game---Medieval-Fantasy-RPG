@@ -35,6 +35,8 @@ public:
 protected:
     // getters
     Vector2f getSpriteLocation() const;
+    float getTimeFrame() const;
+    float getTimeResetFrame() const;
 
     // setters
     void setSpriteLocation(float, float);

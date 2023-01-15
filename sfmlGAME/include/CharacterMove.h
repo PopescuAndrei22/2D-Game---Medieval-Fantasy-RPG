@@ -14,35 +14,22 @@ class CharacterMove
 {
 public:
     // handling movement for the main character
-    void handleMovement(Controls,Character*,float);
-    /* need another function like this that has as parameter the direction, needed for moving enemies, and probably for cutscenes*/
+    void handleMovement(Character*,float,Map*);
 
     // function that moves character to the new position if it is possible
-    void moveCharacter(Vector2f,Character*);
-
-    /* check if the new position the character is moving to is a collision
-    first argument is the new position
-    the second argument is the character size for calculating an accurate collision
-    */
-    bool isCollision(Vector2f, Vector2f);
+    void moveCharacter(Vector2f,Character*,Map*);
 
     /* check if the character can be moved to the new position
     first argument is the new position
     the second argument is the character size for calculating an accurate collision
+    the third argument is the map so that we get the collision array
     */
-    bool isInRange(Vector2f,Vector2f);
+    bool isInRange(Vector2f,Character*,Map*);
 
     void increaseTime(float);
 
     void resetTime();
 
-    /*
-    getting details about the current level such as the array of collisions and grid size
-    */
-    void updateLevelDetails(Map);
-
-    // deleting the array of collisions
-    void deleteArray();
 
     // constructors
     CharacterMove();
@@ -58,19 +45,6 @@ private:
     timeMoveReset -> when "timeMove" exceeds this value, reset "timeMove" then the character is moving
     */
     float timeMove, timeMoveReset;
-
-    Vector2f mapSize;
-
-    int gridSize;
-
-    // l -> lines
-    // c -> columns
-    struct Pair
-    {
-        int l,c;
-    }dimensions;
-
-    int** collisionArray;
 };
 
 #endif // CHARACTERMOVE_H

@@ -57,6 +57,8 @@
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/CharacterMove.h" />
 		<Unit filename="include/Controls.h" />
+		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
@@ -65,6 +67,8 @@
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/CharacterMove.cpp" />
 		<Unit filename="src/Controls.cpp" />
+		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Extensions />
 	</Project>

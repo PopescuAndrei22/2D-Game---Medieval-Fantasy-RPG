@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "CharacterMove.h"
 #include "Map.h"
+#include "Enemy.h"
 
 using namespace sf;
 using namespace std;
@@ -14,18 +15,28 @@ using namespace std;
 int main()
 {
     RenderWindow window(sf::VideoMode(900, 900), "2D RPG");
+    window.setFramerateLimit(144);
 
-    Character hero;
+    Character hero("hero");
+    Enemy enemy("skeleton");
+
     Controls controls;
     Clock clock;
     Camera camera;
+
     // to be careful to png and jpg extensions
     AnimationCharacter heroAnimation("hero");
+    AnimationCharacter enemyAnimation("skeleton");
+    //get these values from json file
+    hero.setCharacterSize(heroAnimation.getFrameSize());
+    enemy.setCharacterSize(enemyAnimation.getFrameSize());
+
     CharacterMove characterMove;
     Map map("map1","level3");
-    characterMove.updateLevelDetails(map);
-    hero.setCharacterSize(heroAnimation.getFrameSize());
+
     camera.setMapSize(map.getMapSize());
+
+    enemy.getGraph(&map);
 
     while (window.isOpen())
         {
@@ -43,15 +54,26 @@ int main()
                         }
                 }
 
-            heroAnimation.handleAnimation(hero,controls,timer);
-            characterMove.handleMovement(controls,&hero,timer);
-            camera.handleView(hero);
+            enemy.setPlayerPosition(hero.getCharacterPosition());
+
+            controls.handleControls(&hero);
+            enemy.AI(timer);
+
+            characterMove.handleMovement(&hero,timer,&map);
+            characterMove.handleMovement(&enemy,timer,&map);
+
+            heroAnimation.handleAnimation(&hero,timer);
+            enemyAnimation.handleAnimation(&enemy,timer);
 
             window.clear(Color(Color::Black));
 
+            camera.handleView(hero);
             window.setView(camera.getView());
+
             window.draw(map.getMap());
+
             window.draw(heroAnimation.getSprite());
+            window.draw(enemyAnimation.getSprite());
 
             window.display();
         }
