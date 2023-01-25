@@ -6,6 +6,19 @@ View Camera::getView() const
     return this->view;
 }
 
+Vector2f Camera::getTopLeftCorner() const
+{
+    Vector2f center = this->view.getCenter();
+    Vector2f size = this->view.getSize();
+
+    Vector2f topCorner;
+
+    topCorner.x = center.x - size.x/2;
+    topCorner.y = center.y - size.y/2;
+
+    return topCorner;
+}
+
 // setters
 void Camera::setMapSize(Vector2f mapSize)
 {
@@ -15,7 +28,26 @@ void Camera::setMapSize(Vector2f mapSize)
 // zoom in-out
 void Camera::zoomEvent(int value)
 {
-    // to add code using view.zoom() function
+    /*
+    value:
+    1 -> zoom in
+    -1 -> zoom out
+    */
+
+    this->view.setSize(Vector2f(this->windowSize.x,this->windowSize.y));
+
+    if(value == 1) // zoom in
+        {
+            if(this->zoomModifier - this->valueModifier >= this->minView)
+                this->zoomModifier -= this->valueModifier;
+        }
+    else
+        {
+            if(this->zoomModifier + this->valueModifier <= this->maxView)
+                this->zoomModifier += this->valueModifier;
+        }
+
+    this->view.zoom(this->zoomModifier);
 }
 
 void Camera::handleView(Character character)
@@ -64,6 +96,13 @@ Camera::Camera()
     this->windowSize.y = (data["windowSizeY"].is_null()?0:(float)data["windowSizeY"]);
 
     this->view.setSize(Vector2f(this->windowSize.x,this->windowSize.y));
+
+    this->zoomModifier = 1.0; // default view
+
+    this->valueModifier = 0.04;
+
+    this->minView = 0.4;
+    this->maxView = 1.2;
 }
 
 // destructors

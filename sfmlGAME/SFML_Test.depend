@@ -919,7 +919,7 @@
 1671956497 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\camera.cpp
 	"Camera.h"
 
-1673740209 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\main.cpp
+1674404015 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Character.h"
@@ -930,6 +930,7 @@
 	"CharacterMove.h"
 	"Map.h"
 	"Enemy.h"
+	"Bar.h"
 
 1670383014 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\resources\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -1340,7 +1341,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1673612097 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\character.h
+1674327720 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\character.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<fstream>
@@ -1352,7 +1353,7 @@
 	"Controls.h"
 	"Character.h"
 
-1672963864 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\animation.h
+1673890758 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\animation.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1791,7 +1792,7 @@
 
 1670916010 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\resources\json-develop\include\nlohmann\thirdparty\hedley\hedley_undef.hpp
 
-1672963591 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\animationcharacter.h
+1674323428 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\animationcharacter.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Animation.h"
@@ -1800,14 +1801,14 @@
 	<fstream>
 	<nlohmann/json.hpp>
 
-1671956497 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\camera.h
+1674379581 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\camera.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<nlohmann/json.hpp>
 	<fstream>
 	"Character.h"
 
-1673738206 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\charactermove.h
+1673859546 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\charactermove.h
 	"Controls.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -1822,19 +1823,19 @@
 	<nlohmann/json.hpp>
 	<vector>
 
-1673039840 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\animation.cpp
+1673890978 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\animation.cpp
 	"Animation.h"
 
-1673040769 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\animationcharacter.cpp
+1674327002 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\animationcharacter.cpp
 	"AnimationCharacter.h"
 
-1671956497 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\camera.cpp
+1674379816 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\camera.cpp
 	"Camera.h"
 
-1673018478 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\character.cpp
+1674327853 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\character.cpp
 	"Character.h"
 
-1673738206 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\charactermove.cpp
+1674320736 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\charactermove.cpp
 	"CharacterMove.h"
 
 1673612097 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\controls.cpp
@@ -1843,10 +1844,10 @@
 1673798900 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\map.cpp
 	"Map.h"
 
-1673799703 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\enemy.cpp
+1674343029 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\enemy.cpp
 	"Enemy.h"
 
-1673796343 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\enemy.h
+1674326182 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\enemy.h
 	"Character.h"
 	<fstream>
 	<nlohmann/json.hpp>
@@ -1854,6 +1855,7 @@
 	"Map.h"
 	"Graph.h"
 	"Map.h"
+	"Animation.h"
 	<vector>
 	<queue>
 	<algorithm>
@@ -1873,6 +1875,22 @@
 	<cstring>
 	<queue>
 
-1673798300 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\graph.cpp
+1673814615 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\graph.cpp
 	"Graph.h"
+
+1674404319 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\bar.cpp
+	"Bar.h"
+
+1674404034 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\bar.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1674405942 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\src\charactermanagement.cpp
+	"CharacterManagement.h"
+
+1674405942 c:\users\andrei\onedrive - e-uvt.ro\desktop\documente\documents\codeblocks\code\sfmlgame\include\charactermanagement.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	"Enemy.h"
 

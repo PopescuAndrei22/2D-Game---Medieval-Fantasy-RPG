@@ -78,6 +78,7 @@ pair<int,int> Graph::BFS(Vector2f startPosition, Vector2f stopPosition)
     queue < int > Q;
 
     Q.push(getNode(startPosition));
+    Dist[getNode(startPosition)] == 1;
 
     int stopNode = getNode(stopPosition);
 
@@ -151,7 +152,7 @@ void Graph::setGraph(vector < vector <pair<int,int>> > newGraph)
 // constructors
 Graph::Graph()
 {
-
+    this->lines = this->columns = this->gridSize = 0;
 }
 
 // destructors

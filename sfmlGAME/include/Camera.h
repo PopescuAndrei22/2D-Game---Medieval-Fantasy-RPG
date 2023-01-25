@@ -14,6 +14,7 @@ class Camera
     public:
         //getters
         View getView() const;
+        Vector2f getTopLeftCorner() const;
 
         // setters
         void setMapSize(Vector2f);
@@ -35,6 +36,10 @@ class Camera
 
         Vector2f windowSize;
         Vector2f mapSize;
+
+        float zoomModifier; // the current zoom value for view
+        float valueModifier; // the quantity we decrease/increase the zoom modifier value
+        float minView,maxView; // borders of the zoomModifier value
 };
 
 #endif // CAMERA_H

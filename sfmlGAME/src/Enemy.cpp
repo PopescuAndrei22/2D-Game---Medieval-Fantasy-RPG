@@ -1,6 +1,19 @@
 #include "Enemy.h"
 
+// revive
+void Enemy::revive()
+{
+    this->Character::revive();
+
+    this->setCombatMode(false);
+}
+
 // getters
+bool Enemy::getIsRespawnable() const
+{
+    return this->respawnable;
+}
+
 bool Enemy::getCombatMode() const
 {
     return this->combatMode;
@@ -26,30 +39,40 @@ float Enemy::getTimeMoveIdleReset() const
     return this->timeMoveIdleReset;
 }
 
+float Enemy::getRespawnTime() const
+{
+    return this->respawnTime;
+}
+
 Vector2f Enemy::getPlayerPosition() const
 {
     return this->playerPosition;
 }
 
-Vector2f Enemy::getSpawnPoint() const
+Vector2f Enemy::getLastKnownPosition() const
 {
-    return this->spawnPoint;
+    return this->lastKnownPosition;
 }
 
 // setters
-void Enemy::setPlayerPosition(Vector2f playerPosition)
+void Enemy::setLastKnownPosition(Vector2f lastKnownPosition)
 {
-    this->playerPosition = playerPosition;
-}
-
-void Enemy::setSpawnPoint(Vector2f spawnPoint)
-{
-    this->spawnPoint = spawnPoint;
+    this->lastKnownPosition = lastKnownPosition;
 }
 
 void Enemy::setCombatMode(bool combatMode)
 {
     this->combatMode = combatMode;
+}
+
+void Enemy::setIsRespawnable(bool respawnable)
+{
+    this->respawnable = respawnable;
+}
+
+void Enemy::setRespawnTime(float respawnTime)
+{
+    this->respawnTime = respawnTime;
 }
 
 void Enemy::setRadiusCombat(float radiusCombat)
@@ -77,6 +100,78 @@ void Enemy::setTimeMoveIdleReset(float timeMoveIdleReset)
     this->timeMoveIdleReset = timeMoveIdleReset;
 }
 
+void Enemy::setPlayerPosition(Vector2f characterPosition)
+{
+    this->playerPosition = characterPosition;
+}
+
+void Enemy::getPlayerState(Character *character)
+{
+    this->setPlayerPosition(character->getCharacterPosition());
+
+    // enemy taking damage
+    if(character->getIsDamaging() == true && this->getIsHit() == false)
+        {
+            if(this->getEuclidianDistance(character->getCharacterPosition(),this->getCharacterPosition()) <= character->getRadiusAttack())
+                {
+                    // the code below is to hit the enemy only if the player is facing it
+                    int currentDirection = character->getDirection();
+
+                    /*
+                    UP -> 1
+                    LEFT -> 2
+                    DOWN -> 3
+                    RIGHT -> 4
+                    */
+
+                    Vector2f enemyPosition = this->getCharacterPosition();
+                    Vector2f playerPosition = character->getCharacterPosition();
+
+                    bool isFacingEnemy = false;
+
+                    if(currentDirection == 1 && playerPosition.y >= enemyPosition.y)
+                        isFacingEnemy = true;
+                    if(currentDirection == 2 && playerPosition.x >= enemyPosition.x)
+                        isFacingEnemy = true;
+                    if(currentDirection == 3 && playerPosition.y <= enemyPosition.y)
+                        isFacingEnemy = true;
+                    if(currentDirection == 4 && playerPosition.x <= enemyPosition.x)
+                        isFacingEnemy = true;
+
+                    if(isFacingEnemy==true)
+                        {
+                            this->setIsHit(true);
+                            this->setCurrentHealth(this->getCurrentHealth() - character->getBaseDamage());
+                            this->setEnemyDirection(character->getDirection());
+                            this->setIsKnockbacked(true);
+                        }
+                }
+        }
+
+    // player taking damage
+    if(this->getIsDamaging() == true && character->getIsHit() == false)
+        {
+            if(this->getEuclidianDistance(character->getCharacterPosition(),this->getCharacterPosition()) <= this->getRadiusAttack())
+                {
+                    character->setIsHit(true);
+                    character->setCurrentHealth(character->getCurrentHealth() - this->getBaseDamage());
+                    character->setEnemyDirection(this->getDirection());
+                    character->setIsKnockbacked(true);
+                }
+        }
+
+    if(this->getCurrentHealth() <= 0)
+        {
+            this->setIsDead(true);
+        }
+    if(character->getCurrentHealth() <= 0)
+        {
+            character->setIsDead(true);
+        }
+
+    //cout<<this->getCurrentHealth()<<" "<<character->getCurrentHealth()<<'\n';
+}
+
 pair <int,int> Enemy::getTiles(Vector2f characterPosition) const
 {
     pair <int,int> tiles;
@@ -90,7 +185,6 @@ pair <int,int> Enemy::getTiles(Vector2f characterPosition) const
 void Enemy::moveToTile(pair <int,int> tiles)
 {
     pair <int,int> currentTiles = this->getTiles(this->getCharacterPosition());
-    pair <int,int> playerTiles = this->getTiles(this->getPlayerPosition());
 
     /*
     UP -> 1
@@ -99,12 +193,16 @@ void Enemy::moveToTile(pair <int,int> tiles)
     RIGHT -> 4
     */
 
-    //cout<<currentTiles.first<<" "<<currentTiles.second<<" ----> "<<tiles.first<<" "<<tiles.second<<'\n';
+    // if distance <= enemy radius for attack then tiles = -1
+    // also, to solve problem with radius attack -> we add charactersize to radius and then we add a bit more after
 
-    if(currentTiles != playerTiles && tiles.first!=-1)
+    if(this->getEuclidianDistance(this->getPlayerPosition(),this->getCharacterPosition()) <= this->getRadiusAttack())
         {
-            this->setIsMoving(true);
+            tiles.first = -1;
+        }
 
+    if(tiles.first!=-1)
+        {
             int previousDirection = this->getDirection();
 
             int newDirection = previousDirection;
@@ -121,22 +219,45 @@ void Enemy::moveToTile(pair <int,int> tiles)
             if(currentTiles.second < tiles.second) // goes right
                 newDirection = 4;
 
-            if(newDirection != previousDirection)
-                this->setDidChangeDirection(true);
-
-            this->setDirection(newDirection);
+            if(this->getActionInProgress() == false)
+                {
+                    if(newDirection != previousDirection)
+                        this->setDidChangeDirection(true);
+                    this->setIsMoving(true);
+                    this->setDirection(newDirection);
+                }
 
         }
-    else
+    else // reached destination
         {
-            cout<<"Inamicul a ajuns la jucator"<<'\n';
+            if(!this->isInRadius()) // if the enemy lost sight of the player, it returns to the spawn point
+                {
+                    this->revive();
+                }
+            else
+                {
+                    /* attack and knockback animation */
+
+                    // if can attack (variable canAttack -true/false) then attack with 1 of the available skillsets, otherwise is knockback damage
+
+                    this->setActionInProgress(true);
+                    this->setIsAttacking(true);
+                }
+
             this->setIsMoving(false);
         }
 }
 
 void Enemy::chasePlayer()
 {
-    pair <int,int> tiles = this->graph.BFS(this->getPlayerPosition(),this->getCharacterPosition());
+    Vector2f destination;
+
+    if(this->isInRadius())
+        destination = this->getPlayerPosition();
+    else
+        destination = this->getLastKnownPosition();
+
+    pair <int,int> tiles = this->graph.BFS(destination,this->getCharacterPosition());
 
     this->moveToTile(tiles);
 }
@@ -146,8 +267,7 @@ float Enemy::getEuclidianDistance(Vector2f a, Vector2f b)
     return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2) * 1.0);
 }
 
-// checking distance between player and enemy
-void Enemy::checkDistance()
+bool Enemy::isInRadius()
 {
     Vector2f a = this->getPlayerPosition();
     Vector2f b = this->getCharacterPosition();
@@ -155,18 +275,33 @@ void Enemy::checkDistance()
     // euclidian distance formula
     float distance = this->getEuclidianDistance(a,b);
 
+    int radiusCombat = this->getRadiusCombat();
+    if(this->getCombatMode() == true)
+        radiusCombat*=2;
+
+    if(distance <= radiusCombat)
+        return true;
+
+    return false;
+}
+
+// checking distance between player and enemy
+void Enemy::checkDistance()
+{
     if(this->getCombatMode() == false)
         {
-            if(distance <= this->getRadiusCombat())
+            if(this->isInRadius())
                 {
                     this->setCombatMode(true);
+
+                    this->setLastKnownPosition(this->getPlayerPosition());
                 }
         }
     else
         {
-            if(distance > this->getRadiusCombat())
+            if(this->isInRadius())
                 {
-                    this->setCombatMode(false);
+                    this->setLastKnownPosition(this->getPlayerPosition());
                 }
         }
 }
@@ -239,10 +374,9 @@ void Enemy::idleMove(float timer)
 // behaviour of enemy
 void Enemy::AI(float timer)
 {
-    this->setDidChangeDirection(false);
-    this->chasePlayer();
+    if(this->getIsDead() == true)
+        return;
 
-    /*
     this->setDidChangeDirection(false);
 
     this->checkDistance();
@@ -257,10 +391,8 @@ void Enemy::AI(float timer)
             this->setIsMoving(false);
             this->setIsIdle(false);
 
-            // action here
             this->chasePlayer();
         }
-    */
 }
 
 void Enemy::getGraph(Map *map)
@@ -292,7 +424,8 @@ Enemy::Enemy(string fileName):Character(fileName)
     this->setRadiusCombat(200.0f);
     this->setRadiusIdle(250.0f);
 
-    this->setSpawnPoint(this->getCharacterPosition());
+    this->setIsRespawnable(true);
+    this->setRespawnTime(10.0);
 }
 
 // destructors

@@ -19,6 +19,10 @@ public:
     // function that moves character to the new position if it is possible
     void moveCharacter(Vector2f,Character*,Map*);
 
+    // getters
+    float getTimeMoveReset() const;
+    float getDistance(Character*) const; // calculate the movement speed of a character
+
     /* check if the character can be moved to the new position
     first argument is the new position
     the second argument is the character size for calculating an accurate collision
@@ -43,6 +47,7 @@ private:
     the time after which the characters moves
     timeMove -> accumulates the time
     timeMoveReset -> when "timeMove" exceeds this value, reset "timeMove" then the character is moving
+    timeMoveResetBase -> the default value, can be altered based on character's movement speed
     */
     float timeMove, timeMoveReset;
 };

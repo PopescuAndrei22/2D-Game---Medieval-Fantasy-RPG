@@ -53,8 +53,10 @@
 		</Compiler>
 		<Unit filename="include/Animation.h" />
 		<Unit filename="include/AnimationCharacter.h" />
+		<Unit filename="include/Bar.h" />
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Character.h" />
+		<Unit filename="include/CharacterManagement.h" />
 		<Unit filename="include/CharacterMove.h" />
 		<Unit filename="include/Controls.h" />
 		<Unit filename="include/Enemy.h" />
@@ -63,8 +65,10 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
 		<Unit filename="src/AnimationCharacter.cpp" />
+		<Unit filename="src/Bar.cpp" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/CharacterManagement.cpp" />
 		<Unit filename="src/CharacterMove.cpp" />
 		<Unit filename="src/Controls.cpp" />
 		<Unit filename="src/Enemy.cpp" />

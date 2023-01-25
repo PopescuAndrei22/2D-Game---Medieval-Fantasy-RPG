@@ -7,6 +7,7 @@
 #include "Map.h"
 #include "Graph.h"
 #include "Map.h"
+#include "Animation.h"
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -35,15 +36,23 @@ class Enemy: public Character
         pair <int,int> getTiles(Vector2f) const;
         // moving the enemy to specified tiles
         void moveToTile(pair<int,int>);
+        // check if the player is in enemy's radius
+        bool isInRadius();
+        // get player state
+        void getPlayerState(Character*);
+        // revive
+        void revive();
 
         // getters
         bool getCombatMode() const;
+        bool getIsRespawnable() const;
         float getTimeMoveIdle() const;
         float getTimeMoveIdleReset() const;
         Vector2f getPlayerPosition() const;
-        Vector2f getSpawnPoint() const;
+        Vector2f getLastKnownPosition() const;
         float getRadiusCombat() const;
         float getRadiusIdle() const;
+        float getRespawnTime() const;
 
         // setters
         void setCombatMode(bool);
@@ -51,9 +60,11 @@ class Enemy: public Character
         void resetTimeMoveIdle();
         void setTimeMoveIdleReset(float);
         void setPlayerPosition(Vector2f);
-        void setSpawnPoint(Vector2f);
+        void setLastKnownPosition(Vector2f);
         void setRadiusCombat(float);
         void setRadiusIdle(float);
+        void setRespawnTime(float);
+        void setIsRespawnable(bool);
 
         // constructors
         Enemy(string);
@@ -72,12 +83,18 @@ class Enemy: public Character
         */
         Vector2f playerPosition;
 
+        /*
+        when the player exit the enemy's radius, the enemy will check the player's last position
+        */
+        Vector2f lastKnownPosition;
+
         bool combatMode; // true -> in combat, false -> not in combat
+        bool respawnable; // if the enemy can be respawned
 
         // time after which the character moves into a random direction in his radius while he's not in combat mode
         float timeMoveIdle,timeMoveIdleReset;
 
-        Vector2f spawnPoint; // spawn point of the enemy
+        float respawnTime; // the time after which the enemy respawns to its spawn point
 
         Graph graph;
 

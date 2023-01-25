@@ -1,6 +1,16 @@
 #include "Animation.h"
 
 //getters
+pair<int,int> Animation::getCurrentFrame() const
+{
+    pair <int,int> frame;
+
+    frame.first = this->currentFrame.y;
+    frame.second = this->currentFrame.x;
+
+    return frame;
+}
+
 Sprite Animation::getSprite() const
 {
     return this->sprite;
@@ -45,6 +55,11 @@ void Animation::setFrame(int column, int row, int customX, int customY)
 void Animation::setSpriteLocation(float x, float y)
 {
     this->sprite.setPosition(x,y);
+}
+
+void Animation::setSpriteColor(Color color)
+{
+    this->sprite.setColor(color);
 }
 
 void Animation::increaseTime(float timer)

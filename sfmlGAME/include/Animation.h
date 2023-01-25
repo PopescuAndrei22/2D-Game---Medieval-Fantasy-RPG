@@ -15,6 +15,7 @@ public:
     //getters
     Sprite getSprite() const;
     Vector2f getFrameSize() const;
+    pair<int,int> getCurrentFrame() const;
 
     //setters
     /*
@@ -40,6 +41,7 @@ protected:
 
     // setters
     void setSpriteLocation(float, float);
+    void setSpriteColor(Color);
 
     void increaseTime(float);
 

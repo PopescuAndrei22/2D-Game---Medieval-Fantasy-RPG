@@ -2,99 +2,119 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include\Character.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+	<File name="src\AnimationCharacter.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2611" topLine="48" />
+			<Cursor1 position="5334" topLine="274" />
 		</Cursor>
 	</File>
-	<File name="src\Camera.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="66" topLine="38" />
-		</Cursor>
-	</File>
-	<File name="src\Controls.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2535" topLine="119" />
-		</Cursor>
-	</File>
-	<File name="include\Controls.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+	<File name="include\Controls.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="391" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="src\Enemy.cpp" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+	<File name="src\Character.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1458" topLine="65" />
+			<Cursor1 position="5738" topLine="277" />
 		</Cursor>
 	</File>
-	<File name="include\Map.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="include\Camera.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="330" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="src\Bar.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="550" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\CharacterMove.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="568" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="include\Bar.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="448" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Map.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3549" topLine="157" />
+		</Cursor>
+	</File>
+	<File name="src\Animation.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2551" topLine="119" />
+		</Cursor>
+	</File>
+	<File name="include\Animation.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="207" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Controls.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1064" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="src\CharacterMove.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="438" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="include\Enemy.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1462" topLine="67" />
+		</Cursor>
+	</File>
+	<File name="include\Map.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="392" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="202" topLine="0" />
+			<Cursor1 position="2451" topLine="68" />
 		</Cursor>
 	</File>
-	<File name="include\AnimationCharacter.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="include\Graph.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="232" topLine="7" />
+			<Cursor1 position="691" topLine="18" />
 		</Cursor>
 	</File>
-	<File name="include\CharacterMove.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="src\CharacterManagement.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="356" topLine="9" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\Character.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="include\CharacterManagement.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3722" topLine="149" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\Animation.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+	<File name="include\AnimationCharacter.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="928" topLine="31" />
+			<Cursor1 position="757" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="src\CharacterMove.cpp" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+	<File name="include\Character.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2081" topLine="17" />
+			<Cursor1 position="315" topLine="3" />
 		</Cursor>
 	</File>
-	<File name="include\Graph.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+	<File name="src\Camera.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="171" topLine="26" />
+			<Cursor1 position="1589" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\Animation.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
+	<File name="src\Graph.cpp" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2836" topLine="36" />
+			<Cursor1 position="1477" topLine="106" />
 		</Cursor>
 	</File>
-	<File name="src\Map.cpp" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="src\Enemy.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="196" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Graph.cpp" open="1" top="1" tabpos="18" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="831" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="src\AnimationCharacter.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5065" topLine="226" />
-		</Cursor>
-	</File>
-	<File name="include\Enemy.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="866" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Camera.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="396" topLine="0" />
+			<Cursor1 position="10264" topLine="389" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

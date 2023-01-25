@@ -41,7 +41,15 @@
   "startPositionX": 400,
   "startPositionY": 500,
   "custom": 1,
+  "health": 100,
+  "mana":100,
+  "speedMovement":75,
+  "speedAttack":100,
+  "knockback": true,
+  "radiusAttack": 35,
 
+  "death": 21,
+  
   "walkLeft": 10,
   "walkRight": 12,
   "walkUp": 9,

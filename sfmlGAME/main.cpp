@@ -8,6 +8,7 @@
 #include "CharacterMove.h"
 #include "Map.h"
 #include "Enemy.h"
+#include "Bar.h"
 
 using namespace sf;
 using namespace std;
@@ -38,6 +39,10 @@ int main()
 
     enemy.getGraph(&map);
 
+    // health bar
+    Bar health("health_bar","empty_bar",hero.getHealth());
+    //Bar mana("magic_bar","empty_bar");
+
     while (window.isOpen())
         {
             float timer = clock.restart().asSeconds();
@@ -54,7 +59,7 @@ int main()
                         }
                 }
 
-            enemy.setPlayerPosition(hero.getCharacterPosition());
+            enemy.getPlayerState(&hero);
 
             controls.handleControls(&hero);
             enemy.AI(timer);
@@ -65,6 +70,10 @@ int main()
             heroAnimation.handleAnimation(&hero,timer);
             enemyAnimation.handleAnimation(&enemy,timer);
 
+            // placing the health bar in the top left corner
+            health.setPosition(camera.getTopLeftCorner());
+            health.manageBar(hero.getCurrentHealth());
+
             window.clear(Color(Color::Black));
 
             camera.handleView(hero);
@@ -74,6 +83,8 @@ int main()
 
             window.draw(heroAnimation.getSprite());
             window.draw(enemyAnimation.getSprite());
+
+            health.draw(&window);
 
             window.display();
         }

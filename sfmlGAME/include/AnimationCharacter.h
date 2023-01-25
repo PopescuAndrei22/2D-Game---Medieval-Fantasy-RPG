@@ -14,6 +14,9 @@ using namespace std;
 class AnimationCharacter: public Animation
 {
     public:
+        // processing when the character is hit
+        void hitMode(Character*,float);
+
         // animation for IDLE
         void idleMode(Character*);
 
@@ -25,6 +28,9 @@ class AnimationCharacter: public Animation
 
         // animation for spellcasting
         void spellCastMode(Character*);
+
+        // animation for death
+        void deathMode(Character*);
 
         // handling animation of the character
         void handleAnimation(Character*,float);
@@ -41,8 +47,14 @@ class AnimationCharacter: public Animation
         int attackLeft,attackRight,attackUp,attackDown;
         int idleLeft,idleRight,idleUp,idleDown;
         int spellCastLeft,spellCastRight,spellCastUp,spellCastDown;
+        int death;
 
         int custom; // custom animation in case the frame is higher than the default size of frame
+
+        int hitCounter; // while it is different from 0, character gains immunity from being hit again
+        int currentHitCounter;
+
+        float isHitTime,isHitTimeReset; // time management for getting hit
 };
 
 #endif // ANIMATIONCHARACTER_H

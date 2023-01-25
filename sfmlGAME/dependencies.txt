@@ -1,1 +1,3 @@
 vector for number of frames for each line (values folder)
+
+barBlock in Bar class should be divisible by totalHealth in Character class

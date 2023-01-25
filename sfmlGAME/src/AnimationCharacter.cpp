@@ -166,7 +166,54 @@ void AnimationCharacter::attackMode(Character *character)
                             this->currentFrame.x=1;
                             character->setActionInProgress(false);
                             character->setIsAttacking(false);
+                            character->setIsDamaging(true);
                         }
+                }
+        }
+}
+
+void AnimationCharacter::deathMode(Character *character)
+{
+    // de modificat aici ca e codu nasol si trebuie sa pun frame x la 1
+
+    this->currentFrame.y = this->death;
+
+    if(this->getTimeFrame() > this->getTimeResetFrame())
+        {
+            this->resetTime();
+            this->currentFrame.x++;
+
+            if(this->currentFrame.x > this->numberOfFrames[this->currentFrame.y-1])
+                {
+                    this->currentFrame.x=1;
+
+                    character->revive();
+                }
+        }
+}
+
+void AnimationCharacter::hitMode(Character *character, float timer)
+{
+    this->isHitTime += timer;
+
+    if(this->isHitTime > this->isHitTimeReset)
+        {
+            this->isHitTime = 0;
+
+            if(this->currentHitCounter > 0)
+                {
+                    if(this->currentHitCounter%2!=0)
+                        this->setSpriteColor(Color::Red);
+                    else
+                        this->setSpriteColor(Color::White);
+
+                    this->currentHitCounter--;
+                }
+            else
+                {
+                    this->currentHitCounter = this->hitCounter;
+                    this->setSpriteColor(Color::White);
+                    character->setIsHit(false);
                 }
         }
 }
@@ -183,27 +230,41 @@ void AnimationCharacter::handleAnimation(Character *character, float timer)
 
     this->increaseTime(timer);
 
-    if(character->getIsMoving() == true)
-        {
-            if(character->getWalkIntoObstacle()==false)
-                this->walkMode(character);
-            else
-                this->idleMode(character);
-        }
+    character->setIsDamaging(false); // because i set this on true in this class ( when character is attacking )
 
-    if(character->getIsAttacking() == true)
+    if(character->getIsDead() == true)
         {
-            this->attackMode(character);
+            this->deathMode(character);
         }
-
-    if(character->getIsSpellCasting() == true)
+    else
         {
-            this->spellCastMode(character);
-        }
 
-    if(character->getIsIdle())
-        {
-            this->idleMode(character);
+            if(character->getIsMoving() == true)
+                {
+                    if(character->getWalkIntoObstacle()==false)
+                        this->walkMode(character);
+                    else
+                        this->idleMode(character);
+                }
+
+            if(character->getIsAttacking() == true)
+                {
+                    this->attackMode(character);
+                }
+
+            if(character->getIsSpellCasting() == true)
+                {
+                    this->spellCastMode(character);
+                }
+
+            if(character->getIsIdle())
+                {
+                    this->idleMode(character);
+                }
+            if(character->getIsHit())
+                {
+                    this->hitMode(character,timer);
+                }
         }
 
     // for easier notation
@@ -251,7 +312,14 @@ AnimationCharacter::AnimationCharacter(string fileName): Animation(fileName)
     this->idleUp = (data["idleUp"].is_null()?0:(int)data["idleUp"]);
     this->idleDown = (data["idleDown"].is_null()?0:(int)data["idleDown"]);
 
+    this->death = (data["death"].is_null()?0:(int)data["death"]);
+
     this->custom = ((data["custom"].is_null()==true)?0:(int)data["custom"]);
+
+    this->hitCounter = this->currentHitCounter = 3;
+
+    this->isHitTime = 0.0;
+    this->isHitTimeReset = 0.06;
 
     file.close();
 }
