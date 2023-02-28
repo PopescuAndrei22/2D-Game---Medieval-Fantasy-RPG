@@ -99,7 +99,7 @@ Camera::Camera()
 
     this->zoomModifier = 1.0; // default view
 
-    this->valueModifier = 0.04;
+    this->valueModifier = 0.01;
 
     this->minView = 0.4;
     this->maxView = 1.2;

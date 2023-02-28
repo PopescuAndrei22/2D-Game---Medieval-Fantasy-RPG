@@ -14,9 +14,9 @@
 				<Compiler>
 					<Add option="-std=c++14" />
 					<Add option="-g" />
-					<Add directory="../../Resources/SFML-2.5.1/include" />
 					<Add directory="resources/json-develop/include" />
 					<Add directory="include" />
+					<Add directory="resources/SFML-2.5.1/include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -24,7 +24,7 @@
 					<Add library="sfml-network-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-system-d" />
-					<Add directory="../../Resources/SFML-2.5.1/lib" />
+					<Add directory="resources/SFML-2.5.1/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -56,10 +56,10 @@
 		<Unit filename="include/Bar.h" />
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Character.h" />
-		<Unit filename="include/CharacterManagement.h" />
 		<Unit filename="include/CharacterMove.h" />
 		<Unit filename="include/Controls.h" />
 		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/GameManagement.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="main.cpp" />
@@ -68,10 +68,10 @@
 		<Unit filename="src/Bar.cpp" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/Character.cpp" />
-		<Unit filename="src/CharacterManagement.cpp" />
 		<Unit filename="src/CharacterMove.cpp" />
 		<Unit filename="src/Controls.cpp" />
 		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/GameManagement.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Extensions />

@@ -9,38 +9,53 @@
 #include "Map.h"
 #include "Enemy.h"
 #include "Bar.h"
+#include "GameManagement.h"
+#include <typeinfo>
 
 using namespace sf;
 using namespace std;
 
+// .png and .jpg extensions
+
 int main()
 {
-    RenderWindow window(sf::VideoMode(900, 900), "2D RPG");
+
+    string pathValues = "values/options/options.json";
+    ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+    float x = (data["windowSizeX"].is_null()?0:(float)data["windowSizeX"]);
+    float y = (data["windowSizeY"].is_null()?0:(float)data["windowSizeY"]);
+
+    RenderWindow window(sf::VideoMode(x, y), "2D RPG");
+    // can be changed from settings
     window.setFramerateLimit(144);
 
-    Character hero("hero");
-    Enemy enemy("skeleton");
+    GameManagement gameManagement;
+    gameManagement.setCharacters();
 
-    Controls controls;
+    //Character hero("hero");
+    //Enemy enemy("skeleton");
+
+    //Controls controls;
     Clock clock;
-    Camera camera;
+    //Camera camera;
 
     // to be careful to png and jpg extensions
-    AnimationCharacter heroAnimation("hero");
-    AnimationCharacter enemyAnimation("skeleton");
+    //AnimationCharacter heroAnimation("hero");
+    //AnimationCharacter enemyAnimation("skeleton");
     //get these values from json file
-    hero.setCharacterSize(heroAnimation.getFrameSize());
-    enemy.setCharacterSize(enemyAnimation.getFrameSize());
+    //hero.setCharacterSize(heroAnimation.getFrameSize());
+    //enemy.setCharacterSize(enemyAnimation.getFrameSize());
 
-    CharacterMove characterMove;
-    Map map("map1","level3");
+    //CharacterMove characterMove;
+    //Map map("map1","level3");
 
-    camera.setMapSize(map.getMapSize());
+    //camera.setMapSize(map.getMapSize());
 
-    enemy.getGraph(&map);
+    //enemy.getGraph(&map);
 
     // health bar
-    Bar health("health_bar","empty_bar",hero.getHealth());
+    //Bar health("health_bar","empty_bar",hero.getHealth());
     //Bar mana("magic_bar","empty_bar");
 
     while (window.isOpen())
@@ -55,36 +70,38 @@ int main()
 
                     if (event.type == sf::Event::MouseWheelMoved)
                         {
-                            camera.zoomEvent(event.mouseWheel.delta);
+                            gameManagement.manageZoom(event.mouseWheel.delta);
                         }
                 }
 
-            enemy.getPlayerState(&hero);
+            gameManagement.manageInsideWindow(timer);
+            //enemy.getPlayerState(&hero);
 
-            controls.handleControls(&hero);
-            enemy.AI(timer);
+            //controls.handleControls(&hero);
+            //enemy.AI(timer);
 
-            characterMove.handleMovement(&hero,timer,&map);
-            characterMove.handleMovement(&enemy,timer,&map);
+            //characterMove.handleMovement(&hero,timer,&map);
+            //characterMove.handleMovement(&enemy,timer,&map);
 
-            heroAnimation.handleAnimation(&hero,timer);
-            enemyAnimation.handleAnimation(&enemy,timer);
+            //heroAnimation.handleAnimation(&hero,timer);
+            //enemyAnimation.handleAnimation(&enemy,timer);
 
             // placing the health bar in the top left corner
-            health.setPosition(camera.getTopLeftCorner());
-            health.manageBar(hero.getCurrentHealth());
+            //health.setPosition(camera.getTopLeftCorner());
+            //health.manageBar(hero.getCurrentHealth());
 
             window.clear(Color(Color::Black));
 
-            camera.handleView(hero);
-            window.setView(camera.getView());
+            gameManagement.draw(&window);
+            //camera.handleView(hero);
+            //window.setView(camera.getView());
 
-            window.draw(map.getMap());
+            //window.draw(map.getMap());
 
-            window.draw(heroAnimation.getSprite());
-            window.draw(enemyAnimation.getSprite());
+            //window.draw(heroAnimation.getSprite());
+            //window.draw(enemyAnimation.getSprite());
 
-            health.draw(&window);
+            //health.draw(&window);
 
             window.display();
         }

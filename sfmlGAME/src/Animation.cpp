@@ -52,6 +52,11 @@ void Animation::setFrame(int column, int row, int customX, int customY)
     this->sprite.setTextureRect(IntRect(customX*x*(column-1),y*(row-1),x*customX,y*customY)); // customized attack for a specific texture
 }
 
+void Animation::setScale(float x, float y)
+{
+    this->sprite.setScale(x,y);
+}
+
 void Animation::setSpriteLocation(float x, float y)
 {
     this->sprite.setPosition(x,y);

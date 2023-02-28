@@ -149,7 +149,7 @@ void Map::getMapDetails(string mapName, string levelName)
     // clear the tile array from the previous level
     this->tileArray.clear();
 
-    string pathValues = "values/maps/" + mapName + "/" + levelName + ".json";
+    string pathValues = "values/maps/" + mapName + "/levels/" + levelName + ".json";
     ifstream file(pathValues);
     nlohmann::json data = nlohmann::json::parse(file);
 

@@ -24,6 +24,7 @@ public:
     is customized just for the types of textures that i am using for my characters
     */
     void setFrame(int,int,int=1,int=1);
+    void setScale(float, float);
 
     // constructors
 
