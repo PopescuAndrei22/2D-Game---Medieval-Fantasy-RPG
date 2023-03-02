@@ -19,6 +19,9 @@ class Bar
         // managing bar, meaning for example in health bar to adjust the bars (based on current life)
         void manageBar(int);
 
+        // setting the bar for enemies
+        void setPositionEnemy(Vector2f, Vector2f);
+
         Bar(string,string,int);
         ~Bar();
 

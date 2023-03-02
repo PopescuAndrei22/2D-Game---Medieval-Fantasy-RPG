@@ -17,10 +17,12 @@ void GameManagement::setCharacters()
 
     if(!data["positions"].is_null())
         {
-            for(int i=0; i<data["positions"].size(); i+=2)
+            for(int i=0; i<data["positions"].size(); i++)
                 {
-                    int x = data["positions"][i];
-                    int y = data["positions"][i+1];
+                    // check for null values and positions with obstacles
+
+                    int x = data["positions"][i][0];
+                    int y = data["positions"][i][1];
 
                     positions.push_back(make_pair(x,y));
                 }
@@ -50,6 +52,10 @@ void GameManagement::setCharacters()
 
             enemy.getGraph(&this->map);
 
+            Bar *enemyHP = new Bar("health_bar","empty_bar",enemy.getHealth());
+
+            this->enemyHealthBar.push_back(enemyHP);
+
             this->enemies.push_back(enemy);
             this->enemyAnimation.push_back(animation);
         }
@@ -64,6 +70,11 @@ void GameManagement::manageInsideWindow(float timer)
             characterMove.handleMovement(&this->enemies[i],timer,&this->map);
 
             this->enemyAnimation[i]->handleAnimation(&this->enemies[i],timer);
+
+            // placing the health bar above the enemy
+            this->enemyHealthBar[i]->setPositionEnemy(this->enemies[i].getCharacterPosition(),this->enemies[i].getCharacterSize());
+
+            this->enemyHealthBar[i]->manageBar(this->enemies[i].getCurrentHealth());
         }
 
     this->controls.handleControls(&this->player);
@@ -85,10 +96,16 @@ void GameManagement::draw(RenderWindow *window)
 
     window->draw(this->playerAnimation.getSprite());
 
-    for(int i=0;i<this->enemyAnimation.size();i++)
+    for(int i=0; i<this->enemyAnimation.size(); i++)
         window->draw(this->enemyAnimation[i]->getSprite());
 
     this->playerHealthBar.draw(window);
+
+    for(int i=0; i<this->enemyHealthBar.size(); i++)
+        {
+            if(this->enemies[i].getCombatMode()==true)
+                this->enemyHealthBar[i]->draw(window);
+        }
 }
 
 void GameManagement::manageZoom(int value)

@@ -4,9 +4,9 @@ void Bar::manageBar(int value)
 {
     int numberOfFilledBars = value / this->barBlock;
 
-    for(int i=0;i<numberOfFilledBars;i++)
+    for(int i=0; i<numberOfFilledBars; i++)
         this->bars[i].setTexture(this->textureBar);
-    for(int i=numberOfFilledBars;i<this->bars.size();i++)
+    for(int i=numberOfFilledBars; i<this->bars.size(); i++)
         this->bars[i].setTexture(this->textureEmptyBar);
 }
 
@@ -15,14 +15,14 @@ void Bar::setPosition(Vector2f newPosition)
 {
     this->icon.setPosition(newPosition);
 
-    int posx = this->icon.getPosition().x;
-    int posy = this->icon.getPosition().y;
+    float posx = this->icon.getPosition().x;
+    float posy = this->icon.getPosition().y;
 
     if(!this->bars.empty())
         {
-            int iconWidth = this->icon.getTextureRect().width;
+            float iconWidth = this->icon.getTextureRect().width * this->icon.getScale().x;;
 
-            int barsWidth = this->bars[0].getTextureRect().width;
+            float barsWidth = this->bars[0].getTextureRect().width * this->bars[0].getScale().x;
 
             this->bars[0].setPosition(Vector2f(posx+iconWidth,posy));
 
@@ -35,6 +35,33 @@ void Bar::setPosition(Vector2f newPosition)
         }
 }
 
+void Bar::setPositionEnemy(Vector2f enemyPosition, Vector2f enemySize)
+{
+    float sizeBar = 0.0;
+
+    Vector2f newPosition = enemyPosition;
+
+    // i could set the scales in constructor instead
+
+    this->icon.setScale(0,0); // setScale(0,0) if we don't want to see the icon
+
+    if(this->icon.getScale().x != 0)
+        sizeBar += this->icon.getTextureRect().width;
+
+    if(this->bars.size() > 0)
+        sizeBar += this->bars.size() * this->bars[0].getTextureRect().width;
+
+    for(int i=0; i<this->bars.size(); i++)
+        {
+            this->bars[i].setScale(enemySize.x / sizeBar,0.5);
+        }
+
+    if(this->bars.size())
+        newPosition.y -= this->bars[0].getTextureRect().height * this->bars[0].getScale().y;
+
+    this->setPosition(newPosition);
+}
+
 void Bar::draw(RenderWindow *window)
 {
     window->draw(this->icon);
@@ -45,6 +72,7 @@ void Bar::draw(RenderWindow *window)
 
 Bar::Bar(string fileNameBar, string fileNameEmptyBar, int barValue)
 {
+    // can be auto-adjusted, will think about this
     this->barBlock = 25;
 
     string pathTextureBar = "sprites/bars/" + fileNameBar + ".png";

@@ -46,6 +46,7 @@ class GameManagement
 
         Map map;
 
+        vector <Bar*> enemyHealthBar;
         Bar playerHealthBar;
 
         CharacterMove characterMove;
