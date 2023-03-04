@@ -113,7 +113,7 @@ void GameManagement::manageZoom(int value)
     this->camera.zoomEvent(value);
 }
 
-GameManagement::GameManagement():player("hero"),playerAnimation("hero"),map("map1","level3"),playerHealthBar("health_bar","empty_bar",this->player.getHealth())
+GameManagement::GameManagement():player("hero"),playerAnimation("hero"),map("map1","level1"),playerHealthBar("health_bar","empty_bar",this->player.getHealth())
 {
     this->player.setCharacterSize(this->playerAnimation.getFrameSize());
 

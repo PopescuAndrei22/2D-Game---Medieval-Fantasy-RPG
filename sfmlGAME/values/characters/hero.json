@@ -38,8 +38,8 @@
     6
   ],
 
-  "startPositionX": 0,
-  "startPositionY": 800,
+  "startPositionX": 100,
+  "startPositionY": 400,
   "custom": 1,
   "health": 100,
   "mana":100,
