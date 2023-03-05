@@ -20,6 +20,11 @@ Sprite Map::getMap() const
     return this->sprite;
 }
 
+Sprite Map::getTransparentObstacles() const
+{
+    return this->transparentObstaclesSprite;
+}
+
 vector <int> Map::getTileArray() const
 {
     return this->tileArray;
@@ -154,9 +159,14 @@ void Map::getMapDetails(string mapName, string levelName)
     nlohmann::json data = nlohmann::json::parse(file);
 
     // to be careful with extensions
-    string pathImage = "sprites/maps/" + mapName + "/" + levelName + ".png";
+    string pathImage = "sprites/maps/" + mapName + "/" + levelName + "/" + levelName + ".png";
+    string pathImageTransparentObstacles = "sprites/maps/" + mapName + "/" + levelName + "/" + "transparentObstacles" + ".png";
+
     this->texture.loadFromFile(pathImage);
     this->sprite.setTexture(texture);
+
+    this->transparentObstaclesTexture.loadFromFile(pathImageTransparentObstacles);
+    this->transparentObstaclesSprite.setTexture(this->transparentObstaclesTexture);
 
     // to change this code, i could search after "identifier", possible bugs here
     this->mapSize.x = (data["levels"][0]["pxWid"].is_null()?0:(float)data["levels"][0]["pxWid"]);

@@ -106,6 +106,9 @@ void GameManagement::draw(RenderWindow *window)
             if(this->enemies[i].getCombatMode()==true)
                 this->enemyHealthBar[i]->draw(window);
         }
+
+    // drawing some of the obstacles over the characters, for example the leaves of the trees, because it would be weird if those are drawn before the characters
+    window->draw(this->map.getTransparentObstacles());
 }
 
 void GameManagement::manageZoom(int value)

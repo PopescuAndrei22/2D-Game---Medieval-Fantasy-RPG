@@ -14,6 +14,7 @@ class Map
     public:
         // getters
         Sprite getMap() const;
+        Sprite getTransparentObstacles() const;
         Vector2f getMapSize() const;
         int getGridSize() const;
         pair<int,int> getArraySizes() const;
@@ -42,6 +43,9 @@ class Map
     private:
         Texture texture;
         Sprite sprite;
+
+        Texture transparentObstaclesTexture;
+        Sprite transparentObstaclesSprite;
 
         Vector2f mapSize;
         int gridSize; // size of a grid (helps us for array collision)
