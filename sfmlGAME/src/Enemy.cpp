@@ -424,6 +424,7 @@ Enemy::Enemy(string fileName):Character(fileName)
     this->setRadiusCombat(200.0f);
     this->setRadiusIdle(250.0f);
 
+    // i will get these values from the json file
     this->setIsRespawnable(true);
     this->setRespawnTime(10.0);
 }

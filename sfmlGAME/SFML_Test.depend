@@ -3286,7 +3286,7 @@
 	<nlohmann/json.hpp>
 	<vector>
 
-1677341282 c:\users\andrei\documents\github\2d_game\sfmlgame\include\enemy.h
+1678054227 c:\users\andrei\documents\github\2d_game\sfmlgame\include\enemy.h
 	"Character.h"
 	<fstream>
 	<nlohmann/json.hpp>
@@ -3347,7 +3347,7 @@
 1677341604 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\controls.cpp
 	"Controls.h"
 
-1677341604 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\enemy.cpp
+1678054228 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\enemy.cpp
 	"Enemy.h"
 
 1678051724 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\gamemanagement.cpp

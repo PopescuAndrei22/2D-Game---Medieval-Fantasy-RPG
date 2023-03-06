@@ -89,7 +89,7 @@ class Enemy: public Character
         Vector2f lastKnownPosition;
 
         bool combatMode; // true -> in combat, false -> not in combat
-        bool respawnable; // if the enemy can be respawned
+        bool respawnable; // if the enemy can be respawned, if not, it will be deleted from the vector in "GameManagement" class
 
         // time after which the character moves into a random direction in his radius while he's not in combat mode
         float timeMoveIdle,timeMoveIdleReset;
