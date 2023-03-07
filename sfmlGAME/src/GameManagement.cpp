@@ -99,8 +99,6 @@ void GameManagement::draw(RenderWindow *window)
     for(int i=0; i<this->enemyAnimation.size(); i++)
         window->draw(this->enemyAnimation[i]->getSprite());
 
-    this->playerHealthBar.draw(window);
-
     for(int i=0; i<this->enemyHealthBar.size(); i++)
         {
             if(this->enemies[i].getCombatMode()==true)
@@ -109,6 +107,8 @@ void GameManagement::draw(RenderWindow *window)
 
     // drawing some of the obstacles over the characters, for example the leaves of the trees, because it would be weird if those are drawn before the characters
     window->draw(this->map.getTransparentObstacles());
+
+    this->playerHealthBar.draw(window);
 }
 
 void GameManagement::manageZoom(int value)
