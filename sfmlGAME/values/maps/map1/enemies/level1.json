@@ -1,4 +1,4 @@
 {
-  "positions": [[400,550],[800,600]],
-  "sprites": ["skeleton","jackolantern"]
+  "positions": [[400,550],[800,600],[1200,550],[1400,600]],
+  "sprites": ["skeleton","jackolantern","boss","devil"]
 }
