@@ -3359,3 +3359,982 @@
 1678051724 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\map.cpp
 	"Map.h"
 
+1677771492 source:d:\github\2d_game\sfmlgame\main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	"Controls.h"
+	"Animation.h"
+	"AnimationCharacter.h"
+	"Camera.h"
+	"CharacterMove.h"
+	"Map.h"
+	"Enemy.h"
+	"Bar.h"
+	"GameManagement.h"
+	<typeinfo>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/VertexBuffer.hpp>
+	<SFML/Graphics/View.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Clipboard.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Err.hpp>
+	<SFML/System/FileInputStream.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Lock.hpp>
+	<SFML/System/MemoryInputStream.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Sleep.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\config.hpp
+	"TargetConditionals.h"
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\clock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\export.hpp
+	<SFML/Config.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\time.hpp
+	<SFML/System/Export.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\err.hpp
+	<SFML/System/Export.hpp>
+	<ostream>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\fileinputstream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdio>
+	<string>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\inputstream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/Export.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\noncopyable.hpp
+	<SFML/System/Export.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\lock.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\memoryinputstream.hpp
+	<SFML/Config.hpp>
+	<SFML/System/InputStream.hpp>
+	<SFML/System/Export.hpp>
+	<cstdlib>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\mutex.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\sleep.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Time.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\string.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/Utf.hpp>
+	<iterator>
+	<locale>
+	<string>
+	<SFML/System/String.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\utf.hpp
+	<SFML/Config.hpp>
+	<algorithm>
+	<locale>
+	<string>
+	<cstdlib>
+	<SFML/System/Utf.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\utf.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\string.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\thread.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+	<SFML/System/Thread.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\thread.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\threadlocal.hpp
+	<SFML/System/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<cstdlib>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\threadlocalptr.hpp
+	<SFML/System/ThreadLocal.hpp>
+	<SFML/System/ThreadLocalPtr.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\threadlocalptr.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\vector2.hpp
+	<SFML/System/Vector2.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\vector2.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\vector3.hpp
+	<SFML/System/Vector3.inl>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\system\vector3.inl
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\clipboard.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\export.hpp
+	<SFML/Config.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\context.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\glresource.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\contextsettings.hpp
+	<SFML/Config.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\cursor.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\event.hpp
+	<SFML/Config.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\joystick.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/String.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\keyboard.hpp
+	<SFML/Window/Export.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\mouse.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\sensor.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/System/Time.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\touch.hpp
+	<SFML/Window/Export.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\videomode.hpp
+	<SFML/Window/Export.hpp>
+	<vector>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\window.hpp
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Export.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/String.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\windowhandle.hpp
+	<SFML/Config.hpp>
+
+1670419015 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\window\windowstyle.hpp
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\blendmode.hpp
+	<SFML/Graphics/Export.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\export.hpp
+	<SFML/Config.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\circleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\shape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\drawable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\renderstates.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\transform.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\rect.hpp
+	<SFML/System/Vector2.hpp>
+	<algorithm>
+	<SFML/Graphics/Rect.inl>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\rect.inl
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\transformable.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Transform.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\vertexarray.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<vector>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\vertex.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\color.hpp
+	<SFML/Graphics/Export.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\primitivetype.hpp
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\convexshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<vector>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\font.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/String.hpp>
+	<map>
+	<string>
+	<vector>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\glyph.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\texture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/GlResource.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\image.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<string>
+	<vector>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\rectangleshape.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Shape.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\rendertarget.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/View.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/System/NonCopyable.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\view.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/System/Vector2.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\rendertexture.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Window/ContextSettings.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\renderwindow.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Window/Window.hpp>
+	<string>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\shader.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Glsl.hpp>
+	<SFML/Window/GlResource.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<map>
+	<string>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\glsl.hpp
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Vector2.hpp>
+	<SFML/System/Vector3.hpp>
+	<SFML/Graphics/Glsl.inl>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\glsl.inl
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\sprite.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/Rect.hpp>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\text.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/System/String.hpp>
+	<string>
+	<vector>
+
+1670419014 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics\vertexbuffer.hpp
+	<SFML/Graphics/Export.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Window/GlResource.hpp>
+
+1677604472 d:\github\2d_game\sfmlgame\include\character.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\json.hpp
+	<algorithm>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/adl_serializer.hpp>
+	<nlohmann/byte_container_with_subtype.hpp>
+	<nlohmann/detail/conversions/from_json.hpp>
+	<nlohmann/detail/conversions/to_json.hpp>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/hash.hpp>
+	<nlohmann/detail/input/binary_reader.hpp>
+	<nlohmann/detail/input/input_adapters.hpp>
+	<nlohmann/detail/input/lexer.hpp>
+	<nlohmann/detail/input/parser.hpp>
+	<nlohmann/detail/iterators/internal_iterator.hpp>
+	<nlohmann/detail/iterators/iter_impl.hpp>
+	<nlohmann/detail/iterators/iteration_proxy.hpp>
+	<nlohmann/detail/iterators/json_reverse_iterator.hpp>
+	<nlohmann/detail/iterators/primitive_iterator.hpp>
+	<nlohmann/detail/json_custom_base_class.hpp>
+	<nlohmann/detail/json_pointer.hpp>
+	<nlohmann/detail/json_ref.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/string_escape.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/output/binary_writer.hpp>
+	<nlohmann/detail/output/output_adapters.hpp>
+	<nlohmann/detail/output/serializer.hpp>
+	<nlohmann/detail/value_t.hpp>
+	<nlohmann/json_fwd.hpp>
+	<nlohmann/ordered_map.hpp>
+	<any>
+	<string_view>
+	<nlohmann/detail/macro_unscope.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\adl_serializer.hpp
+	<utility>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/conversions/from_json.hpp>
+	<nlohmann/detail/conversions/to_json.hpp>
+	<nlohmann/detail/meta/identity_tag.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\abi_macros.hpp
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\conversions\from_json.hpp
+	<algorithm>
+	<array>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/identity_tag.hpp>
+	<nlohmann/detail/meta/std_fs.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\exceptions.hpp
+	<cstddef>
+	<exception>
+	<numeric>
+	<stdexcept>
+	<string>
+	<vector>
+	<nlohmann/detail/value_t.hpp>
+	<nlohmann/detail/string_escape.hpp>
+	<nlohmann/detail/input/position_t.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/string_concat.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\value_t.hpp
+	<array>
+	<cstddef>
+	<cstdint>
+	<string>
+	<nlohmann/detail/macro_scope.hpp>
+	<compare>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\macro_scope.hpp
+	<utility>
+	<nlohmann/detail/meta/detected.hpp>
+	<nlohmann/thirdparty/hedley/hedley.hpp>
+	<nlohmann/detail/abi_macros.hpp>
+	<version>
+	<cstdlib>
+	<cassert>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\detected.hpp
+	<type_traits>
+	<nlohmann/detail/meta/void_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\void_t.hpp
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\thirdparty\hedley\hedley.hpp
+	<stdint.h>
+	<stdint.h>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\string_escape.hpp
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\position_t.hpp
+	<cstddef>
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\cpp_future.hpp
+	<array>
+	<cstddef>
+	<type_traits>
+	<utility>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\type_traits.hpp
+	<limits>
+	<type_traits>
+	<utility>
+	<tuple>
+	<nlohmann/detail/iterators/iterator_traits.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/call_std/begin.hpp>
+	<nlohmann/detail/meta/call_std/end.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/detected.hpp>
+	<nlohmann/json_fwd.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\iterator_traits.hpp
+	<iterator>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/meta/void_t.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\call_std\begin.hpp
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\call_std\end.hpp
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\json_fwd.hpp
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\string_concat.hpp
+	<cstring>
+	<string>
+	<utility>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/detected.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\identity_tag.hpp
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\std_fs.hpp
+	<nlohmann/detail/macro_scope.hpp>
+	<experimental/filesystem>
+	<filesystem>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\conversions\to_json.hpp
+	<algorithm>
+	<iterator>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<nlohmann/detail/iterators/iteration_proxy.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/std_fs.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\iteration_proxy.hpp
+	<cstddef>
+	<iterator>
+	<string>
+	<tuple>
+	<utility>
+	<ranges>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\byte_container_with_subtype.hpp
+	<cstdint>
+	<tuple>
+	<utility>
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\hash.hpp
+	<cstdint>
+	<cstddef>
+	<functional>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\binary_reader.hpp
+	<algorithm>
+	<array>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/input/input_adapters.hpp>
+	<nlohmann/detail/input/json_sax.hpp>
+	<nlohmann/detail/input/lexer.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/is_sax.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\input_adapters.hpp
+	<array>
+	<cstddef>
+	<cstring>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<type_traits>
+	<utility>
+	<cstdio>
+	<istream>
+	<nlohmann/detail/iterators/iterator_traits.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\json_sax.hpp
+	<cstddef>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/string_concat.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\lexer.hpp
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/input/input_adapters.hpp>
+	<nlohmann/detail/input/position_t.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\meta\is_sax.hpp
+	<cstdint>
+	<utility>
+	<string>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/meta/detected.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\input\parser.hpp
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/input/input_adapters.hpp>
+	<nlohmann/detail/input/json_sax.hpp>
+	<nlohmann/detail/input/lexer.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/is_sax.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\internal_iterator.hpp
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/iterators/primitive_iterator.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\primitive_iterator.hpp
+	<cstddef>
+	<limits>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\iter_impl.hpp
+	<iterator>
+	<type_traits>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/iterators/internal_iterator.hpp>
+	<nlohmann/detail/iterators/primitive_iterator.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\iterators\json_reverse_iterator.hpp
+	<cstddef>
+	<iterator>
+	<utility>
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\json_custom_base_class.hpp
+	<type_traits>
+	<nlohmann/detail/abi_macros.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\json_pointer.hpp
+	<algorithm>
+	<cctype>
+	<cerrno>
+	<cstdlib>
+	<iosfwd>
+	<limits>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/string_escape.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\json_ref.hpp
+	<initializer_list>
+	<utility>
+	<nlohmann/detail/abi_macros.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\output\binary_writer.hpp
+	<algorithm>
+	<array>
+	<map>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<nlohmann/detail/input/binary_reader.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/output/output_adapters.hpp>
+	<nlohmann/detail/string_concat.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\output\output_adapters.hpp
+	<algorithm>
+	<cstddef>
+	<iterator>
+	<memory>
+	<string>
+	<vector>
+	<ios>
+	<ostream>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\output\serializer.hpp
+	<algorithm>
+	<array>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<iomanip>
+	<type_traits>
+	<utility>
+	<nlohmann/detail/conversions/to_chars.hpp>
+	<nlohmann/detail/exceptions.hpp>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/cpp_future.hpp>
+	<nlohmann/detail/output/binary_writer.hpp>
+	<nlohmann/detail/output/output_adapters.hpp>
+	<nlohmann/detail/string_concat.hpp>
+	<nlohmann/detail/value_t.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\conversions\to_chars.hpp
+	<array>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+	<nlohmann/detail/macro_scope.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\ordered_map.hpp
+	<functional>
+	<initializer_list>
+	<iterator>
+	<memory>
+	<stdexcept>
+	<type_traits>
+	<utility>
+	<vector>
+	<nlohmann/detail/macro_scope.hpp>
+	<nlohmann/detail/meta/type_traits.hpp>
+
+1677341296 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\detail\macro_unscope.hpp
+	<nlohmann/thirdparty/hedley/hedley_undef.hpp>
+
+1677341297 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\thirdparty\hedley\hedley_undef.hpp
+
+1677341282 d:\github\2d_game\sfmlgame\include\controls.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Controls.h"
+	"Character.h"
+
+1677604465 d:\github\2d_game\sfmlgame\include\animation.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1677341282 d:\github\2d_game\sfmlgame\include\animationcharacter.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Animation.h"
+	"Controls.h"
+	"Character.h"
+	<fstream>
+	<nlohmann/json.hpp>
+
+1677341282 d:\github\2d_game\sfmlgame\include\camera.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<nlohmann/json.hpp>
+	<fstream>
+	"Character.h"
+
+1677341282 d:\github\2d_game\sfmlgame\include\charactermove.h
+	"Controls.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	"Map.h"
+	<vector>
+
+1678051724 d:\github\2d_game\sfmlgame\include\map.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	<nlohmann/json.hpp>
+	<vector>
+
+1678054227 d:\github\2d_game\sfmlgame\include\enemy.h
+	"Character.h"
+	<fstream>
+	<nlohmann/json.hpp>
+	<cstdlib>
+	"Map.h"
+	"Graph.h"
+	"Map.h"
+	"Animation.h"
+	<vector>
+	<queue>
+	<algorithm>
+
+1677341282 d:\github\2d_game\sfmlgame\include\graph.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<SFML/Graphics.hpp>
+	<cstring>
+	<queue>
+
+1677785367 d:\github\2d_game\sfmlgame\include\bar.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1677784359 d:\github\2d_game\sfmlgame\include\gamemanagement.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	"Enemy.h"
+	<nlohmann/json.hpp>
+	<fstream>
+	"AnimationCharacter.h"
+	"Controls.h"
+	"AnimationCharacter.h"
+	"Camera.h"
+	"CharacterMove.h"
+	"Map.h"
+	"Bar.h"
+
+1677604464 source:d:\github\2d_game\sfmlgame\src\animation.cpp
+	"Animation.h"
+
+1677601794 source:d:\github\2d_game\sfmlgame\src\animationcharacter.cpp
+	"AnimationCharacter.h"
+
+1677787919 source:d:\github\2d_game\sfmlgame\src\bar.cpp
+	"Bar.h"
+
+1677604472 source:d:\github\2d_game\sfmlgame\src\camera.cpp
+	"Camera.h"
+
+1677604472 source:d:\github\2d_game\sfmlgame\src\character.cpp
+	"Character.h"
+
+1677341604 source:d:\github\2d_game\sfmlgame\src\charactermove.cpp
+	"CharacterMove.h"
+
+1677341604 source:d:\github\2d_game\sfmlgame\src\controls.cpp
+	"Controls.h"
+
+1678054228 source:d:\github\2d_game\sfmlgame\src\enemy.cpp
+	"Enemy.h"
+
+1678119694 source:d:\github\2d_game\sfmlgame\src\gamemanagement.cpp
+	"GameManagement.h"
+
+1677341604 source:d:\github\2d_game\sfmlgame\src\graph.cpp
+	"Graph.h"
+
+1678051724 source:d:\github\2d_game\sfmlgame\src\map.cpp
+	"Map.h"
+
