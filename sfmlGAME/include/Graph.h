@@ -7,9 +7,6 @@
 #include <cstring>
 #include <queue>
 
-using namespace std;
-using namespace sf;
-
 class Graph
 {
     public:
@@ -27,14 +24,14 @@ class Graph
         void deleteGraph();
 
         // updating graph
-        void setGraph(vector < vector <pair<int,int>> >);
+        void setGraph(std::vector < std::vector <std::pair<int,int>> >);
 
         // find shortest path
-        pair<int,int> BFS(Vector2f, Vector2f);
+        std::pair<int,int> BFS(sf::Vector2f, sf::Vector2f);
 
-        int getNode(Vector2f); // get the node based on the character's position
+        int getNode(sf::Vector2f); // get the node based on the character's position
 
-        pair <int,int> getTiles(int); // get the tile positions based on the node
+        std::pair <int,int> getTiles(int); // get the tile positions based on the node
 
         // constructors
         Graph();
@@ -44,7 +41,7 @@ class Graph
 
     private:
 
-        vector < vector <pair<int,int>> > graph;
+        std::vector < std::vector <std::pair<int,int>> > graph;
 
         // these values will help us to transform the nodes in matrix positions and vice versa
         int lines,columns;

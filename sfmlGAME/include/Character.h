@@ -1,116 +1,183 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <nlohmann/json.hpp>
-
-using namespace sf;
-using namespace std;
-
-// things to add: energy
+#include <SFML/Graphics.hpp>
 
 class Character
 {
     public:
-        // revive the character with its stats
-        virtual void revive();
-
-        //getters
+        /* getters */
         int getHealth() const;
         int getCurrentHealth() const;
+
         int getMana() const;
+        int getCurrentMana() const;
+
         int getSpeedMovement() const;
         int getSpeedAttack() const;
-        int getDirection() const;
-        int getBaseDamage() const;
-        int getEnemyDirection() const;
-        bool getKnockback() const;
-        bool getIsAttacking() const;
-        bool getIsMoving() const;
-        bool getIsSpellCasting() const;
-        bool getIsIdle() const;
-        bool getDidChangeDirection() const;
-        bool getActionInProgress() const;
-        bool getWalkIntoObstacle() const;
-        bool getIsHit() const;
-        bool getIsDamaging() const;
-        bool getIsKnockbacked() const;
-        bool getIsDead() const;
-        Vector2f getCharacterPosition() const;
-        Vector2f getCharacterSize() const;
-        Vector2f getSpawnPoint() const;
-        float getRadiusAttack() const;
-        float getKnockbackDistance() const;
 
-        //setters
+        int getLeapsInDash() const;
+
+        bool getIsKnockable() const;
+
+        bool getIsAttacking() const;
+        bool getIsSpellCasting() const;
+        bool getIsMoving() const;
+        bool getIsIdle() const;
+        bool getIsDashing() const;
+
+        bool getIsDying() const;
+        bool getIsDead() const;
+        bool getIsRespawnable() const;
+
+        bool getIsDamaging() const;
+        bool getIsDamaged() const;
+        bool getIsKnockbacked() const;
+
+        bool getIsWalkingIntoObstacle() const;
+
+        bool getIsAbleToDash() const;
+
+        bool getCooldownDash() const;
+
+        bool getRegenerableLife() const;
+
+        float getBaseDamageMelee() const;
+        float getKnockbackDistance() const;
+        float getReceivedKnockbackDistance() const;
+
+        float getRadiusAttack() const;
+
+        float getRespawnTime() const;
+
+        float getLeapDistanceInDash() const;
+
+        std::string getDirection() const;
+        std::string getDirectionKnockback() const;
+
+        sf::Vector2f getCharacterPosition() const;
+        sf::Vector2f getSpawnPoint() const;
+        sf::Vector2f getCharacterSize() const;
+
+        /* setters */
         void setHealth(int);
         void setCurrentHealth(int);
+
         void setMana(int);
+        void setCurrentMana(int);
+
         void setSpeedMovement(int);
         void setSpeedAttack(int);
-        void setBaseDamage(int);
-        void setEnemyDirection(int);
-        void setKnockback(bool);
-        void setIsMoving(bool);
+
+        void setLeapsInDash(int);
+
+        void setIsKnockable(bool);
+
         void setIsAttacking(bool);
-        void setIsIdle(bool);
-        void setActionInProgress(bool);
-        void setDidChangeDirection(bool);
         void setIsSpellCasting(bool);
-        void setWalkIntoObstacle(bool);
-        void setIsHit(bool);
-        void setIsDamaging(bool);
-        void setIsKnockbacked(bool);
+        void setIsMoving(bool);
+        void setIsIdle(bool);
+        void setIsDashing(bool);
+
+        void setIsDying(bool);
         void setIsDead(bool);
-        void setCharacterPosition(Vector2f);
-        void setCharacterSize(Vector2f);
-        void setSpawnPoint(Vector2f);
-        void setDirection(int);
-        void setRadiusAttack(float);
+        void setIsRespawnable(bool);
+
+        void setIsDamaging(bool);
+        void setIsDamaged(bool);
+        void setIsKnockbacked(bool);
+
+        void setIsWalkingIntoObstacle(bool);
+
+        void setIsAbleToDash(bool);
+        void setCooldownDash(bool);
+
+        void setRegenerableLife(bool);
+
+        void setBaseDamageMelee(float);
         void setKnockbackDistance(float);
+        void setReceivedKnockbackDistance(float);
+        void setRadiusAttack(float);
 
-        //constructors
-        Character(string);
+        void setRespawnTime(float);
 
-        //destructors
+        void setLeapDistanceInDash(float);
+
+        void setDirection(std::string);
+        void setDirectionKnockback(std::string);
+
+        void setCharacterPosition(sf::Vector2f);
+        void setSpawnPoint(sf::Vector2f);
+        void setCharacterSize(sf::Vector2f);
+
+        /* class methods */
+        virtual void revive();
+        virtual void setValues(std::string);
+
+        /* constructors */
+        Character();
+
+        /* destructors */
         ~Character();
 
     private:
-
-        int health; // health, initially it is 300
+        int health;
         int currentHealth;
-        int mana; // mana, initially it is 200
-        int speedMovement; // movement speed
-        int speedAttack; // attack speed
-        bool knockback; // tells us if the character can be knocked back or not
-        bool isAttacking; // tells us if the character is currently attacking
-        bool isSpellCasting; // tells us if the character is currently spellCasting
-        bool isMoving; // tells us if the character is moving
-        bool isIdle; // if character is idle
-        bool didChangeDirection; // if character changed his direction
-        bool walkIntoObstacle; // tells us if the character tries to walk into an obstacle
-        bool isDamaging; // if the character does damage
-        bool isHit; // if the character received damage
-        bool isKnockbacked;
-        bool isDead;
-        bool actionInProgress; // tells us if the character has an action in progress such as attacking or spellcasting
-        float radiusAttack;
-        float knockbackDistance; // the distance the character is going to be pushed back after is being attacked
-        Vector2f characterPosition; // getting the current position of the player
-        Vector2f characterSize; // dimensions of the character
-        Vector2f spawnPoint; // spawn point
-        int baseDamage;
-        int enemyDirection; // it helps us on calculating the knockbackdirection
 
-        // the direction the character is facing
-        /*
-        UP -> 1
-        LEFT -> 2
-        DOWN -> 3
-        RIGHT -> 4
-        */
-        int direction;
+        int mana;
+        int currentMana;
+
+        int speedMovement;
+        int speedAttack;
+
+        int leapsInDash;
+
+        bool isKnockable;
+
+        bool isAttacking;
+        bool isSpellCasting;
+        bool isMoving;
+        bool isIdle;
+        bool isDashing;
+
+        bool isDying;
+        bool isDead;
+
+        bool isRespawnable;
+
+        bool isDamaging;
+        bool isDamaged;
+        bool isKnockbacked;
+
+        bool isWalkingIntoObstacle;
+
+        bool isAbleToDash;
+
+        bool cooldownDash;
+
+        bool regenerableLife;
+
+        float knockbackDistance;
+        float receivedKnockbackDistance;
+
+        float baseDamageMelee;
+
+        float radiusAttack;
+
+        float respawnTime;
+
+        float leapDistanceInDash;
+
+        std::string direction;
+        std::string directionKnockback;
+
+        sf::Vector2f characterPosition;
+        sf::Vector2f spawnPoint;
+        sf::Vector2f characterSize;
+
 };
 
 #endif // CHARACTER_H

@@ -1,31 +1,26 @@
 #include "Map.h"
 
 // getters
-pair <int,int> Map::getArraySizes() const
+std::pair <int,int> Map::getArraySizes() const
 {
-    pair <int,int> sizes;
+    std::pair <int,int> sizes;
     sizes.first = this->lines;
     sizes.second = this->columns;
 
     return sizes;
 }
 
-Vector2f Map::getMapSize() const
+sf::Vector2f Map::getMapSize() const
 {
     return this->mapSize;
 }
 
-Sprite Map::getMap() const
+sf::Sprite Map::getMap() const
 {
     return this->sprite;
 }
 
-Sprite Map::getTransparentObstacles() const
-{
-    return this->transparentObstaclesSprite;
-}
-
-vector <int> Map::getTileArray() const
+std::vector <int> Map::getTileArray() const
 {
     return this->tileArray;
 }
@@ -37,6 +32,17 @@ int Map::getGridSize() const
 
 int Map::sum(int i1, int j1, int i2, int j2)
 {
+
+    /*
+        //cout << S[ij][jj] - S[is-1][jj] - S[ij][js-1] + S[is-1][js-1];
+
+        int totalSum = this->sumArray[i2][j2] - this->sumArray[i1-1][j2] - this->sumArray[i2][j1-1] + this->sumArray[i1][j2-1];
+
+        if(totalSum > 0)
+            return 1;
+
+        return 0; */
+
     for(int i=i1; i<=i2; i++)
         {
             for(int j=j1; j<=j2; j++)
@@ -48,7 +54,7 @@ int Map::sum(int i1, int j1, int i2, int j2)
     return 0;
 }
 
-bool Map::isCollision(Vector2f position, Vector2f characterSize)
+bool Map::isCollision(sf::Vector2f position, sf::Vector2f characterSize)
 {
     int xLeft = position.x / this->gridSize;
     int xRight = (position.x + characterSize.x) / this->gridSize;
@@ -65,18 +71,8 @@ bool Map::isCollision(Vector2f position, Vector2f characterSize)
 
     // i could use partial sums instead
     // must check why it is < and not <=
-    for(int i=yUp; i<yDown; i++)
-        {
-            for(int j=xLeft; j<xRight; j++)
-                {
-                    if(this->collisionArray[i][j] == 1)
-                        {
-                            return true;
-                        }
-                }
-        }
 
-    return false;
+    return this->sum(yUp,xLeft,yDown-1,xRight-1);
 }
 
 void Map::deleteCollisionArray()
@@ -90,6 +86,15 @@ void Map::deleteCollisionArray()
     if(this->lines > 0)
         delete[] this->collisionArray;
 
+    for(int i = 0; i < this->lines; i++)
+        {
+            if(this->columns > 0)
+                delete[] this->sumArray[i];
+        }
+
+    if(this->lines > 0)
+        delete[] this->sumArray;
+
     this->lines = this->columns = 0;
 }
 
@@ -101,8 +106,9 @@ void Map::updateCollisionArray()
     this->lines = this->mapSize.y / this->gridSize; // number of grids vertically
 
     this->collisionArray = new int*[this->lines];
+    this->sumArray = new int*[this->lines];
 
-    vector <int> arr = this->getTileArray();
+    std::vector <int> arr = this->getTileArray();
 
     for(int i=0; i< this->lines; i++)
         {
@@ -113,11 +119,31 @@ void Map::updateCollisionArray()
                     this->collisionArray[i][j] = arr[i*(this->columns)+j];
                 }
         }
+
+    for(int i=0; i< this->lines; i++)
+        {
+            this->sumArray[i] = new int[this->columns];
+
+            for(int j=0; j< this->columns; j++)
+                {
+                    this->sumArray[i][j] = this->collisionArray[i][j];
+
+                    if(i >= 1)
+                        this->sumArray[i][j] += this->sumArray[i-1][j];
+
+                    if(j >= 1)
+                        this->sumArray[i][j] += this->sumArray[i][j-1];
+
+                    if(i >= 1 && j >= 1)
+                        this->sumArray[i][j] -= this->sumArray[i-1][j-1];
+
+                }
+        }
 }
 
-vector < vector <pair<int,int> > > Map::returnGraph(Vector2f characterSize)
+std::vector < std::vector <std::pair<int,int> > > Map::returnGraph(sf::Vector2f characterSize)
 {
-    vector < vector <pair<int,int> > > graph;
+    std::vector < std::vector <std::pair<int,int> > > graph;
 
     graph.resize(lines*columns+5);
 
@@ -137,11 +163,11 @@ vector < vector <pair<int,int> > > Map::returnGraph(Vector2f characterSize)
                     int rightNode = currentNode + 1;
                     int downNode = currentNode + (this->columns-x+1);
 
-                    graph[currentNode].push_back(make_pair(rightNode,max(valueCurrentNode,valueRightNode)));
-                    graph[rightNode].push_back(make_pair(currentNode,max(valueCurrentNode,valueRightNode)));
+                    graph[currentNode].push_back(std::make_pair(rightNode,std::max(valueCurrentNode,valueRightNode)));
+                    graph[rightNode].push_back(std::make_pair(currentNode,std::max(valueCurrentNode,valueRightNode)));
 
-                    graph[currentNode].push_back(make_pair(downNode,max(valueCurrentNode,valueDownNode)));
-                    graph[downNode].push_back(make_pair(currentNode,max(valueCurrentNode,valueDownNode)));
+                    graph[currentNode].push_back(std::make_pair(downNode,std::max(valueCurrentNode,valueDownNode)));
+                    graph[downNode].push_back(std::make_pair(currentNode,std::max(valueCurrentNode,valueDownNode)));
                 }
         }
 
@@ -149,49 +175,150 @@ vector < vector <pair<int,int> > > Map::returnGraph(Vector2f characterSize)
 }
 
 // loading information about the current level from files
-void Map::getMapDetails(string mapName, string levelName)
+void Map::getMapDetails(std::string mapName, std::string levelName)
 {
     // clear the tile array from the previous level
     this->tileArray.clear();
 
-    string pathValues = "values/maps/" + mapName + "/levels/" + levelName + ".json";
-    ifstream file(pathValues);
+    this->lines = this->columns = 0;
+
+    std::string pathValues = "values/maps/" + mapName + "/levels/" + levelName + ".json";
+    std::ifstream file(pathValues);
     nlohmann::json data = nlohmann::json::parse(file);
 
     // to be careful with extensions
-    string pathImage = "sprites/maps/" + mapName + "/" + levelName + "/" + levelName + ".png";
-    string pathImageTransparentObstacles = "sprites/maps/" + mapName + "/" + levelName + "/" + "transparentObstacles" + ".png";
+    std::string pathImage = "sprites/maps/" + mapName + "/" + levelName + "/" + levelName + ".png";
 
     this->texture.loadFromFile(pathImage);
     this->sprite.setTexture(texture);
 
-    this->transparentObstaclesTexture.loadFromFile(pathImageTransparentObstacles);
-    this->transparentObstaclesSprite.setTexture(this->transparentObstaclesTexture);
-
-    // to change this code, i could search after "identifier", possible bugs here
-    this->mapSize.x = (data["levels"][0]["pxWid"].is_null()?0:(float)data["levels"][0]["pxWid"]);
-    this->mapSize.y = (data["levels"][0]["pxHei"].is_null()?0:(float)data["levels"][0]["pxHei"]);
-
-    this->gridSize = (data["defs"]["layers"][0]["gridSize"].is_null()?0:(int)data["defs"]["layers"][0]["gridSize"]);
-
-    if(!data["levels"][0]["layerInstances"][0]["intGridCsv"].is_null())
+    try
         {
-            for(unsigned i=0; i<data["levels"][0]["layerInstances"][0]["intGridCsv"].size(); i++)
+            // to change this code, i could search after "identifier", possible bugs here
+            this->mapSize.x = (data["levels"][0]["pxWid"].is_null()?0:(float)data["levels"][0]["pxWid"]);
+            this->mapSize.y = (data["levels"][0]["pxHei"].is_null()?0:(float)data["levels"][0]["pxHei"]);
+
+            this->gridSize = (data["defs"]["layers"][0]["gridSize"].is_null()?0:(int)data["defs"]["layers"][0]["gridSize"]);
+
+            if(!data["levels"][0]["layerInstances"].is_null())
                 {
-                    this->tileArray.push_back(data["levels"][0]["layerInstances"][0]["intGridCsv"][i]);
+                    for(unsigned index=0; index<data["levels"][0]["layerInstances"].size(); index++)
+                        {
+                            if(data["levels"][0]["layerInstances"][index]["__identifier"] == "IntGrid") // getting collision array
+                                {
+                                    this->gridSize = (data["defs"]["layers"][index]["gridSize"].is_null()?0:(int)data["defs"]["layers"][index]["gridSize"]);
+
+                                    if(!data["levels"][0]["layerInstances"][index]["intGridCsv"].is_null())
+                                        {
+                                            for(unsigned i=0; i<data["levels"][0]["layerInstances"][index]["intGridCsv"].size(); i++)
+                                                {
+                                                    this->tileArray.push_back(data["levels"][0]["layerInstances"][index]["intGridCsv"][i]);
+                                                }
+                                        }
+                                }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "Player") // getting player position
+                                {
+                                    this->playerPosition.x = (float)data["levels"][0]["layerInstances"][index]["entityInstances"][0]["px"][0];
+                                    this->playerPosition.y = (float)data["levels"][0]["layerInstances"][index]["entityInstances"][0]["px"][1];
+                                }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "Enemies") // getting enemies positions
+                                {
+                                    sf::Vector2f enemyPosition;
+
+                                    for(unsigned indexEnemy = 0; indexEnemy < data["levels"][0]["layerInstances"][index]["entityInstances"].size(); indexEnemy++)
+                                        {
+                                            enemyPosition.x = data["levels"][0]["layerInstances"][index]["entityInstances"][indexEnemy]["px"][0];
+                                            enemyPosition.y = data["levels"][0]["layerInstances"][index]["entityInstances"][indexEnemy]["px"][1];
+
+                                            std::string enemySpriteName = data["levels"][0]["layerInstances"][index]["entityInstances"][indexEnemy]["__identifier"];
+                                            enemySpriteName[0] += 32;
+
+                                            std::pair < sf::Vector2f, std::string > enemyDetailsPair;
+                                            enemyDetailsPair.first = enemyPosition;
+                                            enemyDetailsPair.second = enemySpriteName;
+
+                                            this->enemyDetails.push_back(enemyDetailsPair);
+                                        }
+                                }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "TransparentObstacles")
+                                {
+                                    sf::Vector2f transparentObstaclePosition;
+
+                                    for(unsigned indexTransparentObstacle = 0; indexTransparentObstacle < data["levels"][0]["layerInstances"][index]["entityInstances"].size(); indexTransparentObstacle++)
+                                        {
+                                            transparentObstaclePosition.x = data["levels"][0]["layerInstances"][index]["entityInstances"][indexTransparentObstacle]["px"][0];
+                                            transparentObstaclePosition.y = data["levels"][0]["layerInstances"][index]["entityInstances"][indexTransparentObstacle]["px"][1];
+
+                                            std::string transparentObstacleName = data["levels"][0]["layerInstances"][index]["entityInstances"][indexTransparentObstacle]["__identifier"];
+                                            transparentObstacleName[0] += 32;
+
+                                            std::pair < sf::Vector2f, std::string > transparentObstaclePair;
+
+                                            transparentObstaclePair.first = transparentObstaclePosition;
+                                            transparentObstaclePair.second = transparentObstacleName;
+
+                                            this->transparentObstacleDetails.push_back(transparentObstaclePair);
+                                        }
+                                }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "AnimatedObjects")
+                                {
+                                    sf::Vector2f animatedObjectPosition;
+
+                                    for(unsigned indexAnimatedObject = 0; indexAnimatedObject < data["levels"][0]["layerInstances"][index]["entityInstances"].size(); indexAnimatedObject++)
+                                        {
+                                            animatedObjectPosition.x = data["levels"][0]["layerInstances"][index]["entityInstances"][indexAnimatedObject]["px"][0];
+                                            animatedObjectPosition.y = data["levels"][0]["layerInstances"][index]["entityInstances"][indexAnimatedObject]["px"][1];
+
+                                            std::string animatedObjectName = data["levels"][0]["layerInstances"][index]["entityInstances"][indexAnimatedObject]["__identifier"];
+                                            animatedObjectName[0] += 32;
+
+                                            std::pair < sf::Vector2f, std::string > animatedObjectPair;
+
+                                            animatedObjectPair.first = animatedObjectPosition;
+                                            animatedObjectPair.second = animatedObjectName;
+
+                                            this->animatedObjectDetails.push_back(animatedObjectPair);
+                                        }
+                                }
+                        }
                 }
+
+            this->updateCollisionArray();
+
+        }
+    catch(const nlohmann::json::exception& e)
+        {
+            std::cout << e.what() << '\n';
         }
 
-    this->updateCollisionArray();
+    file.close();
+}
+
+// get info about current level such as player positions, enemies, obstacles, entities etc.
+sf::Vector2f Map::getPlayerPosition() const
+{
+    return this->playerPosition;
+}
+
+std::vector < std::pair<sf::Vector2f,std::string> > Map::getEnemyDetails()
+{
+    return this->enemyDetails;
+}
+
+std::vector < std::pair<sf::Vector2f,std::string> > Map::getTransparentObstacleDetails()
+{
+    return this->transparentObstacleDetails;
+}
+
+std::vector < std::pair<sf::Vector2f,std::string> > Map::getAnimatedObjectDetails()
+{
+    return this->animatedObjectDetails;
 }
 
 // constructors
-Map::Map(string mapName, string levelName)
+Map::Map()
 {
-    // to implement save file with info such as current map and position/progress of the character
 
-    this->lines = this->columns = 0;
-    getMapDetails(mapName,levelName);
 }
 
 // destructors

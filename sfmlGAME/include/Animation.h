@@ -1,71 +1,54 @@
-#ifndef ANIMATION1_H
-#define ANIMATION1_H
-#include <SFML/Graphics.hpp>
+#ifndef ANIMATION_H
+#define ANIMATION_H
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include <vector>
-#include <fstream>
-#include <nlohmann/json.hpp>
-
-using namespace sf;
-using namespace std;
 
 class Animation
 {
-public:
-    //getters
-    Sprite getSprite() const;
-    Vector2f getFrameSize() const;
-    pair<int,int> getCurrentFrame() const;
+    public:
 
-    //setters
-    /*
-    this function has 2 optional parameters, multipliers of the actual size of the frame
-    to make animations for attack possible
-    is customized just for the types of textures that i am using for my characters
-    */
-    void setFrame(int,int,int=1,int=1);
-    void setScale(float, float);
+        /* getters */
+        sf::IntRect getFrame();
+        unsigned int getFrameIndex() const;
+        unsigned int getSize() const;
+        bool getIsFinished() const;
 
-    // constructors
+        /* setters */
+        void setIsLooped(bool);
 
-    /* constructor, receiving the name of the file that we are going to animate */
-    Animation(string);
+        /* class methods */
+        // adding frames
+        void addFrame(sf::IntRect, float);
+        void play();
+        void pause();
+        void stop();
+        void update(float);
 
-    // destructors
-    ~Animation();
+        /* constructors */
+        Animation();
 
-protected:
-    // getters
-    Vector2f getSpriteLocation() const;
-    float getTimeFrame() const;
-    float getTimeResetFrame() const;
+        /* destructors */
+        ~Animation();
 
-    // setters
-    void setSpriteLocation(float, float);
-    void setSpriteColor(Color);
+    private:
+        struct Frame
+        {
+            sf::IntRect rect; // the rectangle representing the desired frame
+            float duration; // duration of a certain frame
+        };
 
-    void increaseTime(float);
+        std::vector<Frame> frames; // vector of frames
 
-    void resetTime();
+        float elapsedTime;
 
-    void renderAnimation(bool);
+        bool isPlaying;
 
-    struct Pair
-    {
-        int x,y;
-    } currentFrame; // this helps us knowing which frame we are using at the current time
+        bool isLooped;
 
-    vector <int> numberOfFrames; // to see how many frames are on each line
+        bool isFinished;
 
-private:
-    Texture texture;
-    Sprite sprite;
-
-    Vector2f frameSize; // size of a frame
-
-    float timeFrame,timeResetFrame; // handling time between animations
-    // time -> the the time that has accumulated so far
-    // timeReset -> when the variable "time" value exceeds this value, we change the animation and reset "time" value
+        unsigned int currentFrame;
 };
 
-#endif // ANIMATION1_H
+#endif // ANIMATION_H

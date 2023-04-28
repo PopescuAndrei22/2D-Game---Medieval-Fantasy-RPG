@@ -1,47 +1,46 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
-#include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Controls.h"
-#include "Character.h"
-
-using namespace sf;
-using namespace std;
+#include <vector>
+#include <fstream>
+#include <nlohmann/json.hpp>
+#include <SFML/Graphics.hpp>
 
 class Controls
 {
 public:
-    // checking if a key used for controls was pressed
-    Keyboard::Key checkIfKeyIsPressed();
-    // function for handling controls of main character
-    void handleControls(Character*);
+    /* getters */
+    sf::Keyboard::Key getMoveLeft() const;
+    sf::Keyboard::Key getMoveRight() const;
+    sf::Keyboard::Key getMoveUp() const;
+    sf::Keyboard::Key getMoveDown() const;
+    sf::Keyboard::Key getAttack() const;
+    sf::Keyboard::Key getSpellCast() const;
+    sf::Keyboard::Key getDash() const;
 
-    //getters
-    Keyboard::Key getMoveLeft() const;
-    Keyboard::Key getMoveRight() const;
-    Keyboard::Key getMoveUp() const;
-    Keyboard::Key getMoveDown() const;
-    Keyboard::Key getAttack() const;
-    Keyboard::Key getSpellCast() const;
+    /* setters */
+    void setMoveLeft(sf::Keyboard::Key);
+    void setMoveRight(sf::Keyboard::Key);
+    void setMoveUp(sf::Keyboard::Key);
+    void setMoveDown(sf::Keyboard::Key);
+    void setAttack(sf::Keyboard::Key);
+    void setSpellCast(sf::Keyboard::Key);
+    void setDash(sf::Keyboard::Key);
 
-    //setters
-    void setMoveLeft(Keyboard::Key);
-    void setMoveRight(Keyboard::Key);
-    void setMoveUp(Keyboard::Key);
-    void setMoveDown(Keyboard::Key);
-    void setAttack(Keyboard::Key);
-    void setSpellCast(Keyboard::Key);
+    /* class methods */
+    sf::Keyboard::Key checkIfKeyIsPressed();
 
-    //constructors
+    /* constructors */
     Controls();
 
-    //destructors
+    /* destructors */
     ~Controls();
 
 private:
-    Keyboard::Key moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
-    Keyboard::Key attack; // control for basic attack
-    Keyboard::Key spellCast; // control for spell cast
+    sf::Keyboard::Key moveUp,moveDown,moveLeft,moveRight; // controls for moving the character
+    sf::Keyboard::Key attack; // control for basic attack
+    sf::Keyboard::Key spellCast; // control for spell cast
+    sf::Keyboard::Key dash;
 };
 
 #endif // CONTROLS_H

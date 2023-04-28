@@ -6,18 +6,16 @@
 #include <fstream>
 #include "Character.h"
 
-using namespace sf;
-using namespace std;
-
 class Camera
 {
     public:
         //getters
-        View getView() const;
-        Vector2f getTopLeftCorner() const;
+        sf::View getView() const;
+        sf::Vector2f getTopLeftCorner() const;
+        sf::Vector2f getCenter() const;
 
         // setters
-        void setMapSize(Vector2f);
+        void setMapSize(sf::Vector2f);
 
         // centering the camera on the character
         void handleView(Character);
@@ -32,10 +30,10 @@ class Camera
         ~Camera();
 
     private:
-        View view;
+        sf::View view;
 
-        Vector2f windowSize;
-        Vector2f mapSize;
+        sf::Vector2f windowSize;
+        sf::Vector2f mapSize;
 
         float zoomModifier; // the current zoom value for view
         float valueModifier; // the quantity we decrease/increase the zoom modifier value

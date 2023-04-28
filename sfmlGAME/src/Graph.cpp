@@ -33,7 +33,7 @@ int Graph::getGridSize() const
 }
 
 // get node based on character's position
-int Graph::getNode(Vector2f characterPosition)
+int Graph::getNode(sf::Vector2f characterPosition)
 {
     int x = characterPosition.x / this->gridSize;
     int y = characterPosition.y / this->gridSize;
@@ -43,9 +43,9 @@ int Graph::getNode(Vector2f characterPosition)
     return node;
 }
 
-pair <int,int> Graph::getTiles(int node)
+std::pair <int,int> Graph::getTiles(int node)
 {
-    pair <int,int> tile;
+    std::pair <int,int> tile;
 
     if(node<=0)
         {
@@ -69,13 +69,13 @@ pair <int,int> Graph::getTiles(int node)
 }
 
 // find shortest path
-pair<int,int> Graph::BFS(Vector2f startPosition, Vector2f stopPosition)
+std::pair<int,int> Graph::BFS(sf::Vector2f startPosition, sf::Vector2f stopPosition)
 {
     int Dist[this->graph.size()+5];
 
     memset(Dist,0,sizeof(Dist));
 
-    queue < int > Q;
+    std::queue < int > Q;
 
     Q.push(getNode(startPosition));
     Dist[getNode(startPosition)] == 1;
@@ -134,7 +134,7 @@ void Graph::deleteGraph()
 }
 
 // updating graph
-void Graph::setGraph(vector < vector <pair<int,int>> > newGraph)
+void Graph::setGraph(std::vector < std::vector <std::pair<int,int>> > newGraph)
 {
     this->deleteGraph();
 

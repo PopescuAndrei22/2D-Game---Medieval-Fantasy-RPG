@@ -5,22 +5,19 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <vector>
-
-using namespace std;
-using namespace sf;
+#include <algorithm>
 
 class Map
 {
     public:
         // getters
-        Sprite getMap() const;
-        Sprite getTransparentObstacles() const;
-        Vector2f getMapSize() const;
+        sf::Sprite getMap() const;
+        sf::Vector2f getMapSize() const;
         int getGridSize() const;
-        pair<int,int> getArraySizes() const;
-        vector <int> getTileArray() const;
+        std::pair<int,int> getArraySizes() const;
+        std::vector <int> getTileArray() const;
 
-        void getMapDetails(string,string); // loads the map and obtain information about it
+        void getMapDetails(std::string,std::string); // loads the map and obtain information about it
 
         void updateCollisionArray(); // updating the collision array
 
@@ -30,31 +27,47 @@ class Map
         int sum(int,int,int,int);
 
         // checking if the given position is collision for a character
-        bool isCollision(Vector2f,Vector2f);
+        bool isCollision(sf::Vector2f,sf::Vector2f);
 
-        vector < vector<pair<int,int>> > returnGraph(Vector2f); // return the collision array as a graph, receiving the size of the character as parameter
+        std::vector < std::vector<std::pair<int,int>> > returnGraph(sf::Vector2f); // return the collision array as a graph, receiving the size of the character as parameter
+
+        void updateCurrentLevel(std::string,std::string);
+
+        // get info about current level such as player positions, enemies, obstacles, entities etc.
+        sf::Vector2f getPlayerPosition() const;
+        std::vector < std::pair<sf::Vector2f,std::string> > getEnemyDetails();
+        std::vector < std::pair<sf::Vector2f,std::string> > getTransparentObstacleDetails();
+        std::vector < std::pair<sf::Vector2f,std::string> > getAnimatedObjectDetails();
 
         // constructors
-        Map(string,string);
+        Map();
 
         // destructors
         ~Map();
 
     private:
-        Texture texture;
-        Sprite sprite;
+        sf::Texture texture;
+        sf::Sprite sprite;
 
-        Texture transparentObstaclesTexture;
-        Sprite transparentObstaclesSprite;
-
-        Vector2f mapSize;
+        sf::Vector2f mapSize;
         int gridSize; // size of a grid (helps us for array collision)
 
-        vector <int> tileArray; // tells us which tiles are occupied
+        std::vector <int> tileArray; // tells us which tiles are occupied
 
         int** collisionArray;
 
-        int columns,lines; // sizes of the matrix
-};
+        int** sumArray;
 
+        int columns,lines; // sizes of the matrix
+
+        // to set and use these variables
+        std::string mapName;
+        std::string levelName;
+
+        // informations about the current level, don't forget to clear the vectors
+        sf::Vector2f playerPosition;
+        std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails;
+        std::vector < std::pair<sf::Vector2f,std::string> > transparentObstacleDetails;
+        std::vector < std::pair<sf::Vector2f,std::string> > animatedObjectDetails;
+};
 #endif // MAP_H

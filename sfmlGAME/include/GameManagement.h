@@ -1,55 +1,110 @@
-#ifndef CHARACTERMANAGEMENT_H
-#define CHARACTERMANAGEMENT_H
+#ifndef GAMEMANAGEMENT_H
+#define GAMEMANAGEMENT_H
+#include "AnimationState.h"
+#include "Animation.h"
+#include "AnimationManagement.h"
+#include "Controls.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Character.h"
-#include "Enemy.h"
-#include <nlohmann/json.hpp>
+#include <vector>
 #include <fstream>
-#include "AnimationCharacter.h"
-#include "Controls.h"
-#include "AnimationCharacter.h"
-#include "Camera.h"
-#include "CharacterMove.h"
+#include <nlohmann/json.hpp>
+#include "CharacterManagement.h"
+#include "Player.h"
+#include "Character.h"
+#include "CharacterMovement.h"
 #include "Map.h"
+#include "Camera.h"
+#include "Enemy.h"
+#include "EnemyAI.h"
 #include "Bar.h"
-
-using namespace sf;
-using namespace std;
-
-// Managing player, enemies and NPCs
+#include "CombatSystem.h"
+#include "CharacterEvents.h"
+#include "Menu.h"
+#include "TransparentObstacle.h"
 
 class GameManagement
 {
     public:
-        void setCharacters();
 
-        void manageInsideWindow(float);
+        /* getters */
+        bool getGameExit() const;
 
-        void draw(RenderWindow*);
+        /* setters */
+        void setDidGameStart(bool);
+        void setGameExit(bool);
+        void setMouseClicked(bool);
 
+        /* class methods */
         void manageZoom(int);
 
-        GameManagement();
+        void createAnimations();
+
+        void windowManagement(float);
+
+        void draw();
+
+        void drawDeadCharacters();
+
+        void drawAliveCharacters();
+
+        void setCharacterEvents();
+
+        /* constructors */
+        GameManagement(sf::RenderWindow&);
+
+        /* destructors */
         ~GameManagement();
 
     private:
-        vector <Enemy> enemies;
-        Character player;
+        sf::RenderWindow& m_window;
 
-        vector <AnimationCharacter*> enemyAnimation;
-        AnimationCharacter playerAnimation;
+        AnimationState animationState;
 
         Controls controls;
 
-        Camera camera;
+        Player player;
 
-        Map map;
-
-        vector <Bar*> enemyHealthBar;
         Bar playerHealthBar;
 
-        CharacterMove characterMove;
+        Bar enemyHealthBar;
+
+        CharacterManagement characterManagement;
+
+        CharacterMovement characterMovement;
+
+        Map currentMap;
+
+        Camera camera;
+
+        CharacterEvents playerEvents;
+
+        std::vector <Enemy> enemies;
+        std::vector <AnimationState> enemiesAnimationState;
+        std::vector <CharacterEvents> enemiesEvents;
+        std::vector <Bar*> enemiesHealthBar;
+
+        EnemyAI enemyAI;
+
+        CombatSystem combatSystem;
+
+        // map entities
+
+        std::vector <TransparentObstacle*> transparentObstacles;
+
+        std::vector <AnimationState> animatedObjects;
+
+        // Menu
+
+        //Menu menu;
+
+        Menu *menu;
+
+        // game logic
+
+        bool isGamePaused;
+        bool didGameStart;
+        bool gameExit;
 };
 
-#endif // CHARACTERMANAGEMENT_H
+#endif // GAMEMANAGEMENT_H

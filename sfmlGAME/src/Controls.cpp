@@ -1,161 +1,117 @@
 #include "Controls.h"
 
-// checking if any of the controls was used
-Keyboard::Key Controls::checkIfKeyIsPressed()
-{
-    if(Keyboard::isKeyPressed(this->moveUp))
-        return this->moveUp;
-    if(Keyboard::isKeyPressed(this->moveDown))
-        return this->moveDown;
-    if(Keyboard::isKeyPressed(this->moveLeft))
-        return this->moveLeft;
-    if(Keyboard::isKeyPressed(this->moveRight))
-        return this->moveRight;
-    if(Keyboard::isKeyPressed(this->attack))
-        return this->attack;
-    if(Keyboard::isKeyPressed(this->spellCast))
-        return this->spellCast;
-
-    return Keyboard::Unknown;
-}
-
-// main function for handling controls of character
-void Controls::handleControls(Character *character)
-{
-    Keyboard::Key keyCode = this->checkIfKeyIsPressed();
-
-    int previousDirection = character->getDirection();
-
-    // reinitializing
-    character->setIsMoving(false);
-    character->setIsIdle(false);
-    character->setDidChangeDirection(false);
-
-    if(character->getActionInProgress() == false)
-        {
-
-            if(keyCode == this->getMoveLeft())
-                {
-                    character->setIsMoving(true);
-                    character->setDirection(2);
-                }
-            else if(keyCode == this->getMoveRight())
-                {
-                    character->setIsMoving(true);
-                    character->setDirection(4);
-                }
-            else if(keyCode == this->getMoveUp())
-                {
-                    character->setIsMoving(true);
-                    character->setDirection(1);
-                }
-            else if(keyCode == this->getMoveDown())
-                {
-                    character->setIsMoving(true);
-                    character->setDirection(3);
-                }
-
-            if(character->getIsMoving() == true && character->getDirection() != previousDirection)
-                character->setDidChangeDirection(true);
-
-
-            if(keyCode == this->getAttack())
-                {
-                    character->setActionInProgress(true);
-                    character->setIsAttacking(true);
-                }
-
-            if(keyCode == this->getSpellCast())
-                {
-                    character->setActionInProgress(true);
-                    character->setIsSpellCasting(true);
-                }
-
-            if(keyCode == Keyboard::Unknown)
-                {
-                    character->setIsIdle(true);
-                }
-
-        }
-}
-
-// getters
-Keyboard::Key Controls::getMoveLeft() const
+/* getters */
+sf::Keyboard::Key Controls::getMoveLeft() const
 {
     return this->moveLeft;
 }
 
-Keyboard::Key Controls::getMoveRight() const
+sf::Keyboard::Key Controls::getMoveRight() const
 {
     return this->moveRight;
 }
 
-Keyboard::Key Controls::getMoveUp() const
+sf::Keyboard::Key Controls::getMoveUp() const
 {
     return this->moveUp;
 }
 
-Keyboard::Key Controls::getMoveDown() const
+sf::Keyboard::Key Controls::getMoveDown() const
 {
     return this->moveDown;
 }
 
-Keyboard::Key Controls::getAttack() const
+sf::Keyboard::Key Controls::getAttack() const
 {
     return this->attack;
 }
 
-Keyboard::Key Controls::getSpellCast() const
+sf::Keyboard::Key Controls::getSpellCast() const
 {
     return this->spellCast;
 }
 
-// setters
-void Controls::setMoveLeft(Keyboard::Key newBind)
+sf::Keyboard::Key Controls::getDash() const
+{
+    return this->dash;
+}
+
+/* setters */
+void Controls::setMoveLeft(sf::Keyboard::Key newBind)
 {
     this->moveLeft = newBind;
 }
 
-void Controls::setMoveRight(Keyboard::Key newBind)
+void Controls::setMoveRight(sf::Keyboard::Key newBind)
 {
     this->moveRight = newBind;
 }
 
-void Controls::setMoveUp(Keyboard::Key newBind)
+void Controls::setMoveUp(sf::Keyboard::Key newBind)
 {
     this->moveUp = newBind;
 }
 
-void Controls::setMoveDown(Keyboard::Key newBind)
+void Controls::setMoveDown(sf::Keyboard::Key newBind)
 {
     this->moveDown = newBind;
 }
 
-void Controls::setAttack(Keyboard::Key newBind)
+void Controls::setAttack(sf::Keyboard::Key newBind)
 {
     this->attack = newBind;
 }
 
-void Controls::setSpellCast(Keyboard::Key newBind)
+void Controls::setSpellCast(sf::Keyboard::Key newBind)
 {
     this->spellCast = newBind;
 }
 
-// constructors
+void Controls::setDash(sf::Keyboard::Key newBind)
+{
+    this->dash = newBind;
+}
+
+/* class methods */
+
+// checking if any of the controls was used
+sf::Keyboard::Key Controls::checkIfKeyIsPressed()
+{
+    if(sf::Keyboard::isKeyPressed(this->moveUp))
+        return this->moveUp;
+    if(sf::Keyboard::isKeyPressed(this->moveDown))
+        return this->moveDown;
+    if(sf::Keyboard::isKeyPressed(this->moveLeft))
+        return this->moveLeft;
+    if(sf::Keyboard::isKeyPressed(this->moveRight))
+        return this->moveRight;
+    if(sf::Keyboard::isKeyPressed(this->attack))
+        return this->attack;
+    if(sf::Keyboard::isKeyPressed(this->spellCast))
+        return this->spellCast;
+    if(sf::Keyboard::isKeyPressed(this->dash))
+        return this->dash;
+
+    return sf::Keyboard::Unknown;
+}
+
+/* constructors */
 Controls::Controls()
 {
     // initial binds, can be modified later from options -> key bindings
-    this->moveLeft=Keyboard::Left;
-    this->moveRight=Keyboard::Right;
-    this->moveUp=Keyboard::Up;
-    this->moveDown=Keyboard::Down;
+    this->moveLeft=sf::Keyboard::Left;
+    this->moveRight=sf::Keyboard::Right;
+    this->moveUp=sf::Keyboard::Up;
+    this->moveDown=sf::Keyboard::Down;
 
-    this->attack = Keyboard::Space;
+    this->attack = sf::Keyboard::Space;
 
-    this->spellCast = Keyboard::X;
+    this->spellCast = sf::Keyboard::X;
+
+    this->dash = sf::Keyboard::C;
 }
 
-// destructors
+/* destructors */
 Controls::~Controls()
 {
 

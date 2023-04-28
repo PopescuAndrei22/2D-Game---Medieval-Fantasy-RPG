@@ -52,28 +52,48 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Animation.h" />
-		<Unit filename="include/AnimationCharacter.h" />
+		<Unit filename="include/AnimationManagement.h" />
+		<Unit filename="include/AnimationState.h" />
 		<Unit filename="include/Bar.h" />
+		<Unit filename="include/Button.h" />
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Character.h" />
-		<Unit filename="include/CharacterMove.h" />
+		<Unit filename="include/CharacterEvents.h" />
+		<Unit filename="include/CharacterManagement.h" />
+		<Unit filename="include/CharacterMovement.h" />
+		<Unit filename="include/CombatSystem.h" />
 		<Unit filename="include/Controls.h" />
 		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/EnemyAI.h" />
+		<Unit filename="include/GameEvents.h" />
 		<Unit filename="include/GameManagement.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Map.h" />
+		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/TransparentObstacle.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
-		<Unit filename="src/AnimationCharacter.cpp" />
+		<Unit filename="src/AnimationManagement.cpp" />
+		<Unit filename="src/AnimationState.cpp" />
 		<Unit filename="src/Bar.cpp" />
+		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/Character.cpp" />
-		<Unit filename="src/CharacterMove.cpp" />
+		<Unit filename="src/CharacterEvents.cpp" />
+		<Unit filename="src/CharacterManagement.cpp" />
+		<Unit filename="src/CharacterMovement.cpp" />
+		<Unit filename="src/CombatSystem.cpp" />
 		<Unit filename="src/Controls.cpp" />
 		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/EnemyAI.cpp" />
+		<Unit filename="src/GameEvents.cpp" />
 		<Unit filename="src/GameManagement.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/TransparentObstacle.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

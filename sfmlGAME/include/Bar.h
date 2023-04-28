@@ -1,38 +1,41 @@
 #ifndef BAR_H
 #define BAR_H
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <nlohmann/json.hpp>
 
-using namespace std;
-using namespace sf;
-
-// class for bars such as health, mana etc
 class Bar
 {
     public:
-        // setters
-        void setPosition(Vector2f);
 
-        // draw on window
-        void draw(RenderWindow*);
+        /* class methods */
+        void setPosition(sf::Vector2f);
+        void setPositionEnemy(sf::Vector2f,sf::Vector2f);
 
-        // managing bar, meaning for example in health bar to adjust the bars (based on current life)
-        void manageBar(int);
+        void updateBar(int);
 
-        // setting the bar for enemies
-        void setPositionEnemy(Vector2f, Vector2f);
+        void setBar(std::string, int);
 
-        Bar(string,string,int);
+        void draw(sf::RenderWindow&);
+        /* constructors */
+        Bar();
+
+        /* destructors */
         ~Bar();
 
     private:
-        Texture textureBar,textureEmptyBar;
 
-        Sprite icon,a;
+        sf::Texture textureBar;
+        sf::Texture textureEmptyBar;
 
-        vector <Sprite> bars;
+        sf::Sprite iconSprite;
+        sf::Sprite barSprite;
 
-        int barBlock; // how many units a bar has, for example 1 bar = 25 points of life or mana
+        std::vector<sf::Sprite> bars;
+
+        int barValue;
 };
 
 #endif // BAR_H

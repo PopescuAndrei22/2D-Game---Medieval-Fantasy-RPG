@@ -1,57 +1,80 @@
 #include "Bar.h"
 
-void Bar::manageBar(int value)
+/* class methods */
+void Bar::updateBar(int value)
 {
-    int numberOfFilledBars = value / this->barBlock;
+    int sum = 0;
 
-    for(int i=0; i<numberOfFilledBars; i++)
-        this->bars[i].setTexture(this->textureBar);
-    for(int i=numberOfFilledBars; i<this->bars.size(); i++)
-        this->bars[i].setTexture(this->textureEmptyBar);
-}
-
-// setters
-void Bar::setPosition(Vector2f newPosition)
-{
-    this->icon.setPosition(newPosition);
-
-    float posx = this->icon.getPosition().x;
-    float posy = this->icon.getPosition().y;
-
-    if(!this->bars.empty())
+    for(unsigned int i=0; i<this->bars.size(); i++)
         {
-            float iconWidth = this->icon.getTextureRect().width * this->icon.getScale().x;;
+            sum += this->barValue;
 
-            float barsWidth = this->bars[0].getTextureRect().width * this->bars[0].getScale().x;
-
-            this->bars[0].setPosition(Vector2f(posx+iconWidth,posy));
-
-            for(int i=1; i<this->bars.size(); i++)
+            if(sum > value)
                 {
-                    Vector2f positionPreviousElement = this->bars[i-1].getPosition();
+                    int dif = sum - value;
 
-                    this->bars[i].setPosition(Vector2f(positionPreviousElement.x+barsWidth,positionPreviousElement.y));
+                    if(dif > this->barValue)
+                        dif = 0;
+
+                    float procentBar = ((float) dif / (float)this->barValue) * 100.0f;
+
+                    if(procentBar == 0)
+                        procentBar = 100;
+
+                    float newRGB = procentBar/100.0f * 255;
+
+                    int rgb = std::min((int)newRGB,255);
+
+                    this->bars[i].setColor(sf::Color(179, rgb, rgb));
+                }
+            else
+                {
+                    this->bars[i].setColor(sf::Color(179, 0, 0));
                 }
         }
 }
 
-void Bar::setPositionEnemy(Vector2f enemyPosition, Vector2f enemySize)
+void Bar::setPosition(sf::Vector2f position)
+{
+    this->iconSprite.setPosition(position);
+
+    float posx = this->iconSprite.getPosition().x;
+    float posy = this->iconSprite.getPosition().y;
+
+    if(!this->bars.empty())
+        {
+            float iconWidth = this->iconSprite.getTextureRect().width * this->iconSprite.getScale().x;;
+
+            float barsWidth = this->bars[0].getTextureRect().width * this->bars[0].getScale().x;
+
+            this->bars[0].setPosition(sf::Vector2f(posx+iconWidth,posy));
+
+            for(unsigned i=1; i<this->bars.size(); i++)
+                {
+                    sf::Vector2f positionPreviousElement = this->bars[i-1].getPosition();
+
+                    this->bars[i].setPosition(sf::Vector2f(positionPreviousElement.x+barsWidth,positionPreviousElement.y));
+                }
+        }
+}
+
+void Bar::setPositionEnemy(sf::Vector2f enemyPosition, sf::Vector2f enemySize)
 {
     float sizeBar = 0.0;
 
-    Vector2f newPosition = enemyPosition;
+    sf::Vector2f newPosition = enemyPosition;
 
     // i could set the scales in constructor instead
 
-    this->icon.setScale(0,0); // setScale(0,0) if we don't want to see the icon
+    this->iconSprite.setScale(0,0); // setScale(0,0) if we don't want to see the icon
 
-    if(this->icon.getScale().x != 0)
-        sizeBar += this->icon.getTextureRect().width;
+    if(this->iconSprite.getScale().x != 0)
+        sizeBar += this->iconSprite.getTextureRect().width;
 
     if(this->bars.size() > 0)
         sizeBar += this->bars.size() * this->bars[0].getTextureRect().width;
 
-    for(int i=0; i<this->bars.size(); i++)
+    for(unsigned i=0; i<this->bars.size(); i++)
         {
             this->bars[i].setScale(enemySize.x / sizeBar,0.5);
         }
@@ -62,39 +85,63 @@ void Bar::setPositionEnemy(Vector2f enemyPosition, Vector2f enemySize)
     this->setPosition(newPosition);
 }
 
-void Bar::draw(RenderWindow *window)
+void Bar::setBar(std::string fileName, int value)
 {
-    window->draw(this->icon);
+    std::string filePath = "sprites/bars/" + fileName + ".png";
 
-    for(int i=0; i<this->bars.size(); i++)
-        window->draw(this->bars[i]);
+    this->textureBar.loadFromFile(filePath);
+    this->textureEmptyBar.loadFromFile("sprites/bars/empty_bar.png");
+
+    this->iconSprite.setTexture(this->textureBar);
+    this->barSprite.setTexture(this->textureEmptyBar);
+
+    std::string pathValues = "values/bars/" + fileName + ".json";
+    std::ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    auto icon = data.at("icon");
+    auto bar = data.at("bar");
+
+    try
+        {
+            sf::IntRect rectIcon = sf::IntRect(icon[0],icon[1],icon[2],icon[3]);
+
+            sf::IntRect rectBar = sf::IntRect(bar[0],bar[1],bar[2],bar[3]);
+
+            this->iconSprite.setTextureRect(rectIcon);
+            this->barSprite.setTextureRect(rectBar);
+
+            this->barValue = (int)data.at("barValue");
+
+        }
+    catch(const nlohmann::json::exception& e)
+        {
+            std::cout << e.what() << '\n';
+        }
+
+    for(unsigned int i=0; i<value / this->barValue; i++)
+        this->bars.push_back(this->barSprite);
+
+    file.close();
 }
 
-Bar::Bar(string fileNameBar, string fileNameEmptyBar, int barValue)
+void Bar::draw(sf::RenderWindow &renderWindow)
 {
-    // can be auto-adjusted, will think about this
-    this->barBlock = 25;
+    renderWindow.draw(this->iconSprite);
 
-    string pathTextureBar = "sprites/bars/" + fileNameBar + ".png";
-    string pathTextureEmptyBar = "sprites/bars/" + fileNameEmptyBar + ".png";
-
-    this->textureBar.loadFromFile(pathTextureBar); // getting the texture
-    this->textureEmptyBar.loadFromFile(pathTextureEmptyBar);
-
-    // hard coding for the current health bar
-    this->icon.setTexture(this->textureBar);
-    this->icon.setTextureRect(IntRect(0,35,33,45));
-
-    Sprite sprite;
-    sprite.setTexture(this->textureBar);
-    sprite.setTextureRect(IntRect(0,15,33,25));
-
-    for(int i=0; i<(barValue / this->barBlock); i++)
-        this->bars.push_back(sprite);
-
-    a.setTextureRect(IntRect(0,15,33,25));
+    for(unsigned int i=0; i<this->bars.size(); i++)
+        {
+            renderWindow.draw(this->bars[i]);
+        }
 }
 
+/* constructors */
+Bar::Bar()
+{
+
+}
+
+/* destructors */
 Bar::~Bar()
 {
 

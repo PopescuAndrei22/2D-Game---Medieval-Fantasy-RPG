@@ -1,157 +1,108 @@
 #include "Animation.h"
 
-//getters
-pair<int,int> Animation::getCurrentFrame() const
+/* getters */
+sf::IntRect Animation::getFrame()
 {
-    pair <int,int> frame;
-
-    frame.first = this->currentFrame.y;
-    frame.second = this->currentFrame.x;
-
-    return frame;
+    return this->frames[this->currentFrame].rect;
 }
 
-Sprite Animation::getSprite() const
+unsigned int Animation::getFrameIndex() const
 {
-    return this->sprite;
+    return this->currentFrame;
 }
 
-float Animation::getTimeFrame() const
+unsigned int Animation::getSize() const
 {
-    return this->timeFrame;
+    return this->frames.size();
 }
 
-float Animation::getTimeResetFrame() const
+bool Animation::getIsFinished() const
 {
-    return this->timeResetFrame;
+    return this->isFinished;
 }
 
-Vector2f Animation::getSpriteLocation() const
+/* setters */
+void Animation::setIsLooped(bool isLooped)
 {
-    return this->sprite.getPosition();
+    this->isLooped = isLooped;
 }
 
-Vector2f Animation::getFrameSize() const
+/* class methods */
+
+// adding frames to the vector
+void Animation::addFrame(sf::IntRect rect, float duration)
 {
-    return this->frameSize;
+    this->frames.push_back({ rect, duration });
 }
 
-// setters
-void Animation::setFrame(int column, int row, int customX, int customY)
+void Animation::play()
 {
-    // for easier notation
-    int x = this->frameSize.x;
-    int y = this->frameSize.y;
+    this->isPlaying = true;
+}
 
-    this->sprite.setTextureRect(IntRect(x*(column-1),y*(row-1),x,y));
+void Animation::pause()
+{
+    this->isPlaying = false;
+}
 
-    if(customX==1 && customY==1)
+void Animation::stop()
+{
+    this->isPlaying = false;
+    this->isLooped = true;
+    this->isFinished = false;
+    this->currentFrame = 0;
+    this->elapsedTime = 0.0f;
+}
+
+void Animation::update(float timer)
+{
+    if(this->isPlaying == false || this->isFinished == true)
         return;
 
-    // custom function
-    this->sprite.setTextureRect(IntRect(customX*x*(column-1),y*(row-1),x*customX,y*customY)); // customized attack for a specific texture
-}
+    this->elapsedTime += timer;
 
-void Animation::setScale(float x, float y)
-{
-    this->sprite.setScale(x,y);
-}
-
-void Animation::setSpriteLocation(float x, float y)
-{
-    this->sprite.setPosition(x,y);
-}
-
-void Animation::setSpriteColor(Color color)
-{
-    this->sprite.setColor(color);
-}
-
-void Animation::increaseTime(float timer)
-{
-    this->timeFrame += timer;
-}
-
-void Animation::resetTime()
-{
-    this->timeFrame = 0.0f;
-}
-
-void Animation::renderAnimation(bool ok)
-{
-    /*
-    for "ok" values:
-    false -> continue animation
-    true -> reset animation
-    */
-
-    if(ok == true)
+    float totalDuration = 0.0f;
+    for(unsigned int i=0; i<this->frames.size(); i++)
         {
-            this->resetTime();
-            this->currentFrame.x=1;
-        }
-    else
-        {
-            if(this->timeFrame > this->timeResetFrame)
+            totalDuration += this->frames[i].duration;
+            if(this->elapsedTime < totalDuration)
                 {
-                    this->resetTime();
-                    this->currentFrame.x++;
+                    this->currentFrame = i;
+                    break;
+                }
+        }
 
-                    if(this->currentFrame.x > this->numberOfFrames[this->currentFrame.y-1])
-                        this->currentFrame.x=1;
+    // loop the animation
+    if(this->elapsedTime > totalDuration)
+        {
+            if(this->isLooped == true)
+                {
+                    this->currentFrame = 0;
+                    this->elapsedTime = 0.0f;
+                }
+            else
+                {
+                    this->isFinished = true;
                 }
         }
 }
 
-
-// constructors
-Animation::Animation(string fileName)
+/* constructors */
+Animation::Animation()
 {
-    // it could contain paths to make animated background as well, not only characters, i will modify it
+    this->currentFrame = 0;
 
-    string pathValues = "values/characters/" + fileName + ".json";
-    ifstream file(pathValues);
-    nlohmann::json data = nlohmann::json::parse(file);
+    this->elapsedTime = 0.0f;
 
-    int x = (data["numberOfFramesX"].is_null()?0:(int)data["numberOfFramesX"]);
-    int y = (data["numberOfFramesY"].is_null()?0:(int)data["numberOfFramesY"]);
+    this->isPlaying = true;
 
-    string pathTexture = "sprites/characters/" + fileName + ".png";
+    this->isLooped = true;
 
-    this->texture.loadFromFile(pathTexture); // getting the texture
-
-    Vector2u textureSize = this->texture.getSize(); // getting texture's sizes
-
-    this->sprite.setTexture(this->texture); // setting the sprite
-
-    // getting the size of a frame
-    this->frameSize.x = textureSize.x / x;
-    this->frameSize.y = textureSize.y / y;
-
-    // initializing the time
-    this->timeFrame = 0.0f;
-
-    // the time after which the animation changes
-    this->timeResetFrame = 0.06f;
-
-    // specifying the starting column and row for an animation, by default it is 1-1
-    this->currentFrame.x = 1;
-    this->currentFrame.y = 1;
-
-    if(!data["numberOfFramesArray"].is_null())
-        {
-            for(unsigned i=0; i<data["numberOfFramesArray"].size(); i++)
-                this->numberOfFrames.push_back(data["numberOfFramesArray"][i]);
-        }
-
-    if(this->numberOfFrames.size()!=y)
-        cout<<"The number of lines read from the file "<<pathValues<<" is wrong."<<'\n';
-
-    file.close();
+    this->isFinished = false;
 }
 
-// destructors
+/* destructors */
 Animation::~Animation()
 {
-    this->numberOfFrames.clear();
+
 }

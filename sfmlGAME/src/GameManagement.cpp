@@ -1,114 +1,293 @@
 #include "GameManagement.h"
 
-void GameManagement::setCharacters()
+/* getters */
+bool GameManagement::getGameExit() const
 {
-    // sa am grija la memory leaks, ma gandesc daca trebuie sterse manual
-    this->enemies.clear();
-    this->enemyAnimation.clear();
-
-    // de modificat aici
-    string pathValues = "values/maps/map1/enemies/level1.json";
-
-    ifstream file(pathValues);
-    nlohmann::json data = nlohmann::json::parse(file);
-
-    vector < pair<int,int> > positions;
-    vector <string> sprites;
-
-    if(!data["positions"].is_null())
-        {
-            for(int i=0; i<data["positions"].size(); i++)
-                {
-                    // check for null values and positions with obstacles
-
-                    int x = data["positions"][i][0];
-                    int y = data["positions"][i][1];
-
-                    positions.push_back(make_pair(x,y));
-                }
-        }
-
-    if(!data["sprites"].is_null())
-        {
-            for(int i=0; i<data["sprites"].size(); i++)
-                {
-                    string sprite = data["sprites"][i];
-
-                    sprites.push_back(sprite);
-                }
-        }
-
-    for(int i=0; i<positions.size(); i++)
-        {
-            Enemy enemy(sprites[i]);
-            AnimationCharacter *animation = new AnimationCharacter(sprites[i]);
-            float x = positions[i].first;
-            float y = positions[i].second;
-
-            enemy.setSpawnPoint(Vector2f(x,y));
-            enemy.setCharacterPosition(Vector2f(x,y));
-
-            enemy.setCharacterSize(animation->getFrameSize());
-
-            enemy.getGraph(&this->map);
-
-            Bar *enemyHP = new Bar("health_bar","empty_bar",enemy.getHealth());
-
-            this->enemyHealthBar.push_back(enemyHP);
-
-            this->enemies.push_back(enemy);
-            this->enemyAnimation.push_back(animation);
-        }
+    return this->gameExit;
 }
 
-void GameManagement::manageInsideWindow(float timer)
+/* setters */
+void GameManagement::setDidGameStart(bool didGameStart)
 {
-    for(int i=0; i<this->enemies.size(); i++)
+    this->didGameStart = didGameStart;
+}
+
+void GameManagement::setGameExit(bool gameExit)
+{
+    this->gameExit = gameExit;
+}
+
+void GameManagement::setMouseClicked(bool isMouseClicked)
+{
+    this->menu->setIsButtonClicked(isMouseClicked);
+}
+
+/* class methods */
+void GameManagement::windowManagement(float timer)
+{
+    if(this->didGameStart == false)
         {
-            this->enemies[i].getPlayerState(&this->player);
-            this->enemies[i].AI(timer);
-            characterMove.handleMovement(&this->enemies[i],timer,&this->map);
+            /* there might be a bug because the window will draw entities without this method executing updates of entities first time */
 
-            this->enemyAnimation[i]->handleAnimation(&this->enemies[i],timer);
+            this->menu->setButtonsVisibility("default");
+            this->menu->manageMenu(m_window);
+            this->menu->LayoutManager();
 
-            // placing the health bar above the enemy
-            this->enemyHealthBar[i]->setPositionEnemy(this->enemies[i].getCharacterPosition(),this->enemies[i].getCharacterSize());
+            if(this->menu->getIsButtonPressed())
+                {
+                    if(menu->getButtonPressedName() == "Start")
+                        {
+                            this->setDidGameStart(true);
+                        }
+                    else if(menu->getButtonPressedName() == "Exit")
+                        {
+                            this->setGameExit(true);
+                        }
+                }
 
-            this->enemyHealthBar[i]->manageBar(this->enemies[i].getCurrentHealth());
+            return;
         }
 
-    this->controls.handleControls(&this->player);
-    this->playerAnimation.handleAnimation(&this->player,timer);
-    characterMove.handleMovement(&this->player,timer,&this->map);
+    if(this->isGamePaused)
+        {
+            this->menu->setButtonsVisibility("resume");
+            this->menu->manageMenu(m_window);
+            this->menu->LayoutManager();
 
-    // placing the health bar in the top left corner
-    this->playerHealthBar.setPosition(this->camera.getTopLeftCorner());
-    this->playerHealthBar.manageBar(this->player.getCurrentHealth());
+            if(this->menu->getIsButtonPressed())
+                {
+                    if(menu->getButtonPressedName() == "Resume")
+                        {
+                            this->isGamePaused = false;
+                        }
+                    else if(menu->getButtonPressedName() == "Main Menu")
+                        {
+                            this->isGamePaused = false;
+                            this->didGameStart = false;
+                        }
+                    else if(menu->getButtonPressedName() == "Exit")
+                        {
+                            this->setGameExit(true);
+                        }
+                }
+
+            return;
+        }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            this->isGamePaused = true;
+        }
+
+    sf::Keyboard::Key key = this->controls.checkIfKeyIsPressed();
+
+    this->characterManagement.managePlayerControls(key,controls,this->player);
+
+    this->characterMovement.manageMovement(this->player,timer,this->currentMap);
+    this->characterManagement.manageCharacterActions(this->player,this->animationState,timer);
+
+    this->playerEvents.manageCharacterEvents(this->player,this->animationState,timer);
+
+    this->animationState.update(timer);
+
+    for(unsigned i=0; i<this->enemiesAnimationState.size(); i++)
+        {
+            this->enemies[i].setPlayerPosition(this->player.getCharacterPosition());
+            this->enemies[i].setIsPlayerDead(this->player.getIsDead());
+
+            this->combatSystem.update(this->player,this->enemies[i]);
+            this->enemyAI.manageAI(this->enemies[i],timer);
+
+            this->characterMovement.manageMovement(this->enemies[i],timer,this->currentMap);
+            this->characterManagement.manageCharacterActions(this->enemies[i],this->enemiesAnimationState[i],timer);
+
+            this->enemiesEvents[i].manageCharacterEvents(this->enemies[i],this->enemiesAnimationState[i],timer);
+
+            this->enemiesAnimationState[i].update(timer);
+
+            this->enemiesHealthBar[i]->setPositionEnemy(this->enemies[i].getCharacterPosition(),this->enemies[i].getCharacterSize());
+
+            this->enemiesHealthBar[i]->updateBar(this->enemies[i].getCurrentHealth());
+        }
 
     this->camera.handleView(this->player);
+
+    this->playerHealthBar.setPosition(this->camera.getTopLeftCorner());
+    this->playerHealthBar.updateBar(this->player.getCurrentHealth());
+
+    this->playerEvents.updateTextPosition(this->camera.getCenter());
+
+    // animated objects
+
+    for(unsigned i=0; i<this->animatedObjects.size(); i++)
+        {
+            this->animatedObjects[i].update(timer);
+        }
 }
 
-void GameManagement::draw(RenderWindow *window)
+void GameManagement::drawDeadCharacters()
 {
-    window->setView(this->camera.getView());
+    if(this->player.getIsDead())
+        m_window.draw(animationState);
 
-    window->draw(this->map.getMap());
-
-    window->draw(this->playerAnimation.getSprite());
-
-    for(int i=0; i<this->enemyAnimation.size(); i++)
-        window->draw(this->enemyAnimation[i]->getSprite());
-
-    for(int i=0; i<this->enemyHealthBar.size(); i++)
+    for(unsigned i=0; i<this->enemiesAnimationState.size(); i++)
         {
-            if(this->enemies[i].getCombatMode()==true)
-                this->enemyHealthBar[i]->draw(window);
+            if(this->enemies[i].getIsDead())
+                m_window.draw(this->enemiesAnimationState[i]);
+        }
+}
+
+void GameManagement::drawAliveCharacters()
+{
+    if(this->player.getIsDead() == false)
+        {
+            m_window.draw(animationState);
+
+            // !this->player.getIsWalkingIntoObstacle() isn't working, maybe i disable it in one of the previous functions?
+            if(this->player.getIsDashing() && !this->player.getIsWalkingIntoObstacle())
+                {
+                    AnimationState altAnimationState_1 = this->animationState;
+                    AnimationState altAnimationState_2 = this->animationState;
+
+                    sf::Vector2f newPosition_1 = this->player.getCharacterPosition();
+                    sf::Vector2f newPosition_2 = this->player.getCharacterPosition();
+
+                    sf::Vector2f characterSize = this->player.getCharacterSize();
+                    characterSize.x /= 2;
+                    characterSize.y /= 2;
+
+                    std::string direction = this->player.getDirection();
+
+                    if(direction == "left")
+                        {
+                            newPosition_1.x += characterSize.x;
+                            newPosition_2.x += characterSize.x * 2;
+                        }
+                    else if(direction == "right")
+                        {
+                            newPosition_1.x -= characterSize.x;
+                            newPosition_2.x -= characterSize.x * 2;
+                        }
+                    else if(direction == "up")
+                        {
+                            newPosition_1.y += characterSize.y;
+                            newPosition_2.y += characterSize.y * 2;
+                        }
+                    else
+                        {
+                            newPosition_1.y -= characterSize.y;
+                            newPosition_2.y -= characterSize.y * 2;
+                        }
+
+                    altAnimationState_1.setPosition(newPosition_1);
+                    altAnimationState_2.setPosition(newPosition_2);
+
+                    altAnimationState_1.setColor(sf::Color(255,255,255,150));
+                    altAnimationState_2.setColor(sf::Color(255,255,255,120));
+
+                    m_window.draw(altAnimationState_2);
+                    m_window.draw(altAnimationState_1);
+                }
+
         }
 
-    // drawing some of the obstacles over the characters, for example the leaves of the trees, because it would be weird if those are drawn before the characters
-    window->draw(this->map.getTransparentObstacles());
+    for(unsigned i=0; i<this->enemiesAnimationState.size(); i++)
+        {
+            if(this->enemies[i].getIsDead() == false)
+                {
+                    m_window.draw(this->enemiesAnimationState[i]);
 
-    this->playerHealthBar.draw(window);
+                    if(this->enemies[i].getIsDashing())
+                        {
+                            // to write here
+                        }
+                }
+        }
+}
+
+void GameManagement::draw()
+{
+    m_window.clear(sf::Color::Black);
+
+    if(this->didGameStart == false || this->isGamePaused == true)
+        {
+            this->menu->draw(m_window);
+
+            m_window.display();
+
+            return;
+        }
+
+    m_window.setView(this->camera.getView());
+
+    m_window.draw(this->currentMap.getMap());
+
+    this->drawDeadCharacters();
+    this->drawAliveCharacters();
+
+    m_window.draw(this->playerEvents.getText());
+
+    // draw entities
+
+    for(unsigned i=0; i<this->transparentObstacles.size(); i++)
+        {
+            this->transparentObstacles[i]->draw(m_window);
+        }
+
+    for(unsigned i=0; i<this->animatedObjects.size(); i++)
+        {
+            m_window.draw(this->animatedObjects[i]);
+        }
+
+
+    // health bars
+
+    this->playerHealthBar.draw(m_window);
+
+    for(unsigned int i=0; i<this->enemies.size(); i++)
+        {
+            if(this->enemies[i].getCurrentState() == "agressive" && this->enemies[i].getIsDead() == false && this->enemies[i].getIsDying() == false)
+                this->enemiesHealthBar[i]->draw(m_window);
+        }
+
+    m_window.display();
+}
+
+void GameManagement::createAnimations()
+{
+    AnimationManagement ob;
+
+    this->animationState = ob.typeOfAnimation("hero","character");
+
+    for(unsigned i=0; i<this->enemies.size(); i++)
+        {
+            AnimationState animationStateEnemy;
+            animationStateEnemy = ob.typeOfAnimation(this->enemies[i].getEnemyName(),"character");
+            this->enemiesAnimationState.push_back(animationStateEnemy);
+        }
+
+    // animated objects
+
+    std::vector < std::pair<sf::Vector2f,std::string> > animatedObjectDetails = this->currentMap.getAnimatedObjectDetails();
+
+    for(unsigned i=0; i<animatedObjectDetails.size(); i++)
+        {
+            AnimationState animationStateObject;
+            animationStateObject = ob.typeOfAnimation(animatedObjectDetails[i].second,"object");
+            animationStateObject.setPosition(animatedObjectDetails[i].first);
+
+            this->animatedObjects.push_back(animationStateObject);
+        }
+}
+
+void GameManagement::setCharacterEvents()
+{
+    for(unsigned i=0; i<this->enemies.size(); i++)
+        {
+            CharacterEvents characterEvents;
+
+            this->enemiesEvents.push_back(characterEvents);
+        }
 }
 
 void GameManagement::manageZoom(int value)
@@ -116,14 +295,68 @@ void GameManagement::manageZoom(int value)
     this->camera.zoomEvent(value);
 }
 
-GameManagement::GameManagement():player("hero"),playerAnimation("hero"),map("map1","level1"),playerHealthBar("health_bar","empty_bar",this->player.getHealth())
+/* constructors */
+GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
 {
-    this->player.setCharacterSize(this->playerAnimation.getFrameSize());
+    this->currentMap.getMapDetails("map1","level2");
 
-    camera.setMapSize(map.getMapSize());
+    this->player.setValues("hero");
 
+    this->player.setSpawnPoint(this->currentMap.getPlayerPosition());
+    this->player.setCharacterPosition(this->player.getSpawnPoint());
+
+    this->camera.setMapSize(this->currentMap.getMapSize());
+
+    std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails = this->currentMap.getEnemyDetails();
+
+    for(unsigned i=0; i<enemyDetails.size(); i++)
+        {
+            Enemy enemy;
+            enemy.setValues(enemyDetails[i].second);
+            enemy.getGraph(this->currentMap);
+
+            enemy.setSpawnPoint(enemyDetails[i].first);
+            enemy.setCharacterPosition(enemy.getSpawnPoint());
+
+            this->enemies.push_back(enemy);
+        }
+
+    this->createAnimations();
+
+    this->setCharacterEvents();
+
+    this->playerHealthBar.setBar("health_bar",this->player.getHealth());
+
+    for(unsigned i=0; i<this->enemies.size(); i++)
+        {
+            Bar *enemyBar = new Bar();
+            enemyBar->setBar("health_bar",this->enemies[i].getHealth());
+            this->enemiesHealthBar.push_back(enemyBar);
+        }
+
+    // map entities
+
+    std::vector < std::pair<sf::Vector2f,std::string> > transparentObstacleDetails = this->currentMap.getTransparentObstacleDetails();
+
+    for(unsigned i=0; i<transparentObstacleDetails.size(); i++)
+        {
+            TransparentObstacle *transparentObstacle = new TransparentObstacle();
+
+            transparentObstacle->setValues("map1",transparentObstacleDetails[i].second,transparentObstacleDetails[i].first);
+
+            this->transparentObstacles.push_back(transparentObstacle);
+        }
+
+    // game logic
+
+    this->didGameStart = false;
+    this->isGamePaused = false;
+    this->gameExit = false;
+
+    this->menu = new Menu();
 }
 
+/* destructors */
 GameManagement::~GameManagement()
 {
 
