@@ -26,9 +26,28 @@ void TransparentObstacle::setValues(std::string mapName, std::string fileName, s
         }
 }
 
-void TransparentObstacle::checkTransparency(sf::Vector2f characterPosition, sf::Vector2f characterSize)
+void TransparentObstacle::checkTransparency(sf::Vector2f characterPosition)
 {
-    // write code here
+    sf::FloatRect dimensions = this->sprite.getGlobalBounds();
+
+    bool isInRange = false;
+
+    if(characterPosition.x >= dimensions.left && characterPosition.x <= (dimensions.left + dimensions.width))
+        {
+            if(characterPosition.y >= dimensions.top && characterPosition.y <= (dimensions.top + dimensions.height))
+                {
+                    isInRange = true;
+                }
+        }
+
+    if(isInRange)
+        {
+            this->sprite.setColor(sf::Color(255,255,255,100));
+        }
+    else
+        {
+            this->sprite.setColor(sf::Color::White);
+        }
 }
 
 void TransparentObstacle::draw(sf::RenderWindow &renderWindow)

@@ -25,6 +25,47 @@ void GameManagement::setMouseClicked(bool isMouseClicked)
 /* class methods */
 void GameManagement::windowManagement(float timer)
 {
+    if(this->gameEvents->getLevelTransitionInProgress())
+        {
+            this->gameEvents->manageLevelTransition(this->cameraEffects, timer);
+
+            if(!this->cameraEffects->getIsFadeInFinished())
+                {
+                    return;
+                }
+            else
+                {
+                    if(this->gameEvents->getLevelTransitionRequest())
+                        {
+                            // changing level
+                            this->gameEvents->setLevelTransitionRequest(false);
+
+                            std::string nextMapName = "map";
+                            std::string nextLevelName = "level";
+
+                            if(this->currentLevelIndex <= 0)
+                                {
+                                    this->currentLevelIndex = 1;
+                                }
+                            else
+                                {
+                                    this->currentLevelIndex ++;
+                                }
+
+                            if(this->currentLevelIndex < 1 || this->currentLevelIndex > this->numberOfLevels[this->currentMapIndex])
+                                {
+                                    // in case of a bug
+                                    this->currentLevelIndex = 1;
+                                }
+
+                            nextMapName += std::to_string(this->currentMapIndex);
+                            nextLevelName += std::to_string(this->currentLevelIndex);
+
+                            this->changeLevel(nextMapName,nextLevelName);
+                        }
+                }
+        }
+
     if(this->didGameStart == false)
         {
             /* there might be a bug because the window will draw entities without this method executing updates of entities first time */
@@ -38,6 +79,11 @@ void GameManagement::windowManagement(float timer)
                     if(menu->getButtonPressedName() == "Start")
                         {
                             this->setDidGameStart(true);
+
+                            this->gameEvents->setLevelTransitionRequest(true);
+                            this->gameEvents->setLevelTransitionInProgress(true);
+                            this->gameEvents->setTransitionWhileInMenu(true);
+
                         }
                     else if(menu->getButtonPressedName() == "Exit")
                         {
@@ -111,17 +157,32 @@ void GameManagement::windowManagement(float timer)
         }
 
     this->camera.handleView(this->player);
+    this->cameraEffects->updateCamera(this->camera);
 
     this->playerHealthBar.setPosition(this->camera.getTopLeftCorner());
     this->playerHealthBar.updateBar(this->player.getCurrentHealth());
 
     this->playerEvents.updateTextPosition(this->camera.getCenter());
 
+    // transparent obstacles
+    for(unsigned i=0; i<this->transparentObstacles.size(); i++)
+        {
+            this->transparentObstacles[i]->checkTransparency(this->player.getCharacterPosition());
+        }
+
     // animated objects
 
     for(unsigned i=0; i<this->animatedObjects.size(); i++)
         {
             this->animatedObjects[i].update(timer);
+        }
+
+    // check if the player is near the portal to teleport to the next level
+
+    if(this->portalEnd->isInRange(this->player.getCharacterPosition()))
+        {
+            this->gameEvents->setLevelTransitionRequest(true);
+            this->gameEvents->setLevelTransitionInProgress(true);
         }
 }
 
@@ -209,6 +270,18 @@ void GameManagement::draw()
 {
     m_window.clear(sf::Color::Black);
 
+    if(this->gameEvents->getTransitionWhileInMenu())
+        {
+            this->menu->draw(m_window);
+
+            this->cameraEffects->setPosition(sf::Vector2f(0.0f,0.0f));
+            this->cameraEffects->draw(m_window);
+
+            m_window.display();
+
+            return;
+        }
+
     if(this->didGameStart == false || this->isGamePaused == true)
         {
             this->menu->draw(m_window);
@@ -221,6 +294,19 @@ void GameManagement::draw()
     m_window.setView(this->camera.getView());
 
     m_window.draw(this->currentMap.getMap());
+    this->portalStart->draw(m_window);
+
+    if(this->currentMapIndex > this->numberOfLevels.size())
+        {
+            std::cout<<"Error with the map/level index"<<'\n';
+        }
+    else
+        {
+            if(this->currentLevelIndex < this->numberOfLevels[this->currentMapIndex])
+                {
+                    this->portalEnd->draw(m_window);
+                }
+        }
 
     this->drawDeadCharacters();
     this->drawAliveCharacters();
@@ -250,6 +336,11 @@ void GameManagement::draw()
                 this->enemiesHealthBar[i]->draw(m_window);
         }
 
+    if(this->gameEvents->getLevelTransitionInProgress())
+        {
+            this->cameraEffects->draw(m_window);
+        }
+
     m_window.display();
 }
 
@@ -273,7 +364,7 @@ void GameManagement::createAnimations()
     for(unsigned i=0; i<animatedObjectDetails.size(); i++)
         {
             AnimationState animationStateObject;
-            animationStateObject = ob.typeOfAnimation(animatedObjectDetails[i].second,"object");
+            animationStateObject = ob.objectAnimation(animatedObjectDetails[i].second,"map1_animations");
             animationStateObject.setPosition(animatedObjectDetails[i].first);
 
             this->animatedObjects.push_back(animationStateObject);
@@ -295,17 +386,35 @@ void GameManagement::manageZoom(int value)
     this->camera.zoomEvent(value);
 }
 
-/* constructors */
-GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
+void GameManagement::changeLevel(std::string mapName, std::string levelName)
 {
-    this->currentMap.getMapDetails("map1","level2");
+    // deleting entities from the previous level
+    this->enemies.clear();
+    this->enemiesAnimationState.clear();
+    this->enemiesEvents.clear();
+    this->enemiesHealthBar.clear(); // does it work for pointer types?
+
+    this->transparentObstacles.clear();
+    this->animatedObjects.clear();
+
+    this->playerHealthBar = Bar();
+    this->animationState = AnimationState();
+
+    this->enemyHealthBar = Bar();
+
+    // setting the current level
+
+    this->currentMap.getMapDetails(mapName,levelName);
 
     this->player.setValues("hero");
 
     this->player.setSpawnPoint(this->currentMap.getPlayerPosition());
+    this->player.setSpawnPoint(this->currentMap.getPortalStart());
     this->player.setCharacterPosition(this->player.getSpawnPoint());
 
     this->camera.setMapSize(this->currentMap.getMapSize());
+    this->camera.handleView(this->player);
+    this->cameraEffects->updateCamera(this->camera);
 
     std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails = this->currentMap.getEnemyDetails();
 
@@ -342,18 +451,48 @@ GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
         {
             TransparentObstacle *transparentObstacle = new TransparentObstacle();
 
+            // to modify here
             transparentObstacle->setValues("map1",transparentObstacleDetails[i].second,transparentObstacleDetails[i].first);
 
             this->transparentObstacles.push_back(transparentObstacle);
         }
 
+    this->portalStart->setPosition(this->currentMap.getPortalStart());
+    this->portalEnd->setPosition(this->currentMap.getPortalEnd());
+}
+
+/* constructors */
+GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
+{
     // game logic
+
+    // apply level transition here
 
     this->didGameStart = false;
     this->isGamePaused = false;
     this->gameExit = false;
 
     this->menu = new Menu();
+    this->cameraEffects = new CameraEffects();
+
+    // to set the camera default view on position (0,0) because the menu is drawn on (0,0)
+    this->gameEvents = new GameEvents();
+
+    this->cameraEffects->updateCamera(this->camera);
+
+    this->portalStart = new Portal();
+    this->portalEnd = new Portal();
+
+    // to get these values from a json file
+
+    this->numberOfMaps = 1;
+    this->numberOfLevels.push_back(0); // filling position 0
+    this->numberOfLevels.push_back(2); // map 1 has 2 levels
+
+    this->currentMapIndex = 1;
+    this->currentLevelIndex = 0;
+
+    // to get the number of maps and levels from each map from a file
 }
 
 /* destructors */

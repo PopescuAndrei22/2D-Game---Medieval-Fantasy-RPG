@@ -17,7 +17,7 @@ class AnimationManagement
 
         AnimationState characterAnimation(std::string);
 
-        AnimationState objectAnimation(std::string);
+        AnimationState objectAnimation(std::string, std::string);
 
         Animation createAnimation(std::string,nlohmann::json&);
 

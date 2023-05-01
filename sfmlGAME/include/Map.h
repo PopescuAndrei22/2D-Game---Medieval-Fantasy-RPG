@@ -39,6 +39,9 @@ class Map
         std::vector < std::pair<sf::Vector2f,std::string> > getTransparentObstacleDetails();
         std::vector < std::pair<sf::Vector2f,std::string> > getAnimatedObjectDetails();
 
+        sf::Vector2f getPortalStart() const;
+        sf::Vector2f getPortalEnd() const;
+
         // constructors
         Map();
 
@@ -69,5 +72,8 @@ class Map
         std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails;
         std::vector < std::pair<sf::Vector2f,std::string> > transparentObstacleDetails;
         std::vector < std::pair<sf::Vector2f,std::string> > animatedObjectDetails;
+
+        sf::Vector2f portalStart;
+        sf::Vector2f portalEnd;
 };
 #endif // MAP_H

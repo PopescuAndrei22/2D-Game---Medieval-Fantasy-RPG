@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1682712605 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\main.cpp
+1682772783 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<nlohmann/json.hpp>
@@ -892,7 +892,7 @@
 	"Map.h"
 	<vector>
 
-1682618860 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\map.h
+1682959355 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\map.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<fstream>
@@ -915,7 +915,7 @@
 1682254129 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\controls.cpp
 	"Controls.h"
 
-1682618860 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\map.cpp
+1682959378 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\map.cpp
 	"Map.h"
 
 1682250759 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\camera.cpp
@@ -2352,7 +2352,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1682712605 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\gamemanagement.h
+1682959355 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\gamemanagement.h
 	"AnimationState.h"
 	"Animation.h"
 	"AnimationManagement.h"
@@ -2375,8 +2375,11 @@
 	"CharacterEvents.h"
 	"Menu.h"
 	"TransparentObstacle.h"
+	"CameraEffects.h"
+	"GameEvents.h"
+	"Portal.h"
 
-1682712611 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gamemanagement.cpp
+1682962281 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gamemanagement.cpp
 	"GameManagement.h"
 
 1677771492 source:c:\users\andrei\documents\github\2d_game\sfmlgame\main.cpp
@@ -4348,7 +4351,7 @@
 	<map>
 	<algorithm>
 
-1682620556 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\animationmanagement.h
+1682955457 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\animationmanagement.h
 	"AnimationState.h"
 	"Animation.h"
 	<SFML/Graphics.hpp>
@@ -4357,7 +4360,7 @@
 	<fstream>
 	<nlohmann/json.hpp>
 
-1682621380 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\animationmanagement.cpp
+1682955471 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\animationmanagement.cpp
 	"AnimationManagement.h"
 
 1681769387 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\player.cpp
@@ -4418,10 +4421,10 @@
 1682530221 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\characterevents.cpp
 	"CharacterEvents.h"
 
-1682543505 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\transparentobstacle.cpp
+1682961013 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\transparentobstacle.cpp
 	"TransparentObstacle.h"
 
-1682542616 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\transparentobstacle.h
+1682954329 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\transparentobstacle.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<fstream>
@@ -4471,4 +4474,36 @@
 
 1682697099 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gamemenu.cpp
 	"GameMenu.h"
+
+1682962281 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gameevents.cpp
+	"GameEvents.h"
+
+1682955099 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\gameevents.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"CameraEffects.h"
+
+1682873235 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\cameraeffects.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Camera.h"
+
+1682873468 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\cameraeffects.cpp
+	"CameraEffects.h"
+
+1682961087 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\portal.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1682961087 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\portal.cpp
+	"Portal.h"
 

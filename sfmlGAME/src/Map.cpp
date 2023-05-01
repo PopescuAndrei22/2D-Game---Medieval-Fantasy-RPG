@@ -180,6 +180,10 @@ void Map::getMapDetails(std::string mapName, std::string levelName)
     // clear the tile array from the previous level
     this->tileArray.clear();
 
+    this->enemyDetails.clear();
+    this->transparentObstacleDetails.clear();
+    this->animatedObjectDetails.clear();
+
     this->lines = this->columns = 0;
 
     std::string pathValues = "values/maps/" + mapName + "/levels/" + levelName + ".json";
@@ -280,6 +284,23 @@ void Map::getMapDetails(std::string mapName, std::string levelName)
                                             this->animatedObjectDetails.push_back(animatedObjectPair);
                                         }
                                 }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "Portals")
+                                {
+                                    sf::Vector2f portal;
+
+                                    for(unsigned indexPortals = 0; indexPortals < data["levels"][0]["layerInstances"][index]["entityInstances"].size(); indexPortals++)
+                                        {
+                                            std::string portalName = data["levels"][0]["layerInstances"][index]["entityInstances"][indexPortals]["__identifier"];
+
+                                            portal.x = data["levels"][0]["layerInstances"][index]["entityInstances"][indexPortals]["px"][0];
+                                            portal.y = data["levels"][0]["layerInstances"][index]["entityInstances"][indexPortals]["px"][1];
+
+                                            if(portalName == "PortalStart")
+                                                this->portalStart = portal;
+                                            else
+                                                this->portalEnd = portal;
+                                        }
+                                }
                         }
                 }
 
@@ -313,6 +334,16 @@ std::vector < std::pair<sf::Vector2f,std::string> > Map::getTransparentObstacleD
 std::vector < std::pair<sf::Vector2f,std::string> > Map::getAnimatedObjectDetails()
 {
     return this->animatedObjectDetails;
+}
+
+sf::Vector2f Map::getPortalStart() const
+{
+    return this->portalStart;
+}
+
+sf::Vector2f Map::getPortalEnd() const
+{
+    return this->portalEnd;
 }
 
 // constructors

@@ -67,10 +67,10 @@ AnimationState AnimationManagement::characterAnimation(std::string fileName)
     return animationState;
 }
 
-AnimationState AnimationManagement::objectAnimation(std::string fileName)
+AnimationState AnimationManagement::objectAnimation(std::string fileName, std::string textureName)
 {
     // to modify here based on the level
-    std::string filePath = "resources/maps/map1/map1_animations.png";
+    std::string filePath = "resources/maps/map1/" + textureName + ".png";
 
     AnimationState animationState;
     animationState.setTexture(filePath);
@@ -111,8 +111,6 @@ AnimationState AnimationManagement::typeOfAnimation(std::string fileName, std::s
 {
     if(animationType=="character")
         this->animationState = this->characterAnimation(fileName);
-    else if(animationType=="object")
-        this->animationState = this->objectAnimation(fileName);
     else
         std::cout<<"invalid type of animation"<<'\n';
 

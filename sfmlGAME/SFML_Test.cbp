@@ -57,6 +57,7 @@
 		<Unit filename="include/Bar.h" />
 		<Unit filename="include/Button.h" />
 		<Unit filename="include/Camera.h" />
+		<Unit filename="include/CameraEffects.h" />
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/CharacterEvents.h" />
 		<Unit filename="include/CharacterManagement.h" />
@@ -79,6 +80,7 @@
 		<Unit filename="src/Bar.cpp" />
 		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Camera.cpp" />
+		<Unit filename="src/CameraEffects.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/CharacterEvents.cpp" />
 		<Unit filename="src/CharacterManagement.cpp" />

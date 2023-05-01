@@ -22,6 +22,9 @@
 #include "CharacterEvents.h"
 #include "Menu.h"
 #include "TransparentObstacle.h"
+#include "CameraEffects.h"
+#include "GameEvents.h"
+#include "Portal.h"
 
 class GameManagement
 {
@@ -49,6 +52,9 @@ class GameManagement
         void drawAliveCharacters();
 
         void setCharacterEvents();
+
+        /* important methods */
+        void changeLevel(std::string, std::string);
 
         /* constructors */
         GameManagement(sf::RenderWindow&);
@@ -100,11 +106,30 @@ class GameManagement
 
         Menu *menu;
 
+        // Camera effects
+
+        CameraEffects *cameraEffects;
+
+        // Game events manager
+
+        GameEvents *gameEvents;
+
         // game logic
 
         bool isGamePaused;
         bool didGameStart;
         bool gameExit;
+
+        // details about the game
+
+        int numberOfMaps;
+        std::vector <int> numberOfLevels;
+
+        Portal *portalStart;
+        Portal *portalEnd;
+
+        int currentMapIndex;
+        int currentLevelIndex;
 };
 
 #endif // GAMEMANAGEMENT_H

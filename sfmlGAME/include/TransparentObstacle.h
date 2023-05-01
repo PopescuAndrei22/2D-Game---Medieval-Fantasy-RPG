@@ -14,7 +14,7 @@ class TransparentObstacle
         /* class methods */
         void setValues(std::string,std::string,sf::Vector2f);
 
-        void checkTransparency(sf::Vector2f, sf::Vector2f);
+        void checkTransparency(sf::Vector2f);
 
         void draw(sf::RenderWindow&);
 
