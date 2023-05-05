@@ -179,11 +179,15 @@ void GameManagement::windowManagement(float timer)
 
     // check if the player is near the portal to teleport to the next level
 
-    if(this->portalEnd->isInRange(this->player.getCharacterPosition()))
-        {
-            this->gameEvents->setLevelTransitionRequest(true);
-            this->gameEvents->setLevelTransitionInProgress(true);
-        }
+    // to modify here
+    if(this->currentLevelIndex < this->numberOfLevels[this->currentMapIndex])
+            {
+                if(this->portalEnd->isInRange(this->player.getCharacterPosition()))
+                    {
+                        this->gameEvents->setLevelTransitionRequest(true);
+                        this->gameEvents->setLevelTransitionInProgress(true);
+                    }
+            }
 }
 
 void GameManagement::drawDeadCharacters()

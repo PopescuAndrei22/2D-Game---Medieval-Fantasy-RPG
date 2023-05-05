@@ -25,6 +25,8 @@
 #include "CameraEffects.h"
 #include "GameEvents.h"
 #include "Portal.h"
+#include "Boss.h"
+#include "BarManager.h"
 
 class GameManagement
 {
@@ -92,6 +94,8 @@ class GameManagement
 
         EnemyAI enemyAI;
 
+        // implement boss here
+
         CombatSystem combatSystem;
 
         // map entities
@@ -101,8 +105,6 @@ class GameManagement
         std::vector <AnimationState> animatedObjects;
 
         // Menu
-
-        //Menu menu;
 
         Menu *menu;
 

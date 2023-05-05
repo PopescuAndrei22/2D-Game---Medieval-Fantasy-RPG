@@ -55,6 +55,8 @@
 		<Unit filename="include/AnimationManagement.h" />
 		<Unit filename="include/AnimationState.h" />
 		<Unit filename="include/Bar.h" />
+		<Unit filename="include/BarManager.h" />
+		<Unit filename="include/Boss.h" />
 		<Unit filename="include/Button.h" />
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/CameraEffects.h" />
@@ -71,13 +73,19 @@
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/NecromancerAI.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/Portal.h" />
+		<Unit filename="include/Projectile.h" />
+		<Unit filename="include/Skill.h" />
 		<Unit filename="include/TransparentObstacle.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Animation.cpp" />
 		<Unit filename="src/AnimationManagement.cpp" />
 		<Unit filename="src/AnimationState.cpp" />
 		<Unit filename="src/Bar.cpp" />
+		<Unit filename="src/BarManager.cpp" />
+		<Unit filename="src/Boss.cpp" />
 		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/CameraEffects.cpp" />
@@ -94,7 +102,11 @@
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/NecromancerAI.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Portal.cpp" />
+		<Unit filename="src/Projectile.cpp" />
+		<Unit filename="src/Skill.cpp" />
 		<Unit filename="src/TransparentObstacle.cpp" />
 		<Extensions />
 	</Project>

@@ -1896,7 +1896,7 @@
 	"Character.h"
 	"Enemy.h"
 
-1682530223 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\enemy.h
+1683022143 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\enemy.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -2352,7 +2352,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1682959355 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\gamemanagement.h
+1683022143 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\gamemanagement.h
 	"AnimationState.h"
 	"Animation.h"
 	"AnimationManagement.h"
@@ -2378,8 +2378,10 @@
 	"CameraEffects.h"
 	"GameEvents.h"
 	"Portal.h"
+	"Boss.h"
+	"BarManager.h"
 
-1682962281 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gamemanagement.cpp
+1683008556 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\gamemanagement.cpp
 	"GameManagement.h"
 
 1677771492 source:c:\users\andrei\documents\github\2d_game\sfmlgame\main.cpp
@@ -4406,7 +4408,7 @@
 1682246460 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\combatsystem.cpp
 	"CombatSystem.h"
 
-1682530320 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\enemyai.cpp
+1683024624 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\enemyai.cpp
 	"EnemyAI.h"
 
 1682530219 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\characterevents.h
@@ -4506,4 +4508,27 @@
 
 1682961087 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\portal.cpp
 	"Portal.h"
+
+1683022210 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\boss.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Character.h"
+	"Enemy.h"
+
+1683022143 c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\include\barmanager.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Bar.h"
+
+1683022143 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\barmanager.cpp
+	"BarManager.h"
+
+1683022143 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\boss.cpp
+	"Boss.h"
 

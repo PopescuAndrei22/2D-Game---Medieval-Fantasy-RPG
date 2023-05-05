@@ -8,7 +8,6 @@ float EnemyAI::getEuclidianDistance(sf::Vector2f a, sf::Vector2f b)
 
 std::string EnemyAI::getNewDirection(Enemy &enemy)
 {
-
     std::vector <std::string> availableDirections = {"left","right","up","down"};
 
     std::string newDirection = availableDirections[rand()%(availableDirections.size())];
@@ -18,15 +17,17 @@ std::string EnemyAI::getNewDirection(Enemy &enemy)
 
     float distance = this->getEuclidianDistance(a,b);
 
+    std::string enemyDirection = enemy.getDirection();
+
     if(distance > enemy.getRadiusIdle())
         {
-            if(newDirection == "left")
+            if(enemyDirection == "left")
                 newDirection = "right";
 
-            else if(newDirection == "right")
+            else if(enemyDirection == "right")
                 newDirection = "left";
 
-            else if(newDirection == "down")
+            else if(enemyDirection == "down")
                 newDirection = "up";
 
             else
