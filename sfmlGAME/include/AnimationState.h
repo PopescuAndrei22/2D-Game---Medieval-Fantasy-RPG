@@ -14,6 +14,9 @@ public:
     /* getters */
     std::string getState() const;
     bool getIsFinished();
+    bool getIsLooped();
+    sf::Vector2f getSize() const;
+    const sf::Vertex* getVertices() const;
 
     /* setters */
     void setState(std::string);

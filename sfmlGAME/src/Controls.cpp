@@ -99,10 +99,23 @@ sf::Keyboard::Key Controls::checkIfKeyIsPressed()
 Controls::Controls()
 {
     // initial binds, can be modified later from options -> key bindings
+    /*
     this->moveLeft=sf::Keyboard::Left;
     this->moveRight=sf::Keyboard::Right;
     this->moveUp=sf::Keyboard::Up;
     this->moveDown=sf::Keyboard::Down;
+
+    this->attack = sf::Keyboard::Space;
+
+    this->spellCast = sf::Keyboard::X;
+
+    this->dash = sf::Keyboard::C;
+    */
+
+    this->moveLeft=sf::Keyboard::A;
+    this->moveRight=sf::Keyboard::D;
+    this->moveUp=sf::Keyboard::W;
+    this->moveDown=sf::Keyboard::S;
 
     this->attack = sf::Keyboard::Space;
 

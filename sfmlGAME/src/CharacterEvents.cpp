@@ -182,7 +182,7 @@ void CharacterEvents::manageCharacterEvents(Character &character, AnimationState
 
 void CharacterEvents::updateTextPosition(sf::Vector2f position)
 {
-    this->text.setPosition(position);
+    this->text.setPosition(sf::Vector2f(position.x-(this->text.getGlobalBounds().width/2),position.y));
 }
 
 /* constructor */
@@ -219,7 +219,7 @@ CharacterEvents::CharacterEvents()
 
     this->text.setFillColor(sf::Color::Red);
 
-    this->text.setCharacterSize(24);
+    this->text.setCharacterSize(45);
 
     // health regeneration
 

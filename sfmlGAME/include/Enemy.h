@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Graph.h"
 #include "Map.h"
+#include "Projectile.h"
 
 class Enemy: public Character
 {

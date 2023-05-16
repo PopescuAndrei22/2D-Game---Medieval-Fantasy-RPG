@@ -15,13 +15,20 @@ class GameEvents
         bool getLevelTransitionInProgress() const;
         bool getTransitionWhileInMenu() const;
 
+        bool getIsGameOver() const;
+        bool getIsAbleToEndGame() const;
+
         /* setters */
         void setLevelTransitionRequest(bool);
         void setLevelTransitionInProgress(bool);
         void setTransitionWhileInMenu(bool);
 
+        void setIsGameOver(bool);
+        void setIsAbleToEndGame(bool);
+
         /* class methods */
         void manageLevelTransition(CameraEffects*, float);
+        void manageGameOver(CameraEffects*, float);
 
         void manageGameEvents(CameraEffects*, float);
 
@@ -35,6 +42,12 @@ class GameEvents
         bool levelTransitionInProgress;
 
         bool transitionWhileInMenu;
+
+        bool isGameOver;
+        bool isAbleToEndGame;
+
+        float timerGameEnd;
+        float timerGameEndReset;
 
 };
 

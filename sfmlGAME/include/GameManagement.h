@@ -27,6 +27,8 @@
 #include "Portal.h"
 #include "Boss.h"
 #include "BarManager.h"
+#include "NecromancerAI.h"
+#include "Projectile.h"
 
 class GameManagement
 {
@@ -48,6 +50,8 @@ class GameManagement
         void windowManagement(float);
 
         void draw();
+
+        void resetGame();
 
         void drawDeadCharacters();
 
@@ -91,10 +95,14 @@ class GameManagement
         std::vector <AnimationState> enemiesAnimationState;
         std::vector <CharacterEvents> enemiesEvents;
         std::vector <Bar*> enemiesHealthBar;
-
         EnemyAI enemyAI;
 
         // implement boss here
+        std::vector <Boss> bossList;
+        std::vector <AnimationState> bossAnimationState;
+        std::vector <CharacterEvents> bossEvents;
+        std::vector <Bar*> bossHealthBar;
+        NecromancerAI necromancerAI;
 
         CombatSystem combatSystem;
 
@@ -132,6 +140,9 @@ class GameManagement
 
         int currentMapIndex;
         int currentLevelIndex;
+
+        std::vector <Projectile> enemiesProjectiles;
+        std::vector <Projectile> playerProjectiles;
 };
 
 #endif // GAMEMANAGEMENT_H

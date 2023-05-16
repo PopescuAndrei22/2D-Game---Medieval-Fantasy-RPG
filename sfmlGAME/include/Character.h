@@ -46,6 +46,7 @@ class Character
         bool getRegenerableLife() const;
 
         float getBaseDamageMelee() const;
+        float getBaseMagicDamage() const;
         float getKnockbackDistance() const;
         float getReceivedKnockbackDistance() const;
 
@@ -57,6 +58,7 @@ class Character
 
         std::string getDirection() const;
         std::string getDirectionKnockback() const;
+        std::string getProjectile();
 
         sf::Vector2f getCharacterPosition() const;
         sf::Vector2f getSpawnPoint() const;
@@ -98,6 +100,7 @@ class Character
         void setRegenerableLife(bool);
 
         void setBaseDamageMelee(float);
+        void setBaseMagicDamage(float);
         void setKnockbackDistance(float);
         void setReceivedKnockbackDistance(float);
         void setRadiusAttack(float);
@@ -164,6 +167,7 @@ class Character
         float receivedKnockbackDistance;
 
         float baseDamageMelee;
+        float baseMagicDamage;
 
         float radiusAttack;
 
@@ -173,6 +177,8 @@ class Character
 
         std::string direction;
         std::string directionKnockback;
+
+        std::vector <std::string> projectilesNames;
 
         sf::Vector2f characterPosition;
         sf::Vector2f spawnPoint;

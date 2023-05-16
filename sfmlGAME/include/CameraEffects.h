@@ -13,10 +13,14 @@ public:
     /* getters */
     bool getIsFadeInFinished() const;
     bool getIsFadeOutFinished() const;
+    bool getIsFadeTextFinished() const;
+    sf::Text getText() const;
 
     /* setters */
     void setIsFadeInFinished(bool);
     void setIsFadeOutFinished(bool);
+
+    void setIsFadeTextFinished(bool);
 
     void setPosition(sf::Vector2f);
 
@@ -24,10 +28,14 @@ public:
     void fadeIn(float);
     void fadeOut(float);
 
+    void fadeText(float);
+
     /* class methods */
     void updateCamera(Camera&);
 
     void draw(sf::RenderWindow&);
+
+    void updateTextPosition(sf::Vector2f);
 
     CameraEffects();
     ~CameraEffects();
@@ -38,6 +46,8 @@ private:
 
     int currentPosition;
 
+    int currentPositionTextFade;
+
     int maxColorValue;
 
     float timerFade;
@@ -45,6 +55,14 @@ private:
 
     bool isFadeInFinished;
     bool isFadeOutFinished;
+
+    float timerFadeText;
+    float timerFadeTextReset;
+
+    bool isFadeTextFinished;
+
+    sf::Font font;
+    sf::Text text;
 };
 
 #endif // CAMERAEFFECTS_H

@@ -75,6 +75,43 @@ void CombatSystem::update(Player &player, Enemy &enemy)
         }
 }
 
+void CombatSystem::updateProjectiles(Character &character, std::vector<Projectile> &projectiles)
+{
+    // will set it as variable for each character
+    float baseMagicDamage = 40.0f;
+    float projectileKnockback = 10.0f;
+
+    for(unsigned i=0; i<projectiles.size(); i++)
+        {
+            // to consider the case when the projectile is deleted before doing this
+            if(projectiles[i].isCollision(character.getCharacterPosition(),character.getCharacterSize()) && projectiles[i].getIsProjectileDamaging())
+                {
+                    projectiles[i].setHasReachedDestination(true);
+                    projectiles[i].setIsProjectileDamaging(false);
+                    projectiles[i].setTarget(sf::Vector2f(character.getCharacterPosition().x + (character.getCharacterSize().x/2),
+                                                      character.getCharacterPosition().y + (character.getCharacterSize().y/2)));
+
+
+                    character.setCurrentHealth(character.getCurrentHealth() - baseMagicDamage);
+
+                    /*
+                    if(player.getIsKnockable())
+                        {
+                            player.setIsKnockbacked(true);
+
+                            player.setReceivedKnockbackDistance(enemy.getKnockbackDistance());
+
+                            player.setDirectionKnockback(enemy.getDirection());
+                        }
+                    */
+
+                    character.setIsDamaged(true);
+
+                    projectiles[i].setIsProjectileDamaging(false);
+                }
+        }
+}
+
 /* constructors */
 CombatSystem::CombatSystem()
 {

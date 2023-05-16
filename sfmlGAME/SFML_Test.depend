@@ -3363,20 +3363,14 @@
 1678051724 source:c:\users\andrei\documents\github\2d_game\sfmlgame\src\map.cpp
 	"Map.h"
 
-1677775092 source:d:\github\2d_game\sfmlgame\main.cpp
+1682772783 source:d:\github\2d_game\sfmlgame\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
-	"Character.h"
-	"Controls.h"
-	"Animation.h"
-	"AnimationCharacter.h"
-	"Camera.h"
-	"CharacterMove.h"
-	"Map.h"
-	"Enemy.h"
-	"Bar.h"
+	<nlohmann/json.hpp>
 	"GameManagement.h"
 	<typeinfo>
+	"Animation.h"
+	"AnimationState.h"
 
 1670422614 d:\github\2d_game\sfmlgame\resources\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -3787,11 +3781,12 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1677608072 d:\github\2d_game\sfmlgame\include\character.h
-	<SFML/Graphics.hpp>
+1684256106 d:\github\2d_game\sfmlgame\include\character.h
 	<iostream>
+	<vector>
 	<fstream>
 	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
 
 1677344896 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\json.hpp
 	<algorithm>
@@ -4225,18 +4220,17 @@
 
 1677344897 d:\github\2d_game\sfmlgame\resources\json-develop\include\nlohmann\thirdparty\hedley\hedley_undef.hpp
 
-1677344882 d:\github\2d_game\sfmlgame\include\controls.h
-	<SFML/Graphics.hpp>
-	<iostream>
-	"Controls.h"
-	"Character.h"
-
-1677608065 d:\github\2d_game\sfmlgame\include\animation.h
-	<SFML/Graphics.hpp>
+1682254129 d:\github\2d_game\sfmlgame\include\controls.h
 	<iostream>
 	<vector>
 	<fstream>
 	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
+
+1684257776 d:\github\2d_game\sfmlgame\include\animation.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
 
 1677344882 d:\github\2d_game\sfmlgame\include\animationcharacter.h
 	<SFML/Graphics.hpp>
@@ -4247,7 +4241,7 @@
 	<fstream>
 	<nlohmann/json.hpp>
 
-1677344882 d:\github\2d_game\sfmlgame\include\camera.h
+1682250759 d:\github\2d_game\sfmlgame\include\camera.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<nlohmann/json.hpp>
@@ -4262,27 +4256,26 @@
 	"Map.h"
 	<vector>
 
-1678055324 d:\github\2d_game\sfmlgame\include\map.h
+1684056917 d:\github\2d_game\sfmlgame\include\map.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<fstream>
 	<nlohmann/json.hpp>
 	<vector>
-
-1678057827 d:\github\2d_game\sfmlgame\include\enemy.h
-	"Character.h"
-	<fstream>
-	<nlohmann/json.hpp>
-	<cstdlib>
-	"Map.h"
-	"Graph.h"
-	"Map.h"
-	"Animation.h"
-	<vector>
-	<queue>
 	<algorithm>
 
-1677344882 d:\github\2d_game\sfmlgame\include\graph.h
+1684228386 d:\github\2d_game\sfmlgame\include\enemy.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Character.h"
+	"Graph.h"
+	"Map.h"
+	"Projectile.h"
+
+1682108220 d:\github\2d_game\sfmlgame\include\graph.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -4290,56 +4283,75 @@
 	<cstring>
 	<queue>
 
-1677788967 d:\github\2d_game\sfmlgame\include\bar.h
-	<iostream>
-	<SFML/Graphics.hpp>
-
-1677787959 d:\github\2d_game\sfmlgame\include\gamemanagement.h
+1684247672 d:\github\2d_game\sfmlgame\include\bar.h
 	<SFML/Graphics.hpp>
 	<iostream>
-	"Character.h"
-	"Enemy.h"
-	<nlohmann/json.hpp>
+	<vector>
 	<fstream>
-	"AnimationCharacter.h"
-	"Controls.h"
-	"AnimationCharacter.h"
-	"Camera.h"
-	"CharacterMove.h"
-	"Map.h"
-	"Bar.h"
+	<nlohmann/json.hpp>
 
-1677608064 source:d:\github\2d_game\sfmlgame\src\animation.cpp
+1684268179 d:\github\2d_game\sfmlgame\include\gamemanagement.h
+	"AnimationState.h"
+	"Animation.h"
+	"AnimationManagement.h"
+	"Controls.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"CharacterManagement.h"
+	"Player.h"
+	"Character.h"
+	"CharacterMovement.h"
+	"Map.h"
+	"Camera.h"
+	"Enemy.h"
+	"EnemyAI.h"
+	"Bar.h"
+	"CombatSystem.h"
+	"CharacterEvents.h"
+	"Menu.h"
+	"TransparentObstacle.h"
+	"CameraEffects.h"
+	"GameEvents.h"
+	"Portal.h"
+	"Boss.h"
+	"BarManager.h"
+	"NecromancerAI.h"
+	"Projectile.h"
+
+1684257776 source:d:\github\2d_game\sfmlgame\src\animation.cpp
 	"Animation.h"
 
 1677605394 source:d:\github\2d_game\sfmlgame\src\animationcharacter.cpp
 	"AnimationCharacter.h"
 
-1677791519 source:d:\github\2d_game\sfmlgame\src\bar.cpp
+1684247672 source:d:\github\2d_game\sfmlgame\src\bar.cpp
 	"Bar.h"
 
-1677608072 source:d:\github\2d_game\sfmlgame\src\camera.cpp
+1682250759 source:d:\github\2d_game\sfmlgame\src\camera.cpp
 	"Camera.h"
 
-1677608072 source:d:\github\2d_game\sfmlgame\src\character.cpp
+1684256619 source:d:\github\2d_game\sfmlgame\src\character.cpp
 	"Character.h"
 
 1677345204 source:d:\github\2d_game\sfmlgame\src\charactermove.cpp
 	"CharacterMove.h"
 
-1677345204 source:d:\github\2d_game\sfmlgame\src\controls.cpp
+1684256225 source:d:\github\2d_game\sfmlgame\src\controls.cpp
 	"Controls.h"
 
-1678057828 source:d:\github\2d_game\sfmlgame\src\enemy.cpp
+1684246152 source:d:\github\2d_game\sfmlgame\src\enemy.cpp
 	"Enemy.h"
 
-1678123294 source:d:\github\2d_game\sfmlgame\src\gamemanagement.cpp
+1684272579 source:d:\github\2d_game\sfmlgame\src\gamemanagement.cpp
 	"GameManagement.h"
 
-1677345204 source:d:\github\2d_game\sfmlgame\src\graph.cpp
+1682108226 source:d:\github\2d_game\sfmlgame\src\graph.cpp
 	"Graph.h"
 
-1678055324 source:d:\github\2d_game\sfmlgame\src\map.cpp
+1684268629 source:d:\github\2d_game\sfmlgame\src\map.cpp
 	"Map.h"
 
 1682620556 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\animationstate.cpp
@@ -4531,4 +4543,222 @@
 
 1683022143 source:c:\users\andrei\onedrive - e-uvt.ro\desktop\documents\codeblocks\code\sfmlgame\src\boss.cpp
 	"Boss.h"
+
+1684257776 d:\github\2d_game\sfmlgame\include\animationstate.h
+	"Animation.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<map>
+	<algorithm>
+
+1684239092 d:\github\2d_game\sfmlgame\include\animationmanagement.h
+	"AnimationState.h"
+	"Animation.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1682189204 d:\github\2d_game\sfmlgame\include\charactermanagement.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Controls.h"
+	"Player.h"
+	"AnimationState.h"
+
+1681771142 d:\github\2d_game\sfmlgame\include\player.h
+	"Character.h"
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
+
+1682246460 d:\github\2d_game\sfmlgame\include\charactermovement.h
+	"Controls.h"
+	"Map.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	<vector>
+
+1682530320 d:\github\2d_game\sfmlgame\include\enemyai.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Enemy.h"
+
+1684250538 d:\github\2d_game\sfmlgame\include\combatsystem.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Character.h"
+	"Enemy.h"
+	"Player.h"
+	"Projectile.h"
+
+1682530219 d:\github\2d_game\sfmlgame\include\characterevents.h
+	"Map.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Character.h"
+	"Enemy.h"
+	"AnimationState.h"
+	<vector>
+
+1682712330 d:\github\2d_game\sfmlgame\include\menu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Button.h"
+
+1682712140 d:\github\2d_game\sfmlgame\include\button.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1682954329 d:\github\2d_game\sfmlgame\include\transparentobstacle.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<fstream>
+	<nlohmann/json.hpp>
+	<vector>
+	<algorithm>
+
+1684271877 d:\github\2d_game\sfmlgame\include\cameraeffects.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Camera.h"
+
+1684270996 d:\github\2d_game\sfmlgame\include\gameevents.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"CameraEffects.h"
+
+1682961087 d:\github\2d_game\sfmlgame\include\portal.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+
+1684255561 d:\github\2d_game\sfmlgame\include\boss.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Character.h"
+	"Enemy.h"
+
+1683022143 d:\github\2d_game\sfmlgame\include\barmanager.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	"Bar.h"
+
+1684242361 source:d:\github\2d_game\sfmlgame\src\animationmanagement.cpp
+	"AnimationManagement.h"
+
+1684257776 source:d:\github\2d_game\sfmlgame\src\animationstate.cpp
+	"AnimationState.h"
+
+1683022143 source:d:\github\2d_game\sfmlgame\src\barmanager.cpp
+	"BarManager.h"
+
+1684255561 source:d:\github\2d_game\sfmlgame\src\boss.cpp
+	"Boss.h"
+
+1682714268 source:d:\github\2d_game\sfmlgame\src\button.cpp
+	"Button.h"
+
+1684273906 source:d:\github\2d_game\sfmlgame\src\cameraeffects.cpp
+	"CameraEffects.h"
+
+1684272840 source:d:\github\2d_game\sfmlgame\src\characterevents.cpp
+	"CharacterEvents.h"
+
+1682273816 source:d:\github\2d_game\sfmlgame\src\charactermanagement.cpp
+	"CharacterManagement.h"
+
+1682530734 source:d:\github\2d_game\sfmlgame\src\charactermovement.cpp
+	"CharacterMovement.h"
+
+1684253882 source:d:\github\2d_game\sfmlgame\src\combatsystem.cpp
+	"CombatSystem.h"
+
+1683024624 source:d:\github\2d_game\sfmlgame\src\enemyai.cpp
+	"EnemyAI.h"
+
+1684272022 source:d:\github\2d_game\sfmlgame\src\gameevents.cpp
+	"GameEvents.h"
+
+1682712330 source:d:\github\2d_game\sfmlgame\src\menu.cpp
+	"Menu.h"
+
+1681769387 source:d:\github\2d_game\sfmlgame\src\player.cpp
+	"Player.h"
+
+1682961087 source:d:\github\2d_game\sfmlgame\src\portal.cpp
+	"Portal.h"
+
+1682961013 source:d:\github\2d_game\sfmlgame\src\transparentobstacle.cpp
+	"TransparentObstacle.h"
+
+1684261923 source:d:\github\2d_game\sfmlgame\src\necromancerai.cpp
+	"NecromancerAI.h"
+
+1684261923 d:\github\2d_game\sfmlgame\include\necromancerai.h
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
+	"Enemy.h"
+	"Boss.h"
+	"Projectile.h"
+	<cmath>
+
+1684252133 source:d:\github\2d_game\sfmlgame\src\projectile.cpp
+	"Projectile.h"
+
+1684250150 d:\github\2d_game\sfmlgame\include\projectile.h
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
+	"AnimationState.h"
+	"AnimationManagement.h"
+
+1683232510 source:d:\github\2d_game\sfmlgame\src\skill.cpp
+	"Skill.h"
+
+1683232510 d:\github\2d_game\sfmlgame\include\skill.h
+	<iostream>
+	<vector>
+	<fstream>
+	<nlohmann/json.hpp>
+	<SFML/Graphics.hpp>
 

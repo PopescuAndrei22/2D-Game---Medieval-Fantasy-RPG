@@ -11,6 +11,42 @@ bool AnimationState::getIsFinished()
     return this->animations[this->currentState].getIsFinished();
 }
 
+bool AnimationState::getIsLooped()
+{
+    return this->animations[this->currentState].getIsLooped();
+}
+
+sf::Vector2f AnimationState::getSize() const
+{
+    float minX = m_vertices[0].position.x;
+    float minY = m_vertices[0].position.y;
+    float maxX = m_vertices[0].position.x;
+    float maxY = m_vertices[0].position.y;
+
+    // Find the minimum and maximum x and y values
+    for (int i = 1; i < 4; ++i)
+        {
+            float x = m_vertices[i].position.x;
+            float y = m_vertices[i].position.y;
+
+            minX = std::min(minX, x);
+            minY = std::min(minY, y);
+            maxX = std::max(maxX, x);
+            maxY = std::max(maxY, y);
+        }
+
+    // Calculate the width and height of the sprite
+    float width = maxX - minX;
+    float height = maxY - minY;
+
+    return sf::Vector2f(width, height);
+}
+
+const sf::Vertex* AnimationState::getVertices() const
+{
+    return m_vertices;
+}
+
 /* setters */
 void AnimationState::setState(std::string state)
 {

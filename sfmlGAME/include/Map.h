@@ -36,6 +36,7 @@ class Map
         // get info about current level such as player positions, enemies, obstacles, entities etc.
         sf::Vector2f getPlayerPosition() const;
         std::vector < std::pair<sf::Vector2f,std::string> > getEnemyDetails();
+        std::vector < std::pair<sf::Vector2f,std::string> > getBossDetails();
         std::vector < std::pair<sf::Vector2f,std::string> > getTransparentObstacleDetails();
         std::vector < std::pair<sf::Vector2f,std::string> > getAnimatedObjectDetails();
 
@@ -70,6 +71,7 @@ class Map
         // informations about the current level, don't forget to clear the vectors
         sf::Vector2f playerPosition;
         std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails;
+        std::vector < std::pair<sf::Vector2f,std::string> > bossDetails;
         std::vector < std::pair<sf::Vector2f,std::string> > transparentObstacleDetails;
         std::vector < std::pair<sf::Vector2f,std::string> > animatedObjectDetails;
 

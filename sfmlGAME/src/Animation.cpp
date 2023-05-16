@@ -21,6 +21,11 @@ bool Animation::getIsFinished() const
     return this->isFinished;
 }
 
+bool Animation::getIsLooped() const
+{
+    return this->isLooped;
+}
+
 /* setters */
 void Animation::setIsLooped(bool isLooped)
 {

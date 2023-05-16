@@ -160,12 +160,14 @@
     "mana": 150,
     "isKnockable": true,
     "baseDamageMelee": 35,
+    "baseMagicDamage": 80,
     "knockbackDistance": 25,
     "radiusAttack": 64,
     "respawnTime": 7,
     "isRespawnable": true,
     "leapsInDash": 4,
     "leapDistanceInDash": 35,
-    "regenerableLife": true
+    "regenerableLife": true,
+    "projectiles": ["fireball"]
   }
 }

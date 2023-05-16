@@ -13,6 +13,7 @@ class Animation
         unsigned int getFrameIndex() const;
         unsigned int getSize() const;
         bool getIsFinished() const;
+        bool getIsLooped() const;
 
         /* setters */
         void setIsLooped(bool);

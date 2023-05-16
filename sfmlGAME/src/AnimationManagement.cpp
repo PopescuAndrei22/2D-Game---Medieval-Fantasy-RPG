@@ -67,6 +67,85 @@ AnimationState AnimationManagement::characterAnimation(std::string fileName)
     return animationState;
 }
 
+AnimationState AnimationManagement::explosionAnimation(std::string explosionName)
+{
+    std::string filePath = "sprites/explosions/" + explosionName + ".png";
+
+    AnimationState animationState;
+    animationState.setTexture(filePath);
+
+    std::string pathValues = "values/explosions/" + explosionName + ".json";
+    std::ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    try
+        {
+            Animation newAnimation;
+
+            auto frameType = data.at("objectFrames");
+            auto vectorFrames = frameType.at(0);
+
+            for(unsigned i=0; i<vectorFrames.size(); i++)
+                {
+                    sf::IntRect rect = sf::IntRect(vectorFrames[i][0],vectorFrames[i][1],vectorFrames[i][2],vectorFrames[i][3]);
+                    newAnimation.addFrame(rect,0.01f);
+                }
+
+            // death
+            animationState.addAnimation("explosion",newAnimation);
+            animationState.setState("explosion");
+
+        }
+    catch(const nlohmann::json::exception& e)
+        {
+            std::cout << e.what() << '\n';
+        }
+
+    file.close();
+
+    return animationState;
+}
+
+AnimationState AnimationManagement::projectileAnimation(std::string projectileName)
+{
+    // adding projectile
+    std::string filePath = "sprites/projectiles/" + projectileName + ".png";
+
+    AnimationState animationState;
+    animationState.setTexture(filePath);
+
+    std::string pathValues = "values/projectiles/" + projectileName + ".json";
+    std::ifstream file(pathValues);
+    nlohmann::json data = nlohmann::json::parse(file);
+
+    try
+        {
+            Animation newAnimation;
+
+            auto frameType = data.at("objectFrames");
+            auto vectorFrames = frameType.at(0);
+
+            for(unsigned i=0; i<vectorFrames.size(); i++)
+                {
+                    sf::IntRect rect = sf::IntRect(vectorFrames[i][0],vectorFrames[i][1],vectorFrames[i][2],vectorFrames[i][3]);
+                    newAnimation.addFrame(rect,0.07f);
+                }
+
+            // death
+            animationState.addAnimation("projectile",newAnimation);
+            animationState.setState("projectile");
+
+        }
+    catch(const nlohmann::json::exception& e)
+        {
+            std::cout << e.what() << '\n';
+        }
+
+    file.close();
+
+    return animationState;
+}
+
 AnimationState AnimationManagement::objectAnimation(std::string fileName, std::string textureName)
 {
     // to modify here based on the level

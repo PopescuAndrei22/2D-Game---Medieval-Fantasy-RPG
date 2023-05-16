@@ -1,5 +1,22 @@
 #include "Boss.h"
 
+/* getters */
+bool Boss::getProjectileRequest() const
+{
+    return this->projectileRequest;
+}
+
+/* setters */
+void Boss::setBossName(std::string bossName)
+{
+    this->bossName = bossName;
+}
+
+void Boss::setProjectileRequest(bool projectileRequest)
+{
+    this->projectileRequest = projectileRequest;
+}
+
 /* class methods */
 void Boss::revive()
 {
@@ -18,7 +35,7 @@ void Boss::setValues(std::string fileName)
 
     try
         {
-            this->setEnemyName(bossValues["name"]);
+            this->setBossName(bossValues["bossName"]);
 
         }
     catch(const nlohmann::json::exception& e)
@@ -31,7 +48,7 @@ void Boss::setValues(std::string fileName)
 
 Boss::Boss()
 {
-
+    this->setProjectileRequest(false);
 }
 
 Boss::~Boss()

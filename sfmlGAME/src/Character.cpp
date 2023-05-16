@@ -121,6 +121,11 @@ float Character::getBaseDamageMelee() const
     return this->baseDamageMelee;
 }
 
+float Character::getBaseMagicDamage() const
+{
+    return this->baseMagicDamage;
+}
+
 float Character::getKnockbackDistance() const
 {
     return this->knockbackDistance;
@@ -154,6 +159,18 @@ std::string Character::getDirection() const
 std::string Character::getDirectionKnockback() const
 {
     return this->directionKnockback;
+}
+
+std::string Character::getProjectile()
+{
+    if(this->projectilesNames.size() == 0)
+        {
+            std::cout<<"the projectile vector is empty!"<<'\n';
+
+            return "empty";
+        }
+
+    return projectilesNames[rand()%this->projectilesNames.size()];
 }
 
 sf::Vector2f Character::getCharacterPosition() const
@@ -292,6 +309,11 @@ void Character::setBaseDamageMelee(float baseDamageMelee)
     this->baseDamageMelee = baseDamageMelee;
 }
 
+void Character::setBaseMagicDamage(float baseMagicDamage)
+{
+    this->baseMagicDamage = baseMagicDamage;
+}
+
 void Character::setKnockbackDistance(float knockbackDistance)
 {
     this->knockbackDistance = knockbackDistance;
@@ -353,6 +375,14 @@ void Character::setValues(std::string fileName)
 
     try
         {
+            if(!characterValues["projectiles"].is_null())
+                {
+                    for(unsigned i=0; i<characterValues["projectiles"].size(); i++)
+                        {
+                            this->projectilesNames.push_back(characterValues["projectiles"][i]);
+                        }
+                }
+
             this->setHealth((int)characterValues["health"]);
 
             this->setMana((int)characterValues["mana"]);

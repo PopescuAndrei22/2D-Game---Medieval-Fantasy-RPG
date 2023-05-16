@@ -19,6 +19,10 @@ class AnimationManagement
 
         AnimationState objectAnimation(std::string, std::string);
 
+        AnimationState projectileAnimation(std::string);
+
+        AnimationState explosionAnimation(std::string);
+
         Animation createAnimation(std::string,nlohmann::json&);
 
         /* constructors */

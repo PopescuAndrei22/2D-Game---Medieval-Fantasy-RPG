@@ -183,6 +183,7 @@ void Map::getMapDetails(std::string mapName, std::string levelName)
     this->enemyDetails.clear();
     this->transparentObstacleDetails.clear();
     this->animatedObjectDetails.clear();
+    this->bossDetails.clear();
 
     this->lines = this->columns = 0;
 
@@ -301,6 +302,26 @@ void Map::getMapDetails(std::string mapName, std::string levelName)
                                                 this->portalEnd = portal;
                                         }
                                 }
+                            else if(data["levels"][0]["layerInstances"][index]["__identifier"] == "Boss")
+                                {
+                                    sf::Vector2f bossPosition;
+
+                                    for(unsigned indexBoss = 0; indexBoss < data["levels"][0]["layerInstances"][index]["entityInstances"].size(); indexBoss++)
+                                        {
+                                            std::string bossName = data["levels"][0]["layerInstances"][index]["entityInstances"][indexBoss]["__identifier"];
+                                            bossName[0] += 32;
+
+                                            bossPosition.x = data["levels"][0]["layerInstances"][index]["entityInstances"][indexBoss]["px"][0];
+                                            bossPosition.y = data["levels"][0]["layerInstances"][index]["entityInstances"][indexBoss]["px"][1];
+
+                                            std::pair < sf::Vector2f, std::string > bossPair;
+
+                                            bossPair.first = bossPosition;
+                                            bossPair.second = bossName;
+
+                                            this->bossDetails.push_back(bossPair);
+                                        }
+                                }
                         }
                 }
 
@@ -324,6 +345,11 @@ sf::Vector2f Map::getPlayerPosition() const
 std::vector < std::pair<sf::Vector2f,std::string> > Map::getEnemyDetails()
 {
     return this->enemyDetails;
+}
+
+std::vector < std::pair<sf::Vector2f,std::string> > Map::getBossDetails()
+{
+    return this->bossDetails;
 }
 
 std::vector < std::pair<sf::Vector2f,std::string> > Map::getTransparentObstacleDetails()

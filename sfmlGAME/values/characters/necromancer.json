@@ -168,19 +168,21 @@
     "mana": 150,
     "isKnockable": true,
     "baseDamageMelee": 15,
+    "baseMagicDamage": 65,
     "knockbackDistance": 25,
     "radiusAttack": 55,
     "respawnTime": 4,
-    "isRespawnable": true,
+    "isRespawnable": false,
     "leapsInDash": 4,
     "leapDistanceInDash": 35,
-    "regenerableLife": true
+    "regenerableLife": true,
+    "projectiles": ["felspell","fireball","freezing","magic","nebula","vortex"]
   },
   "enemyValues":{
     "radiusIdle": 450,
     "radiusCombat": 300
   },
   "bossValues":{
-    "name": "The necromancer"
+    "bossName": "The necromancer"
   }
 }

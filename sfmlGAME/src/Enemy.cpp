@@ -132,7 +132,6 @@ void Enemy::revive()
     this->setCurrentState("passive");
 
     this->setTimerIdle(0.0f);
-    this->setTimerIdleReset(2.5f);
 
     this->setPlayerPosition(sf::Vector2f(0,0));
     this->setLastKnownPosition(sf::Vector2f(0,0));
@@ -168,7 +167,8 @@ void Enemy::setValues(std::string fileName)
 /* constructors */
 Enemy::Enemy()
 {
-
+    this->setTimerIdle(0.0f);
+    this->setTimerIdleReset(2.5f);
 }
 
 /* destructors */

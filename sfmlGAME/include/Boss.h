@@ -11,6 +11,12 @@
 class Boss: public Enemy
 {
     public:
+        /* getters */
+        bool getProjectileRequest() const;
+
+        /* setters */
+        void setBossName(std::string);
+        void setProjectileRequest(bool);
 
         /* class methods */
         void revive();
@@ -21,7 +27,9 @@ class Boss: public Enemy
 
     private:
 
-        std::string name;
+        std::string bossName;
+
+        bool projectileRequest;
 };
 
 #endif // BOSS_H

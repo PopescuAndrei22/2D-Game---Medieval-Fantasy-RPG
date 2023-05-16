@@ -19,12 +19,31 @@ void GameManagement::setGameExit(bool gameExit)
 
 void GameManagement::setMouseClicked(bool isMouseClicked)
 {
-    this->menu->setIsButtonClicked(isMouseClicked);
+    if(this->didGameStart == false || this->isGamePaused == true)
+        {
+            this->menu->setIsButtonClicked(isMouseClicked);
+        }
 }
 
 /* class methods */
 void GameManagement::windowManagement(float timer)
 {
+    if(this->gameEvents->getIsGameOver())
+        {
+            this->gameEvents->manageGameOver(this->cameraEffects, timer);
+
+            if(this->gameEvents->getIsAbleToEndGame())
+                {
+                    this->gameEvents->setIsAbleToEndGame(false);
+                    this->gameEvents->setIsGameOver(false);
+
+                    this->resetGame();
+
+                }
+
+            return;
+        }
+
     if(this->gameEvents->getLevelTransitionInProgress())
         {
             this->gameEvents->manageLevelTransition(this->cameraEffects, timer);
@@ -125,15 +144,36 @@ void GameManagement::windowManagement(float timer)
             this->isGamePaused = true;
         }
 
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            // to check if we can use spell, for example if character isn't attacking or spellcasting etc., to modify here later
+            if(this->animationState.getIsLooped() == true)
+                {
+                    this->player.setIsAttacking(true);
+
+                    Projectile projectile;
+                    projectile.init(this->player.getProjectile());
+
+                    // adjusting the placement
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(m_window);
+                    sf::Vector2f viewPosition = this->m_window.mapPixelToCoords(mousePosition, this->camera.getView());
+
+                    projectile.setTarget(sf::Vector2f(viewPosition.x,viewPosition.y));
+
+                    projectile.setPosition(sf::Vector2f(this->player.getCharacterPosition().x + (this->player.getCharacterSize().x/2),
+                                                        this->player.getCharacterPosition().y + (this->player.getCharacterSize().y/2)));
+                    projectile.adjustDirection();
+
+                    this->playerProjectiles.push_back(projectile);
+                }
+        }
+
     sf::Keyboard::Key key = this->controls.checkIfKeyIsPressed();
 
     this->characterManagement.managePlayerControls(key,controls,this->player);
-
     this->characterMovement.manageMovement(this->player,timer,this->currentMap);
     this->characterManagement.manageCharacterActions(this->player,this->animationState,timer);
-
     this->playerEvents.manageCharacterEvents(this->player,this->animationState,timer);
-
     this->animationState.update(timer);
 
     for(unsigned i=0; i<this->enemiesAnimationState.size(); i++)
@@ -142,6 +182,7 @@ void GameManagement::windowManagement(float timer)
             this->enemies[i].setIsPlayerDead(this->player.getIsDead());
 
             this->combatSystem.update(this->player,this->enemies[i]);
+            this->combatSystem.updateProjectiles(this->enemies[i], this->playerProjectiles);
             this->enemyAI.manageAI(this->enemies[i],timer);
 
             this->characterMovement.manageMovement(this->enemies[i],timer,this->currentMap);
@@ -156,6 +197,64 @@ void GameManagement::windowManagement(float timer)
             this->enemiesHealthBar[i]->updateBar(this->enemies[i].getCurrentHealth());
         }
 
+    bool isGameOver = false;
+    for(unsigned i=0; i<this->bossAnimationState.size(); i++)
+        {
+            this->bossList[i].setPlayerPosition(this->player.getCharacterPosition());
+            this->bossList[i].setIsPlayerDead(this->player.getIsDead());
+
+            this->combatSystem.update(this->player,this->bossList[i]);
+            this->combatSystem.updateProjectiles(this->bossList[i], this->playerProjectiles);
+
+            if(this->bossList[i].getEnemyName() == "necromancer")
+                {
+                    this->necromancerAI.manageAI(this->bossList[i],timer);
+                    //this->enemyAI.manageAI(this->bossList[i],timer);
+                }
+
+            if(this->bossList[i].getProjectileRequest() == true)
+                {
+                    this->bossList[i].setProjectileRequest(false);
+
+                    Projectile projectile;
+                    projectile.init(this->bossList[i].getProjectile());
+
+                    // adjusting the placement
+                    projectile.setTarget(sf::Vector2f(this->player.getCharacterPosition().x + (this->player.getCharacterSize().x/2),
+                                                      this->player.getCharacterPosition().y + (this->player.getCharacterSize().y/2)));
+
+                    projectile.setPosition(sf::Vector2f(this->bossList[i].getCharacterPosition().x + (this->bossList[i].getCharacterSize().x/2),
+                                                        this->bossList[i].getCharacterPosition().y + (this->bossList[i].getCharacterSize().y/2)));
+                    projectile.adjustDirection();
+
+                    this->enemiesProjectiles.push_back(projectile);
+                }
+
+            this->characterMovement.manageMovement(this->bossList[i],timer,this->currentMap);
+            this->characterManagement.manageCharacterActions(this->bossList[i],this->bossAnimationState[i],timer);
+
+            this->bossEvents[i].manageCharacterEvents(this->bossList[i],this->bossAnimationState[i],timer);
+
+            this->bossAnimationState[i].update(timer);
+
+            this->bossHealthBar[i]->setPositionEnemy(this->bossList[i].getCharacterPosition(),this->bossList[i].getCharacterSize());
+
+            this->bossHealthBar[i]->updateBar(this->bossList[i].getCurrentHealth());
+
+            if(this->bossList[i].getIsDead())
+                {
+                    isGameOver = true;
+                }
+        }
+
+    // only for demo, this will be fixed in the future
+    if(isGameOver)
+        {
+            this->gameEvents->setIsGameOver(true);
+        }
+
+    this->combatSystem.updateProjectiles(this->player, this->enemiesProjectiles);
+
     this->camera.handleView(this->player);
     this->cameraEffects->updateCamera(this->camera);
 
@@ -163,6 +262,7 @@ void GameManagement::windowManagement(float timer)
     this->playerHealthBar.updateBar(this->player.getCurrentHealth());
 
     this->playerEvents.updateTextPosition(this->camera.getCenter());
+    this->cameraEffects->updateTextPosition(this->camera.getCenter());
 
     // transparent obstacles
     for(unsigned i=0; i<this->transparentObstacles.size(); i++)
@@ -171,23 +271,52 @@ void GameManagement::windowManagement(float timer)
         }
 
     // animated objects
-
     for(unsigned i=0; i<this->animatedObjects.size(); i++)
         {
             this->animatedObjects[i].update(timer);
+        }
+
+    // managing projectiles
+    /* to use another data structure or more efficient algorithm to do that */
+    for (unsigned i = 0; i < this->enemiesProjectiles.size(); i++)
+        {
+            this->enemiesProjectiles[i].update(timer);
+
+            if (this->enemiesProjectiles[i].getProjectileFinished())
+                {
+                    // Remove the element at index i
+                    this->enemiesProjectiles.erase(this->enemiesProjectiles.begin() + i);
+
+                    // Adjust the loop counter and vector size
+                    i--;
+                }
+        }
+
+    for (unsigned i = 0; i < this->playerProjectiles.size(); i++)
+        {
+            this->playerProjectiles[i].update(timer);
+
+            if (this->playerProjectiles[i].getProjectileFinished())
+                {
+                    // Remove the element at index i
+                    this->playerProjectiles.erase(this->playerProjectiles.begin() + i);
+
+                    // Adjust the loop counter and vector size
+                    i--;
+                }
         }
 
     // check if the player is near the portal to teleport to the next level
 
     // to modify here
     if(this->currentLevelIndex < this->numberOfLevels[this->currentMapIndex])
-            {
-                if(this->portalEnd->isInRange(this->player.getCharacterPosition()))
-                    {
-                        this->gameEvents->setLevelTransitionRequest(true);
-                        this->gameEvents->setLevelTransitionInProgress(true);
-                    }
-            }
+        {
+            if(this->portalEnd->isInRange(this->player.getCharacterPosition()))
+                {
+                    this->gameEvents->setLevelTransitionRequest(true);
+                    this->gameEvents->setLevelTransitionInProgress(true);
+                }
+        }
 }
 
 void GameManagement::drawDeadCharacters()
@@ -199,6 +328,12 @@ void GameManagement::drawDeadCharacters()
         {
             if(this->enemies[i].getIsDead())
                 m_window.draw(this->enemiesAnimationState[i]);
+        }
+
+    for(unsigned i=0; i<this->bossAnimationState.size(); i++)
+        {
+            if(this->bossList[i].getIsDead())
+                m_window.draw(this->bossAnimationState[i]);
         }
 }
 
@@ -268,6 +403,19 @@ void GameManagement::drawAliveCharacters()
                         }
                 }
         }
+
+    for(unsigned i=0; i<this->bossAnimationState.size(); i++)
+        {
+            if(this->bossList[i].getIsDead() == false)
+                {
+                    m_window.draw(this->bossAnimationState[i]);
+
+                    if(this->bossList[i].getIsDashing())
+                        {
+                            // to write here
+                        }
+                }
+        }
 }
 
 void GameManagement::draw()
@@ -329,6 +477,16 @@ void GameManagement::draw()
             m_window.draw(this->animatedObjects[i]);
         }
 
+    // projectiles
+    for(unsigned i=0; i<this->enemiesProjectiles.size(); i++)
+        {
+            this->enemiesProjectiles[i].draw(m_window);
+        }
+
+    for(unsigned i=0; i<this->playerProjectiles.size(); i++)
+        {
+            this->playerProjectiles[i].draw(m_window);
+        }
 
     // health bars
 
@@ -340,9 +498,21 @@ void GameManagement::draw()
                 this->enemiesHealthBar[i]->draw(m_window);
         }
 
+    for(unsigned int i=0; i<this->bossList.size(); i++)
+        {
+            if(this->bossList[i].getCurrentState() == "agressive" && this->bossList[i].getIsDead() == false && this->bossList[i].getIsDying() == false)
+                this->bossHealthBar[i]->draw(m_window);
+        }
+
     if(this->gameEvents->getLevelTransitionInProgress())
         {
             this->cameraEffects->draw(m_window);
+        }
+
+    if(this->gameEvents->getIsGameOver())
+        {
+            this->cameraEffects->draw(m_window);
+            m_window.draw(this->cameraEffects->getText());
         }
 
     m_window.display();
@@ -359,6 +529,13 @@ void GameManagement::createAnimations()
             AnimationState animationStateEnemy;
             animationStateEnemy = ob.typeOfAnimation(this->enemies[i].getEnemyName(),"character");
             this->enemiesAnimationState.push_back(animationStateEnemy);
+        }
+
+    for(unsigned i=0; i<this->bossList.size(); i++)
+        {
+            AnimationState animationStateBoss;
+            animationStateBoss = ob.typeOfAnimation(this->bossList[i].getEnemyName(),"character");
+            this->bossAnimationState.push_back(animationStateBoss);
         }
 
     // animated objects
@@ -383,6 +560,13 @@ void GameManagement::setCharacterEvents()
 
             this->enemiesEvents.push_back(characterEvents);
         }
+
+    for(unsigned i=0; i<this->bossList.size(); i++)
+        {
+            CharacterEvents characterEvents;
+
+            this->bossEvents.push_back(characterEvents);
+        }
 }
 
 void GameManagement::manageZoom(int value)
@@ -392,11 +576,20 @@ void GameManagement::manageZoom(int value)
 
 void GameManagement::changeLevel(std::string mapName, std::string levelName)
 {
+    // deleting projectiles
+    this->enemiesProjectiles.clear();
+    this->playerProjectiles.clear();
+
     // deleting entities from the previous level
     this->enemies.clear();
     this->enemiesAnimationState.clear();
     this->enemiesEvents.clear();
     this->enemiesHealthBar.clear(); // does it work for pointer types?
+
+    this->bossList.clear();
+    this->bossAnimationState.clear();
+    this->bossEvents.clear();
+    this->bossHealthBar.clear();
 
     this->transparentObstacles.clear();
     this->animatedObjects.clear();
@@ -421,7 +614,6 @@ void GameManagement::changeLevel(std::string mapName, std::string levelName)
     this->cameraEffects->updateCamera(this->camera);
 
     std::vector < std::pair<sf::Vector2f,std::string> > enemyDetails = this->currentMap.getEnemyDetails();
-
     for(unsigned i=0; i<enemyDetails.size(); i++)
         {
             Enemy enemy;
@@ -432,6 +624,19 @@ void GameManagement::changeLevel(std::string mapName, std::string levelName)
             enemy.setCharacterPosition(enemy.getSpawnPoint());
 
             this->enemies.push_back(enemy);
+        }
+
+    std::vector < std::pair<sf::Vector2f,std::string> > bossDetails = this->currentMap.getBossDetails();
+    for(unsigned i=0; i<bossDetails.size(); i++)
+        {
+            Boss boss;
+            boss.setValues(bossDetails[i].second);
+            boss.getGraph(this->currentMap);
+
+            boss.setSpawnPoint(bossDetails[i].first);
+            boss.setCharacterPosition(boss.getSpawnPoint());
+
+            this->bossList.push_back(boss);
         }
 
     this->createAnimations();
@@ -445,6 +650,13 @@ void GameManagement::changeLevel(std::string mapName, std::string levelName)
             Bar *enemyBar = new Bar();
             enemyBar->setBar("health_bar",this->enemies[i].getHealth());
             this->enemiesHealthBar.push_back(enemyBar);
+        }
+
+    for(unsigned i=0; i<this->bossList.size(); i++)
+        {
+            Bar *bossBar = new Bar();
+            bossBar->setBar("health_bar",this->bossList[i].getHealth());
+            this->bossHealthBar.push_back(bossBar);
         }
 
     // map entities
@@ -465,8 +677,7 @@ void GameManagement::changeLevel(std::string mapName, std::string levelName)
     this->portalEnd->setPosition(this->currentMap.getPortalEnd());
 }
 
-/* constructors */
-GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
+void GameManagement::resetGame()
 {
     // game logic
 
@@ -489,6 +700,8 @@ GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
 
     // to get these values from a json file
 
+    this->numberOfLevels.clear();
+
     this->numberOfMaps = 1;
     this->numberOfLevels.push_back(0); // filling position 0
     this->numberOfLevels.push_back(2); // map 1 has 2 levels
@@ -497,6 +710,12 @@ GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
     this->currentLevelIndex = 0;
 
     // to get the number of maps and levels from each map from a file
+}
+
+/* constructors */
+GameManagement::GameManagement(sf::RenderWindow& window):m_window(window)
+{
+    this->resetGame();
 }
 
 /* destructors */

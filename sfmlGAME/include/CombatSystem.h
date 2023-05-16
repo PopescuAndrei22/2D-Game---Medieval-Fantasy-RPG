@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Projectile.h"
 
 class CombatSystem
 {
@@ -16,6 +17,7 @@ class CombatSystem
         /* class methods*/
         float getEuclidianDistance(sf::Vector2f, sf::Vector2f);
         void update(Player&, Enemy&);
+        void updateProjectiles(Character&, std::vector<Projectile>&);
 
         /* constructors */
         CombatSystem();
