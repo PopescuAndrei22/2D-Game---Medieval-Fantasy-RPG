@@ -164,7 +164,7 @@
     "characterSize": [64,64],
     "speedMovement": 70,
     "speedAttack": 100,
-    "health": 800,
+    "health": 900,
     "mana": 150,
     "isKnockable": true,
     "baseDamageMelee": 15,

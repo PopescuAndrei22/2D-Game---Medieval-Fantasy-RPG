@@ -78,7 +78,7 @@ void CombatSystem::update(Player &player, Enemy &enemy)
 void CombatSystem::updateProjectiles(Character &character, std::vector<Projectile> &projectiles)
 {
     // will set it as variable for each character
-    float baseMagicDamage = 40.0f;
+    float baseMagicDamage = 120.0f;
     float projectileKnockback = 10.0f;
 
     for(unsigned i=0; i<projectiles.size(); i++)
